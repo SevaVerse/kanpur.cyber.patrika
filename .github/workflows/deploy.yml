@@ -30,6 +30,9 @@ jobs:
           NEXT_PUBLIC_FORMSPREE_ENDPOINT: ${{ secrets.NEXT_PUBLIC_FORMSPREE_ENDPOINT }}
         run: npm run build
 
+      - name: Add .nojekyll to prevent GitHub Pages Jekyll processing
+        run: touch ./out/.nojekyll
+
       - name: Deploy out directory to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -37,3 +40,4 @@ jobs:
           publish_dir: ./out
           publish_branch: gh-pages
           force_orphan: true
+          enable_jekyll: false
