@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 const founder = {
   name: "Nitin Srivastava",
   role: "Founder",
   focus:
     "Leads Kanpur Cyber Patrika with a focus on cyber awareness, practical reporting, and a dependable static publishing workflow for readers following digital threats and public-interest security news.",
-  imageSrc: "/founder-pic.png",
+  imageSrc: `${basePath}/founder-pic.png`,
 };
 
 export const metadata: Metadata = {
