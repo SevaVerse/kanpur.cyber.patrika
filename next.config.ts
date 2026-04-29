@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 function getBasePath() {
   const repository = process.env.GITHUB_REPOSITORY;
 
-  if (!process.env.GITHUB_ACTIONS || !repository) {
+  if (!repository) {
     return "";
   }
 

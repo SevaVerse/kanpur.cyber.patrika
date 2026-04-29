@@ -96,6 +96,7 @@ npm run dev
 
 ## GitHub Pages Notes
 
-- `next.config.ts` derives `basePath` and `assetPrefix` automatically from `GITHUB_REPOSITORY` during GitHub Actions builds.
+- `next.config.ts` derives `basePath` and `assetPrefix` automatically from `GITHUB_REPOSITORY`.
 - `output: "export"` writes a static site into `out/`.
+- The default project-site URL for this repository is `https://sevaverse.github.io/kanpur.cyber.patrika/`.
 - If you use a custom domain or user site deployment, adjust `metadataBase` and base path logic as needed.
