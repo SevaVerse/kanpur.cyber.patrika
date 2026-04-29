@@ -1,0 +1,39 @@
+name: Deploy Static Site
+
+on:
+  schedule:
+    - cron: "0 0 * * 6"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        env:
+          NEWSDATA_API_KEY: ${{ secrets.NEWSDATA_API_KEY }}
+          NEXT_PUBLIC_FORMSPREE_ENDPOINT: ${{ secrets.NEXT_PUBLIC_FORMSPREE_ENDPOINT }}
+        run: npm run build
+
+      - name: Deploy out directory to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: gh-pages
+          force_orphan: true
