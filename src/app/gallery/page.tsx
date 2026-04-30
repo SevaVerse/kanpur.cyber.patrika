@@ -20,12 +20,13 @@ type Infographic = {
 const infographics: Infographic[] = [
   {
     id: "ig-001",
-    title: "How Phishing Attacks Work",
+    title: "Digital Arrest — A New-Age Scam",
     description:
-      "A step-by-step visual breakdown of a phishing campaign — from the lure email to credential harvest and account takeover.",
-    category: "Phishing",
-    publishedAt: "2026-04-01",
-    tags: ["phishing", "email", "credential theft"],
+      "Scammers impersonate police or government officials and threaten victims with 'digital arrest' to extort money. This infographic explains the red flags and how to stay safe.",
+    category: "Social Engineering",
+    imageSrc: "/infographics/infographics_1.jpeg",
+    publishedAt: "2024-05-01",
+    tags: ["digital arrest", "scam", "impersonation", "India"],
   },
   {
     id: "ig-002",
