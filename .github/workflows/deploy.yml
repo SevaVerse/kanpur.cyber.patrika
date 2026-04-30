@@ -30,6 +30,7 @@ jobs:
       - name: Build static site
         env:
           NEWSDATA_API_KEY: ${{ secrets.NEWSDATA_API_KEY }}
+          NEWSAPI_ORG_KEY: ${{ secrets.NEWSAPI_ORG_KEY }}
           NEXT_PUBLIC_FORMSPREE_ENDPOINT: ${{ secrets.NEXT_PUBLIC_FORMSPREE_ENDPOINT }}
         run: npm run build
 
