@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const metadata: Metadata = {
   title: "Infographics Gallery",
   description:
@@ -165,7 +167,7 @@ export default function GalleryPage() {
                   {item.imageSrc ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
-                      src={item.imageSrc}
+                      src={`${basePath}${item.imageSrc}`}
                       alt={item.title}
                       className="h-full w-full object-cover"
                     />
@@ -214,7 +216,7 @@ export default function GalleryPage() {
                   {/* Download placeholder */}
                   {item.imageSrc && (
                     <a
-                      href={item.imageSrc}
+                      href={`${basePath}${item.imageSrc}`}
                       download
                       className="mt-5 inline-block rounded-xl border border-border bg-surface-strong px-4 py-2 text-xs font-bold uppercase tracking-widest text-hero transition hover:border-accent hover:text-accent"
                     >
