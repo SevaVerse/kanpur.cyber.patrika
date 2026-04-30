@@ -176,7 +176,8 @@ function mapArticle(article: NewsDataArticle, index: number): Article | null {
 // ---------- NewsAPI.org helpers ----------
 
 const NEWSAPI_ORG_URL = "https://newsapi.org/v2/everything";
-const NEWSAPI_ORG_QUERY = '"cyber fraud" OR "cyber crime" OR "cyber incident" OR "cybersecurity"';
+// +India forces every result to mention India; parenthesised OR terms narrow to cyber topics
+const NEWSAPI_ORG_QUERY = '("cyber fraud" OR "cyber crime" OR "cyber incident" OR "cybersecurity") +India';
 
 function categorizeNewsApi(article: NewsApiArticle): ArticleCategory {
   const haystack = [article.title, article.description, article.content]
