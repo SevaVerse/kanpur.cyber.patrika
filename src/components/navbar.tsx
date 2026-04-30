@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { LanguageToggle } from "@/components/language-toggle";
+
 const links = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
@@ -22,6 +24,7 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
+          <LanguageToggle />
         </nav>
       </div>
     </header>

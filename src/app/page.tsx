@@ -135,8 +135,8 @@ export default async function HomePage() {
                 {group.items.map((article) => (
                   <Link key={article.id} href={`/articles/${article.slug}`} className="block space-y-2 rounded-2xl transition hover:text-accent">
                     <p className="text-xs font-bold uppercase tracking-[0.22em] text-muted">{article.sourceName}</p>
-                    <h4 className="text-lg font-bold leading-7 text-hero">{article.title}</h4>
-                    <p className="text-sm leading-7 text-slate-700">{article.description}</p>
+                    <h4 className="line-clamp-2 text-base font-bold leading-6 text-hero">{article.title}</h4>
+                    <p className="line-clamp-2 text-sm leading-6 text-slate-700">{article.description}</p>
                   </Link>
                 ))}
               </div>
