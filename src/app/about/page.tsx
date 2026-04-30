@@ -44,13 +44,28 @@ export default function AboutPage() {
           </div>
         </article>
 
-        <aside className="rounded-4xl border border-accent/20 bg-[linear-gradient(180deg,rgba(180,35,24,0.08),rgba(245,158,11,0.1))] p-8 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.35)]">
-          <p className="text-xs font-bold uppercase tracking-[0.35em] text-accent">Cyber Helpline</p>
-          <div className="mt-4 rounded-3xl border border-accent/15 bg-white/80 p-6">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-muted">National cyber helpline</p>
-            <p className="mt-3 text-5xl font-black text-hero">1221</p>
+        <aside className="space-y-4 rounded-4xl border border-accent/20 bg-[linear-gradient(180deg,rgba(180,35,24,0.08),rgba(245,158,11,0.1))] p-8 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.35)]">
+          <p className="text-xs font-bold uppercase tracking-[0.35em] text-accent">Cyber Helplines</p>
+
+          <div className="rounded-3xl border border-accent/15 bg-white/80 p-6">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-muted">National Cyber Crime Helpline</p>
+            <p className="mt-3 text-5xl font-black text-hero">1930</p>
             <p className="mt-3 text-sm leading-7 text-slate-700">
-              Use the cyber helpline for urgent reporting guidance and official support channels where applicable. Readers should still contact local authorities or platform-specific incident desks when immediate response is required.
+              Call 1930 to report cyber fraud, online scams, and financial cyber crimes directly to the national response desk.
+            </p>
+          </div>
+
+          <div className="rounded-3xl border border-accent/15 bg-white/80 p-6">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-muted">Safedigital Uttar Pradesh</p>
+            <p className="mt-2 text-base font-bold text-hero">UP Police Cyber Cell</p>
+            <a
+              href="mailto:sp-cyber.lu@up.gov.in"
+              className="mt-2 inline-block break-all text-sm font-semibold text-accent hover:underline"
+            >
+              sp-cyber.lu@up.gov.in
+            </a>
+            <p className="mt-2 text-sm leading-7 text-slate-700">
+              For UP-specific cyber incidents, reach out directly to the Lucknow unit of the UP Police Cyber Cell.
             </p>
           </div>
         </aside>
