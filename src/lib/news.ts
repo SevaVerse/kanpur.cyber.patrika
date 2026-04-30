@@ -25,13 +25,16 @@ type NewsDataResponse = {
 const DEFAULT_IMAGE =
   "https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=1200&q=80";
 const API_URL = "https://newsdata.io/api/1/latest";
-const QUERY = "cybersecurity";
+const QUERY = "cyber fraud OR cyber crime OR cyber incident";
 const COUNTRY = "in";
 const LANGUAGE = "en";
 const MAX_ARTICLES = 18;
 const CYBER_KEYWORDS = [
   "cyber",
   "cybersecurity",
+  "cyber fraud",
+  "cyber crime",
+  "cyber incident",
   "ransomware",
   "malware",
   "phishing",
