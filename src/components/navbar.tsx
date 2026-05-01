@@ -89,7 +89,7 @@ export function Navbar({ articles }: NavbarProps) {
           <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
             <Image
               src={`${basePath}/Site_logo.jpeg`}
-              alt="Kanpur Cyber Patrika logo"
+              alt="Cyber Vani logo"
               fill
               sizes="44px"
               className="object-cover"
@@ -99,10 +99,10 @@ export function Navbar({ articles }: NavbarProps) {
           </div>
           <div className="min-w-0">
             <span className="block text-[0.62rem] font-semibold uppercase tracking-[0.42em] text-accent sm:text-xs">
-              Kanpur
+              Digital Newsroom
             </span>
             <span className="block truncate text-lg font-black uppercase tracking-[0.14em] text-hero sm:text-2xl sm:tracking-[0.18em]">
-              Cyber Patrika
+              Cyber Vani
             </span>
           </div>
         </Link>

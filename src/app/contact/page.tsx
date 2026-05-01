@@ -4,7 +4,7 @@ import { ContactForm } from "@/components/contact-form";
 
 export const metadata: Metadata = {
   title: "Contact Us",
-  description: "Contact the Kanpur Cyber Patrika editorial desk using a static Formspree-compatible form.",
+  description: "Contact the Cyber Vani editorial desk using a static Formspree-compatible form.",
 };
 
 export default function ContactPage() {

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Sponsors",
   description:
-    "Meet the sponsors and partners supporting Kanpur Cyber Patrika's mission to deliver reliable cyber security awareness to Uttar Pradesh and beyond.",
+    "Meet the sponsors and partners supporting Cyber Vani's mission to deliver reliable cyber security awareness to Uttar Pradesh and beyond.",
 };
 
 type Sponsor = {
@@ -99,7 +99,7 @@ export default function SponsorsPage() {
           Sponsors &amp; Partners backing cyber awareness in Uttar Pradesh.
         </h1>
         <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300 sm:text-base">
-          Kanpur Cyber Patrika is an editorially independent publication. These organisations share our commitment to
+          Cyber Vani is an editorially independent publication. These organisations share our commitment to
           making cyber security knowledge accessible to every reader.
         </p>
       </section>
@@ -166,7 +166,7 @@ export default function SponsorsPage() {
       {/* Become a sponsor CTA */}
       <section className="rounded-4xl border border-accent/20 bg-[linear-gradient(135deg,rgba(180,35,24,0.06),rgba(245,158,11,0.08))] p-8 sm:p-10">
         <p className="text-xs font-bold uppercase tracking-[0.4em] text-accent">Partner With Us</p>
-        <h2 className="mt-3 text-3xl font-black text-hero">Interested in sponsoring Kanpur Cyber Patrika?</h2>
+        <h2 className="mt-3 text-3xl font-black text-hero">Interested in sponsoring Cyber Vani?</h2>
         <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-700 sm:text-base">
           We offer editorial partnerships and sponsorship opportunities for organisations that want to reach an engaged
           audience of cyber-aware readers across Uttar Pradesh and India. Reach out via the Contact page to discuss

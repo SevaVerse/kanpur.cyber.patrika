@@ -7,14 +7,14 @@ const founder = {
   name: "Nitin Srivastava",
   role: "Founder",
   focus:
-    "Leads Kanpur Cyber Patrika with a focus on cyber awareness, practical reporting, and a dependable static publishing workflow for readers following digital threats and public-interest security news.",
+    "Leads Cyber Vani with a focus on cyber awareness, practical reporting, and a dependable static publishing workflow for readers following digital threats and public-interest security news.",
   imageSrc: `${basePath}/founder-pic.png`,
 };
 
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Kanpur Cyber Patrika, its editorial mission, the cyber helpline, and the founding team behind the publication.",
+    "Learn about Cyber Vani, its editorial mission, the cyber helpline, and the founding team behind the publication.",
 };
 
 export default function AboutPage() {
@@ -23,7 +23,7 @@ export default function AboutPage() {
       <section className="overflow-hidden rounded-4xl border border-border bg-hero px-6 py-8 text-white shadow-[0_30px_100px_-60px_rgba(15,23,42,0.9)] sm:px-10 sm:py-12">
         <p className="text-xs font-bold uppercase tracking-[0.45em] text-hero-accent">About The Publication</p>
         <h1 className="mt-4 max-w-4xl text-4xl font-black leading-tight sm:text-5xl">
-          Kanpur Cyber Patrika publishes clear, build-time-curated reporting on cyber threats, breaches, and digital policy.
+          Cyber Vani publishes clear, build-time-curated reporting on cyber threats, breaches, and digital policy.
         </h1>
         <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300 sm:text-base">
           The newsroom is designed for dependable weekly publishing. We combine editorial judgment with a static delivery pipeline so readers can access cyber security coverage quickly, even when upstream feeds are unstable.
@@ -36,7 +36,7 @@ export default function AboutPage() {
           <h2 className="mt-3 text-3xl font-black text-hero">Why this newsroom exists</h2>
           <div className="mt-5 space-y-4 text-sm leading-7 text-slate-700 sm:text-base">
             <p>
-              Kanpur Cyber Patrika focuses on the stories security teams, founders, students, and public-interest readers need to track: active threat campaigns, data exposure incidents, policy shifts, and operational security lessons.
+              Cyber Vani focuses on the stories security teams, founders, students, and public-interest readers need to track: active threat campaigns, data exposure incidents, policy shifts, and operational security lessons.
             </p>
             <p>
               The site is built to publish consistently through static generation and scheduled automation, which keeps the reading experience fast and resilient while preserving a professional editorial format.
@@ -76,13 +76,13 @@ export default function AboutPage() {
           <p className="text-xs font-bold uppercase tracking-[0.35em] text-accent">Founders Information</p>
           <h2 className="mt-3 text-3xl font-black text-hero">Founder</h2>
           <p className="mt-4 text-sm leading-7 text-slate-700 sm:text-base">
-            Kanpur Cyber Patrika is led by a founder-driven editorial vision that combines cyber reporting, public awareness, and reliable digital publishing.
+            Cyber Vani is led by a founder-driven editorial vision that combines cyber reporting, public awareness, and reliable digital publishing.
           </p>
         </div>
 
         <div className="mt-8 grid gap-6 md:grid-cols-[260px_1fr]">
           <div className="overflow-hidden rounded-3xl border border-border bg-surface-strong shadow-[0_16px_50px_-38px_rgba(15,23,42,0.45)]">
-            <div className="relative aspect-[4/5]">
+            <div className="relative aspect-4/5">
               <Image
                 src={founder.imageSrc}
                 alt={founder.name}

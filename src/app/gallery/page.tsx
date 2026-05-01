@@ -4,7 +4,7 @@ import GalleryClient from "./GalleryClient";
 export const metadata: Metadata = {
   title: "Infographics Gallery",
   description:
-    "Visual infographics on cyber security topics — phishing, ransomware, safe browsing, and digital hygiene — published by Kanpur Cyber Patrika.",
+    "Visual infographics on cyber security topics — phishing, ransomware, safe browsing, and digital hygiene — published by Cyber Vani.",
 };
 
 export default function GalleryPage() {

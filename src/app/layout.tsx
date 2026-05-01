@@ -29,7 +29,7 @@ const metadataBase = getMetadataBase();
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Kanpur Cyber Patrika",
+  name: "Cyber Vani",
   url: metadataBase.toString(),
   logo: new URL(logoPath.replace(/^\//, ""), metadataBase).toString(),
   description:
@@ -39,33 +39,33 @@ const organizationSchema = {
 export const metadata: Metadata = {
   metadataBase,
   title: {
-    default: "Kanpur Cyber Patrika | Weekly Cyber Security Briefing",
-    template: "%s | Kanpur Cyber Patrika",
+    default: "Cyber Vani | Weekly Cyber Security Briefing",
+    template: "%s | Cyber Vani",
   },
   description:
     "A static cyber security news publication built with Next.js, covering breaches, malware, policy, and threat intelligence.",
-  keywords: ["cyber security news", "threat intelligence", "data breach", "ransomware", "Kanpur Cyber Patrika"],
+  keywords: ["cyber security news", "threat intelligence", "data breach", "ransomware", "Cyber Vani"],
   icons: {
     icon: logoPath,
     shortcut: logoPath,
     apple: logoPath,
   },
   openGraph: {
-    title: "Kanpur Cyber Patrika | Weekly Cyber Security Briefing",
+    title: "Cyber Vani | Weekly Cyber Security Briefing",
     description:
       "A static cyber security news publication built with Next.js, covering breaches, malware, policy, and threat intelligence.",
-    siteName: "Kanpur Cyber Patrika",
+    siteName: "Cyber Vani",
     type: "website",
     images: [
       {
         url: logoPath,
-        alt: "Kanpur Cyber Patrika logo",
+        alt: "Cyber Vani logo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kanpur Cyber Patrika | Weekly Cyber Security Briefing",
+    title: "Cyber Vani | Weekly Cyber Security Briefing",
     description:
       "A static cyber security news publication built with Next.js, covering breaches, malware, policy, and threat intelligence.",
     images: [logoPath],

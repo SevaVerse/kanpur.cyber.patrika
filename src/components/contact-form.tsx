@@ -22,7 +22,7 @@ export function ContactForm() {
         </div>
       ) : null}
 
-      <input type="hidden" name="_subject" value="Kanpur Cyber Patrika contact submission" />
+      <input type="hidden" name="_subject" value="Cyber Vani contact submission" />
       <input type="hidden" name="_captcha" value="false" />
 
       <div className="grid gap-5 md:grid-cols-2">

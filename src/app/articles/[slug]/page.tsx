@@ -91,7 +91,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     },
     publisher: {
       "@type": "Organization",
-      name: "Kanpur Cyber Patrika",
+      name: "Cyber Vani",
       logo: {
         "@type": "ImageObject",
         url: new URL("Site_logo.jpeg", siteUrl).toString(),

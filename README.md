@@ -1,4 +1,4 @@
-# Kanpur Cyber Patrika
+# Cyber Vani
 
 A static cyber security news site built with Next.js App Router, TypeScript, and Tailwind CSS. The site fetches cybersecurity headlines during the build, pre-renders article routes, and deploys the exported `out` directory to GitHub Pages on a weekly GitHub Actions schedule.
 
