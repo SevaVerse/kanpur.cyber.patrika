@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { getAllArticles } from "@/lib/news";
 import { Navbar } from "@/components/navbar";
 
 import "./globals.css";
@@ -31,12 +32,24 @@ export const metadata: Metadata = {
   keywords: ["cyber security news", "threat intelligence", "data breach", "ransomware", "Kanpur Cyber Patrika"],
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const articles = await getAllArticles();
+  const searchArticles = articles.map((article) => ({
+    id: article.id,
+    slug: article.slug,
+    title: article.title,
+    description: article.description,
+    category: article.category,
+    sourceName: article.sourceName,
+    keywords: article.keywords,
+    publishedAt: article.publishedAt,
+  }));
+
   return (
     <html lang="en">
       <body>
         <div className="relative min-h-screen">
-          <Navbar />
+          <Navbar articles={searchArticles} />
           <main>{children}</main>
         </div>
       </body>
