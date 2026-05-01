@@ -82,7 +82,7 @@ export function Navbar({ articles }: NavbarProps) {
   }
 
   return (
-    <header className="border-b border-border/80 bg-surface/95 backdrop-blur-sm">
+    <header className="relative z-40 border-b border-border/80 bg-surface/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3" onClick={closeMenus}>
@@ -150,7 +150,7 @@ export function Navbar({ articles }: NavbarProps) {
 
       {/* Mobile dropdown */}
       {open && (
-        <div className="border-t border-border/60 bg-surface/95 px-4 pb-5 md:hidden">
+        <div className="relative z-10 border-t border-border/60 bg-surface/95 px-4 pb-5 md:hidden">
           <nav className="flex flex-col gap-1 pt-3 text-sm font-semibold uppercase tracking-[0.2em] text-muted">
             {links.map((link) => (
               <Link
