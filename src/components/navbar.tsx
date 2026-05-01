@@ -1,9 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { LanguageToggle } from "@/components/language-toggle";
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const links = [
   { href: "/", label: "Home" },
@@ -82,9 +85,26 @@ export function Navbar({ articles }: NavbarProps) {
     <header className="border-b border-border/80 bg-surface/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
         {/* Logo */}
-        <Link href="/" className="flex items-baseline gap-3" onClick={closeMenus}>
-          <span className="text-xs font-semibold uppercase tracking-[0.45em] text-accent">Kanpur</span>
-          <span className="text-2xl font-black uppercase tracking-[0.18em] text-hero">Cyber Patrika</span>
+        <Link href="/" className="flex items-center gap-3" onClick={closeMenus}>
+          <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
+            <Image
+              src={`${basePath}/Site_logo.jpeg`}
+              alt="Kanpur Cyber Patrika logo"
+              fill
+              sizes="44px"
+              className="object-cover"
+              priority
+              unoptimized
+            />
+          </div>
+          <div className="min-w-0">
+            <span className="block text-[0.62rem] font-semibold uppercase tracking-[0.42em] text-accent sm:text-xs">
+              Kanpur
+            </span>
+            <span className="block truncate text-lg font-black uppercase tracking-[0.14em] text-hero sm:text-2xl sm:tracking-[0.18em]">
+              Cyber Patrika
+            </span>
+          </div>
         </Link>
 
         {/* Desktop nav */}

@@ -5,6 +5,22 @@ import { notFound } from "next/navigation";
 
 import { formatPublishedDate, getAllArticles, getArticleBySlug, getRelatedArticles } from "@/lib/news";
 
+function getSiteUrl() {
+  const repository = process.env.GITHUB_REPOSITORY;
+
+  if (!repository) {
+    return new URL("https://sevaverse.github.io/kanpur.cyber.patrika/");
+  }
+
+  const [owner, repo] = repository.split("/");
+
+  if (!owner || !repo) {
+    return new URL("https://sevaverse.github.io/kanpur.cyber.patrika/");
+  }
+
+  return new URL(`https://${owner.toLowerCase()}.github.io/${repo}/`);
+}
+
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;
 };
@@ -59,8 +75,42 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     notFound();
   }
 
+  const siteUrl = getSiteUrl();
+  const articleUrl = new URL(`articles/${article.slug}/`, siteUrl).toString();
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: article.title,
+    description: article.description,
+    image: [article.imageUrl],
+    datePublished: article.publishedAt,
+    dateModified: article.publishedAt,
+    author: {
+      "@type": "Person",
+      name: article.author,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Kanpur Cyber Patrika",
+      logo: {
+        "@type": "ImageObject",
+        url: new URL("Site_logo.jpeg", siteUrl).toString(),
+      },
+    },
+    mainEntityOfPage: articleUrl,
+    url: articleUrl,
+    keywords: article.keywords.join(", "),
+    articleSection: article.category,
+  };
+
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleSchema),
+        }}
+      />
       <article className="overflow-hidden rounded-4xl border border-border bg-surface-strong shadow-[0_30px_100px_-60px_rgba(15,23,42,0.55)]">
         <div className="relative aspect-16/8">
           <Image

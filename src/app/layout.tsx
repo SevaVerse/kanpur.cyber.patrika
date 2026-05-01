@@ -5,6 +5,9 @@ import { Navbar } from "@/components/navbar";
 
 import "./globals.css";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const logoPath = `${basePath}/Site_logo.jpeg`;
+
 function getMetadataBase() {
   const repository = process.env.GITHUB_REPOSITORY;
 
@@ -21,8 +24,20 @@ function getMetadataBase() {
   return new URL(`https://${owner.toLowerCase()}.github.io/${repo}/`);
 }
 
+const metadataBase = getMetadataBase();
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Kanpur Cyber Patrika",
+  url: metadataBase.toString(),
+  logo: new URL(logoPath.replace(/^\//, ""), metadataBase).toString(),
+  description:
+    "A static cyber security news publication covering breaches, malware, policy, and threat intelligence.",
+};
+
 export const metadata: Metadata = {
-  metadataBase: getMetadataBase(),
+  metadataBase,
   title: {
     default: "Kanpur Cyber Patrika | Weekly Cyber Security Briefing",
     template: "%s | Kanpur Cyber Patrika",
@@ -30,6 +45,31 @@ export const metadata: Metadata = {
   description:
     "A static cyber security news publication built with Next.js, covering breaches, malware, policy, and threat intelligence.",
   keywords: ["cyber security news", "threat intelligence", "data breach", "ransomware", "Kanpur Cyber Patrika"],
+  icons: {
+    icon: logoPath,
+    shortcut: logoPath,
+    apple: logoPath,
+  },
+  openGraph: {
+    title: "Kanpur Cyber Patrika | Weekly Cyber Security Briefing",
+    description:
+      "A static cyber security news publication built with Next.js, covering breaches, malware, policy, and threat intelligence.",
+    siteName: "Kanpur Cyber Patrika",
+    type: "website",
+    images: [
+      {
+        url: logoPath,
+        alt: "Kanpur Cyber Patrika logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kanpur Cyber Patrika | Weekly Cyber Security Briefing",
+    description:
+      "A static cyber security news publication built with Next.js, covering breaches, malware, policy, and threat intelligence.",
+    images: [logoPath],
+  },
 };
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -48,6 +88,12 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   return (
     <html lang="en">
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
         <div className="relative min-h-screen">
           <Navbar articles={searchArticles} />
           <main>{children}</main>
