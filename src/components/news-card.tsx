@@ -25,9 +25,12 @@ export function NewsCard({ article, priority = false }: NewsCardProps) {
         />
       </div>
       <div className="flex flex-1 flex-col gap-4 p-6">
-        <div className="flex items-center justify-between gap-3 text-[0.68rem] font-bold uppercase tracking-[0.25em] text-muted">
+        <div className="flex flex-wrap items-center justify-between gap-3 text-[0.68rem] font-bold uppercase tracking-[0.25em] text-muted">
           <span>{article.category}</span>
-          <span>{formatPublishedDate(article.publishedAt)}</span>
+          <div className="flex flex-wrap items-center gap-3 text-right">
+            <span>{article.readingTimeMinutes} min read</span>
+            <span>{formatPublishedDate(article.publishedAt)}</span>
+          </div>
         </div>
         <div className="space-y-3">
           <h3 className="line-clamp-2 text-xl font-black leading-tight text-hero">

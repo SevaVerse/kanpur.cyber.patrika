@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { formatPublishedDate, getAllArticles, getArticleBySlug } from "@/lib/news";
+import { formatPublishedDate, getAllArticles, getArticleBySlug, getRelatedArticles } from "@/lib/news";
 
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;
@@ -50,7 +50,10 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const { slug } = await params;
-  const article = await getArticleBySlug(slug);
+  const [article, relatedArticles] = await Promise.all([
+    getArticleBySlug(slug),
+    getRelatedArticles(slug),
+  ]);
 
   if (!article) {
     notFound();
@@ -76,6 +79,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             <div className="flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-[0.22em] text-muted">
               <span>{article.sourceName}</span>
               <span>{article.author}</span>
+              <span>{article.readingTimeMinutes} min read</span>
               <span>{formatPublishedDate(article.publishedAt)}</span>
             </div>
             <p className="max-w-3xl text-lg leading-8 text-slate-700">{article.description}</p>
@@ -97,6 +101,32 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               </span>
             ))}
           </div>
+
+          {relatedArticles.length > 0 && (
+            <section className="space-y-5 border-t border-border pt-8">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.35em] text-accent">Continue Reading</p>
+                  <h2 className="mt-2 text-2xl font-black text-hero">Related stories from this briefing</h2>
+                </div>
+              </div>
+              <div className="grid gap-4 md:grid-cols-3">
+                {relatedArticles.map((relatedArticle) => (
+                  <Link
+                    key={relatedArticle.id}
+                    href={`/articles/${relatedArticle.slug}`}
+                    className="rounded-3xl border border-border bg-surface px-5 py-5 transition hover:border-accent hover:bg-surface-strong"
+                  >
+                    <p className="text-[0.68rem] font-bold uppercase tracking-[0.24em] text-muted">
+                      {relatedArticle.category} · {relatedArticle.readingTimeMinutes} min read
+                    </p>
+                    <h3 className="mt-3 text-lg font-black leading-snug text-hero">{relatedArticle.title}</h3>
+                    <p className="mt-2 line-clamp-3 text-sm leading-6 text-slate-700">{relatedArticle.description}</p>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
 
           <div className="flex flex-wrap items-center justify-between gap-4 border-t border-border pt-8">
             <Link href="/" className="text-sm font-bold uppercase tracking-[0.24em] text-muted transition hover:text-accent">

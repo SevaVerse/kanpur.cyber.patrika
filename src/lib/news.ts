@@ -69,6 +69,16 @@ const CYBER_KEYWORDS = [
   "security",
 ];
 
+function estimateReadingTime(parts: string[]) {
+  const wordCount = parts
+    .join(" ")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean).length;
+
+  return Math.max(1, Math.ceil(wordCount / 180));
+}
+
 function slugify(value: string) {
   return value
     .toLowerCase()
@@ -154,6 +164,7 @@ function mapArticle(article: NewsDataArticle, index: number): Article | null {
   const publishedAt = article.pubDate || new Date().toISOString();
   const category = index === 0 ? "Top Story" : categorize(article);
   const keywords = article.keywords?.filter(Boolean).slice(0, 6) || [];
+  const readingTimeMinutes = estimateReadingTime([title, description, ...content]);
 
   return {
     id: article.article_id || `${slugify(title)}-${index}`,
@@ -161,6 +172,7 @@ function mapArticle(article: NewsDataArticle, index: number): Article | null {
     title,
     description,
     content: content.length > 0 ? content : [description],
+    readingTimeMinutes,
     imageUrl: article.image_url?.trim() || DEFAULT_IMAGE,
     publishedAt,
     sourceName: article.source_name?.trim() || "NewsData.io",
@@ -211,6 +223,7 @@ function mapNewsApiArticle(article: NewsApiArticle, index: number): Article | nu
   // content from NewsAPI.org is truncated to ~200 chars; use description as fallback
   const rawContent = article.content?.replace(/\[\+\d+ chars\]$/, "").trim() || "";
   const contentParagraphs = splitContent(rawContent, description);
+  const readingTimeMinutes = estimateReadingTime([title, description, ...contentParagraphs]);
 
   return {
     id: `newsapi-${slugify(title)}-${index}`,
@@ -218,6 +231,7 @@ function mapNewsApiArticle(article: NewsApiArticle, index: number): Article | nu
     title,
     description,
     content: contentParagraphs.length > 0 ? contentParagraphs : [description],
+    readingTimeMinutes,
     imageUrl: article.urlToImage?.trim() || DEFAULT_IMAGE,
     publishedAt: article.publishedAt || new Date().toISOString(),
     sourceName: article.source?.name?.trim() || "NewsAPI",
@@ -361,6 +375,38 @@ export async function getFeaturedArticle() {
 export async function getArticleBySlug(slug: string) {
   const articles = await getAllArticles();
   return articles.find((article) => article.slug === slug) ?? null;
+}
+
+export async function getRelatedArticles(slug: string, limit = 3) {
+  const articles = await getAllArticles();
+  const currentArticle = articles.find((article) => article.slug === slug);
+
+  if (!currentArticle) {
+    return [];
+  }
+
+  const currentKeywords = new Set(currentArticle.keywords.map((keyword) => keyword.toLowerCase()));
+
+  return articles
+    .filter((article) => article.slug !== slug)
+    .map((article) => {
+      const sharedKeywords = article.keywords.filter((keyword) => currentKeywords.has(keyword.toLowerCase())).length;
+      const sameCategory = article.category === currentArticle.category ? 2 : 0;
+
+      return {
+        article,
+        score: sameCategory + sharedKeywords,
+      };
+    })
+    .sort((left, right) => {
+      if (right.score !== left.score) {
+        return right.score - left.score;
+      }
+
+      return right.article.trendingScore - left.article.trendingScore;
+    })
+    .slice(0, limit)
+    .map((item) => item.article);
 }
 
 export async function getTrendingArticles(limit = 5) {

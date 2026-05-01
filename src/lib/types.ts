@@ -13,6 +13,7 @@ export interface Article {
   title: string;
   description: string;
   content: string[];
+  readingTimeMinutes: number;
   imageUrl: string;
   publishedAt: string;
   sourceName: string;
