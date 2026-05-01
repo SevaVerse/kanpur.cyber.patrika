@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { NewsCard } from "@/components/news-card";
+import { LatestCoverage } from "@/components/latest-coverage";
 import { getAllArticles, getCategoryGroups, getFeaturedArticle, getTrendingArticles } from "@/lib/news";
 
 export default async function HomePage() {
@@ -76,21 +76,7 @@ export default async function HomePage() {
       </section>
 
       <section className="grid gap-8 xl:grid-cols-[minmax(0,1.7fr)_320px]">
-        <div className="space-y-8">
-          <div className="flex items-end justify-between gap-4 border-b border-border pb-4">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.4em] text-accent">Latest Coverage</p>
-              <h2 className="mt-2 text-3xl font-black uppercase text-hero">Recent cyber security articles</h2>
-            </div>
-            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-muted">Updated during build</span>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {latestArticles.map((article, index) => (
-              <NewsCard key={article.id} article={article} priority={index < 2} />
-            ))}
-          </div>
-        </div>
+        <LatestCoverage articles={latestArticles} />
 
         <aside className="rounded-4xl border border-border bg-surface p-6 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.45)]">
           <div className="space-y-4">
