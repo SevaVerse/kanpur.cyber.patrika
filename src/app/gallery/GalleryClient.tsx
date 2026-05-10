@@ -147,8 +147,30 @@ function formatDate(iso: string) {
 
 export default function GalleryClient() {
   const [lightboxItem, setLightboxItem] = useState<Infographic | null>(null);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const closeLightbox = useCallback(() => setLightboxItem(null), []);
+
+  async function shareItem(item: Infographic, e: React.MouseEvent) {
+    e.stopPropagation();
+    const url = `${window.location.origin}${basePath}/gallery`;
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: item.title, text: item.description, url });
+      } catch {
+        // user cancelled — do nothing
+      }
+      return;
+    }
+    // Fallback: copy link to clipboard
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopiedId(item.id);
+      setTimeout(() => setCopiedId(null), 2000);
+    } catch {
+      // clipboard not available
+    }
+  }
 
   useEffect(() => {
     if (!lightboxItem) return;
@@ -235,16 +257,25 @@ export default function GalleryClient() {
                     ))}
                   </div>
 
-                  {/* Download */}
+                  {/* Actions */}
                   {item.imageSrc && (
-                    <a
-                      href={`${basePath}${item.imageSrc}`}
-                      download
-                      className="mt-5 inline-block rounded-xl border border-border bg-surface-strong px-4 py-2 text-xs font-bold uppercase tracking-widest text-hero transition hover:border-accent hover:text-accent"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      Download ↓
-                    </a>
+                    <div className="mt-5 flex gap-2">
+                      <a
+                        href={`${basePath}${item.imageSrc}`}
+                        download
+                        className="flex-1 rounded-xl border border-border bg-surface-strong px-4 py-2 text-center text-xs font-bold uppercase tracking-widest text-hero transition hover:border-accent hover:text-accent"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        Download ↓
+                      </a>
+                      <button
+                        type="button"
+                        onClick={(e) => shareItem(item, e)}
+                        className="flex-1 rounded-xl border border-border bg-surface-strong px-4 py-2 text-xs font-bold uppercase tracking-widest text-hero transition hover:border-accent hover:text-accent"
+                      >
+                        {copiedId === item.id ? "Link Copied ✓" : "Share ↗"}
+                      </button>
+                    </div>
                   )}
                 </div>
               </article>
