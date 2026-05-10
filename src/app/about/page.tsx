@@ -8,7 +8,7 @@ const founder = {
   name: "Nitin Srivastava",
   role: "Founder",
   focus:
-    "Leads Cyber Vani with a focus on cyber awareness, practical reporting, and a dependable static publishing workflow for readers following digital threats and public-interest security news.",
+    "Leads Cyber Vani with a focus on cyber awareness, practical reporting, and making security news accessible to everyday readers across India.",
   imageSrc: `${basePath}/founder-pic.png`,
 };
 
@@ -42,10 +42,10 @@ export default function AboutPage() {
       <section className="overflow-hidden rounded-4xl border border-border bg-hero px-6 py-8 text-white shadow-[0_30px_100px_-60px_rgba(15,23,42,0.9)] sm:px-10 sm:py-12">
         <p className="text-xs font-bold uppercase tracking-[0.45em] text-hero-accent">About The Publication</p>
         <h1 className="mt-4 max-w-4xl text-4xl font-black leading-tight sm:text-5xl">
-          Cyber Vani publishes clear, build-time-curated reporting on cyber threats, breaches, and digital policy.
+          Cyber Vani publishes clear, honest reporting on cyber threats, breaches, and digital policy.
         </h1>
         <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300 sm:text-base">
-          The newsroom is designed for dependable weekly publishing. We combine editorial judgment with a static delivery pipeline so readers can access cyber security coverage quickly, even when upstream feeds are unstable.
+          We believe everyone deserves reliable, easy-to-understand cyber security news. Our editorial team curates the stories that matter most and publishes them every week, consistently and on time.
         </p>
       </section>
 
@@ -58,7 +58,7 @@ export default function AboutPage() {
               Cyber Vani focuses on the stories security teams, founders, students, and public-interest readers need to track: active threat campaigns, data exposure incidents, policy shifts, and operational security lessons.
             </p>
             <p>
-              The site is built to publish consistently through static generation and scheduled automation, which keeps the reading experience fast and resilient while preserving a professional editorial format.
+              We are committed to publishing consistently, week after week, so readers always have a trusted place to turn when a new cyber incident or threat emerges.
             </p>
           </div>
         </article>

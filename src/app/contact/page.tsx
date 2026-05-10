@@ -35,7 +35,7 @@ export default function ContactPage() {
           Securely send editorial tips, corrections, and partnership enquiries.
         </h1>
         <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
-          The project uses a static-compatible form flow so it works on GitHub Pages without a custom backend.
+          We read every message. Whether you have a tip, a correction, or a sponsorship enquiry, we will get back to you promptly.
         </p>
       </section>
 

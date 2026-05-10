@@ -24,12 +24,12 @@ export default async function HomePage() {
         <div className="grid gap-10 px-6 py-8 md:px-10 lg:grid-cols-[1.45fr_0.75fr] lg:px-12 lg:py-12">
           <div className="space-y-6">
             <div className="space-y-3">
-              <p className="text-xs font-bold uppercase tracking-[0.45em] text-hero-accent">Weekly Static Dispatch</p>
+              <p className="text-xs font-bold uppercase tracking-[0.45em] text-hero-accent">Weekly Briefing</p>
               <h1 className="max-w-4xl text-4xl font-black uppercase leading-none sm:text-5xl lg:text-6xl">
-                Cyber security intelligence curated for a dependable weekly publish cycle.
+                Cyber security news you can trust, delivered fresh every week.
               </h1>
               <p className="max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
-                Built for static delivery, automated with GitHub Actions, and optimized for GitHub Pages. Every Saturday build refreshes the briefing with the latest cyber security coverage.
+                Every Saturday we curate the most important cyber security stories — breaches, scams, threats, and policy — so you stay informed and one step ahead.
               </p>
             </div>
             {featuredArticle ? (
@@ -49,7 +49,7 @@ export default async function HomePage() {
               </div>
             ) : (
               <div className="rounded-[1.75rem] border border-dashed border-white/20 bg-white/5 p-6 text-sm text-slate-300">
-                No articles were available during the last scheduled fetch.
+                No stories available right now. Check back on Saturday for this week's briefing.
               </div>
             )}
           </div>
@@ -57,7 +57,7 @@ export default async function HomePage() {
           <aside className="space-y-5 rounded-[1.75rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-black uppercase tracking-[0.2em] text-white">Trending</h2>
-              <span className="text-xs font-semibold uppercase tracking-[0.24em] text-hero-accent">Live at Build</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.24em] text-hero-accent">This Week</span>
             </div>
             <div className="space-y-4">
               {trendingArticles.map((article, index) => (
@@ -85,24 +85,24 @@ export default async function HomePage() {
 
         <aside className="rounded-4xl border border-border bg-surface p-6 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.45)]">
           <div className="space-y-4">
-            <p className="text-xs font-bold uppercase tracking-[0.35em] text-accent">Dispatch Notes</p>
-            <h2 className="text-2xl font-black text-hero">What this build does</h2>
+            <p className="text-xs font-bold uppercase tracking-[0.35em] text-accent">About This Briefing</p>
+            <h2 className="text-2xl font-black text-hero">How we cover the news</h2>
             <p className="text-sm leading-7 text-slate-700">
-              The site fetches cyber security coverage at build time, pre-renders all article routes, and exports a static out directory for GitHub Pages deployment.
+              Cyber Vani scans the latest cyber security news and hand-picks the stories that matter most to you — every week, without fail.
             </p>
           </div>
           <dl className="mt-8 space-y-4 text-sm text-slate-700">
             <div className="rounded-2xl border border-border bg-surface-strong p-4">
-              <dt className="font-bold uppercase tracking-[0.22em] text-muted">Build Mode</dt>
-              <dd className="mt-2 text-base font-semibold text-hero">Static Site Generation</dd>
+              <dt className="font-bold uppercase tracking-[0.22em] text-muted">Publication</dt>
+              <dd className="mt-2 text-base font-semibold text-hero">Weekly Edition</dd>
             </div>
             <div className="rounded-2xl border border-border bg-surface-strong p-4">
-              <dt className="font-bold uppercase tracking-[0.22em] text-muted">Automation</dt>
-              <dd className="mt-2 text-base font-semibold text-hero">Saturday 00:00 UTC GitHub Action</dd>
+              <dt className="font-bold uppercase tracking-[0.22em] text-muted">Updated</dt>
+              <dd className="mt-2 text-base font-semibold text-hero">Every Saturday</dd>
             </div>
             <div className="rounded-2xl border border-border bg-surface-strong p-4">
-              <dt className="font-bold uppercase tracking-[0.22em] text-muted">Fallback</dt>
-              <dd className="mt-2 text-base font-semibold text-hero">Graceful editorial content on API errors</dd>
+              <dt className="font-bold uppercase tracking-[0.22em] text-muted">Coverage</dt>
+              <dd className="mt-2 text-base font-semibold text-hero">Curated editorial stories</dd>
             </div>
           </dl>
         </aside>
