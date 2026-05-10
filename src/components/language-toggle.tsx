@@ -23,17 +23,29 @@ declare global {
 }
 
 function clearGoogTransCookie() {
-  // Google Translate stores the active language in a `googtrans` cookie.
-  // Deleting it (on both the page path and root) is the only reliable way
-  // to restore the original language.
+  // Google Translate stores the active language in a `googtrans` cookie and
+  // may set it with a domain attribute as well as path-scoped variants.
+  // We must expire all combinations to reliably remove it.
   const expire = "expires=Thu, 01 Jan 1970 00:00:00 UTC";
-  document.cookie = `googtrans=; ${expire}; path=/`;
-  document.cookie = `googtrans=; ${expire}; path=${window.location.pathname}`;
+  const hostname = window.location.hostname;
+  const paths = ["/", window.location.pathname];
+  const domains = ["", `; domain=${hostname}`, `; domain=.${hostname}`];
+  for (const path of paths) {
+    for (const domain of domains) {
+      document.cookie = `googtrans=; ${expire}; path=${path}${domain}`;
+    }
+  }
 }
 
 function setGoogleTranslateLanguage(lang: "en" | "hi") {
   if (lang === "en") {
     clearGoogTransCookie();
+    // Set /en/en so Google Translate treats the page as "already in source
+    // language" and skips any re-translation after the reload.
+    const hostname = window.location.hostname;
+    document.cookie = "googtrans=/en/en; path=/";
+    document.cookie = `googtrans=/en/en; path=/; domain=${hostname}`;
+    document.cookie = `googtrans=/en/en; path=/; domain=.${hostname}`;
     window.location.reload();
     return;
   }
@@ -53,7 +65,8 @@ export function LanguageToggle() {
 
   // Reflect cookie state on mount (page was reloaded after a language switch)
   useEffect(() => {
-    const isHindi = document.cookie.includes("googtrans=/en/hi");
+    const cookie = document.cookie;
+    const isHindi = cookie.includes("googtrans=/en/hi");
     if (isHindi) setActive("hi");
   }, []);
 
