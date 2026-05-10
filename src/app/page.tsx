@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import { LatestCoverage } from "@/components/latest-coverage";
 import { getAllArticles, getCategoryGroups, getFeaturedArticle, getTrendingArticles } from "@/lib/news";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "" },
+};
 
 export default async function HomePage() {
   const [featuredArticle, articles, categoryGroups, trendingArticles] = await Promise.all([

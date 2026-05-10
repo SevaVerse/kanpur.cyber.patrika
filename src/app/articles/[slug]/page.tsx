@@ -28,17 +28,24 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     };
   }
 
+  const siteUrl = getSiteUrl();
+  const articleUrl = new URL(`articles/${article.slug}/`, siteUrl).toString();
+
   return {
     title: article.title,
     description: article.description,
     keywords: article.keywords,
+    authors: [{ name: article.author }],
+    alternates: { canonical: articleUrl },
     openGraph: {
       title: article.title,
       description: article.description,
       images: [article.imageUrl],
       type: "article",
       publishedTime: article.publishedAt,
-      url: `/articles/${article.slug}`,
+      url: articleUrl,
+      siteName: "Cyber Vani",
+      locale: "en_US",
     },
     twitter: {
       card: "summary_large_image",
@@ -62,6 +69,14 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   const siteUrl = getSiteUrl();
   const articleUrl = new URL(`articles/${article.slug}/`, siteUrl).toString();
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: siteUrl.toString() },
+      { "@type": "ListItem", position: 2, name: article.title, item: articleUrl },
+    ],
+  };
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
@@ -94,6 +109,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(articleSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(breadcrumbSchema),
         }}
       />
       <article className="overflow-hidden rounded-4xl border border-border bg-surface-strong shadow-[0_30px_100px_-60px_rgba(15,23,42,0.55)]">

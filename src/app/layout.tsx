@@ -10,14 +10,24 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const logoPath = `${basePath}/Site_logo.jpeg`;
 const metadataBase = getSiteUrl();
 
+const siteDescription =
+  "Your trusted source for cyber security news, threat intelligence, data breach reports, and digital safety guidance — published weekly.";
+
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Cyber Vani",
   url: metadataBase.toString(),
   logo: new URL(logoPath.replace(/^\//, ""), metadataBase).toString(),
-  description:
-    "A static cyber security news publication covering breaches, malware, policy, and threat intelligence.",
+  description: siteDescription,
+};
+
+const webSiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Cyber Vani",
+  url: metadataBase.toString(),
+  description: siteDescription,
 };
 
 export const metadata: Metadata = {
@@ -26,8 +36,7 @@ export const metadata: Metadata = {
     default: "Cyber Vani | Weekly Cyber Security Briefing",
     template: "%s | Cyber Vani",
   },
-  description:
-    "A static cyber security news publication built with Next.js, covering breaches, malware, policy, and threat intelligence.",
+  description: siteDescription,
   keywords: ["cyber security news", "threat intelligence", "data breach", "ransomware", "Cyber Vani"],
   icons: {
     icon: logoPath,
@@ -36,10 +45,11 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Cyber Vani | Weekly Cyber Security Briefing",
-    description:
-      "A static cyber security news publication built with Next.js, covering breaches, malware, policy, and threat intelligence.",
+    description: siteDescription,
     siteName: "Cyber Vani",
+    locale: "en_US",
     type: "website",
+    url: "",
     images: [
       {
         url: logoPath,
@@ -50,8 +60,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Cyber Vani | Weekly Cyber Security Briefing",
-    description:
-      "A static cyber security news publication built with Next.js, covering breaches, malware, policy, and threat intelligence.",
+    description: siteDescription,
     images: [logoPath],
   },
 };
@@ -76,6 +85,12 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(webSiteSchema),
           }}
         />
         <div className="relative min-h-screen">

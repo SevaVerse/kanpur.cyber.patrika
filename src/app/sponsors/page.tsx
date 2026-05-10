@@ -1,9 +1,30 @@
 import type { Metadata } from "next";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const logoPath = `${basePath}/Site_logo.jpeg`;
+
 export const metadata: Metadata = {
   title: "Sponsors",
   description:
     "Meet the sponsors and partners supporting Cyber Vani's mission to deliver reliable cyber security awareness to Uttar Pradesh and beyond.",
+  alternates: { canonical: "sponsors/" },
+  openGraph: {
+    title: "Sponsors | Cyber Vani",
+    description:
+      "Meet the sponsors and partners supporting Cyber Vani's mission to deliver reliable cyber security awareness to Uttar Pradesh and beyond.",
+    siteName: "Cyber Vani",
+    locale: "en_US",
+    type: "website",
+    url: "sponsors/",
+    images: [{ url: logoPath, alt: "Cyber Vani logo" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sponsors | Cyber Vani",
+    description:
+      "Meet the sponsors and partners supporting Cyber Vani's mission to deliver reliable cyber security awareness to Uttar Pradesh and beyond.",
+    images: [logoPath],
+  },
 };
 
 type Sponsor = {

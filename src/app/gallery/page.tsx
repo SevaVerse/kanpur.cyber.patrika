@@ -1,10 +1,31 @@
 import type { Metadata } from "next";
 import GalleryClient from "./GalleryClient";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const logoPath = `${basePath}/Site_logo.jpeg`;
+
 export const metadata: Metadata = {
   title: "Infographics Gallery",
   description:
     "Visual infographics on cyber security topics — phishing, ransomware, safe browsing, and digital hygiene — published by Cyber Vani.",
+  alternates: { canonical: "gallery/" },
+  openGraph: {
+    title: "Infographics Gallery | Cyber Vani",
+    description:
+      "Visual infographics on cyber security topics — phishing, ransomware, safe browsing, and digital hygiene — published by Cyber Vani.",
+    siteName: "Cyber Vani",
+    locale: "en_US",
+    type: "website",
+    url: "gallery/",
+    images: [{ url: logoPath, alt: "Cyber Vani logo" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Infographics Gallery | Cyber Vani",
+    description:
+      "Visual infographics on cyber security topics — phishing, ransomware, safe browsing, and digital hygiene — published by Cyber Vani.",
+    images: [logoPath],
+  },
 };
 
 export default function GalleryPage() {

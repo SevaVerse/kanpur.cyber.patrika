@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const logoPath = `${basePath}/Site_logo.jpeg`;
 
 const founder = {
   name: "Nitin Srivastava",
@@ -15,6 +16,24 @@ export const metadata: Metadata = {
   title: "About Us",
   description:
     "Learn about Cyber Vani, its editorial mission, the cyber helpline, and the founding team behind the publication.",
+  alternates: { canonical: "about/" },
+  openGraph: {
+    title: "About Us | Cyber Vani",
+    description:
+      "Learn about Cyber Vani, its editorial mission, the cyber helpline, and the founding team behind the publication.",
+    siteName: "Cyber Vani",
+    locale: "en_US",
+    type: "website",
+    url: "about/",
+    images: [{ url: logoPath, alt: "Cyber Vani logo" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Us | Cyber Vani",
+    description:
+      "Learn about Cyber Vani, its editorial mission, the cyber helpline, and the founding team behind the publication.",
+    images: [logoPath],
+  },
 };
 
 export default function AboutPage() {
