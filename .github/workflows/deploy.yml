@@ -32,6 +32,7 @@ jobs:
           NEWSDATA_API_KEY: ${{ secrets.NEWSDATA_API_KEY }}
           NEWSAPI_ORG_KEY: ${{ secrets.NEWSAPI_ORG_KEY }}
           NEXT_PUBLIC_FORMSPREE_ENDPOINT: ${{ secrets.NEXT_PUBLIC_FORMSPREE_ENDPOINT }}
+          NEXT_PUBLIC_SITE_URL: https://cybervani.com
         run: npm run build
 
       - name: Add .nojekyll to prevent GitHub Pages Jekyll processing
