@@ -17,61 +17,73 @@ type Infographic = {
 const infographics: Infographic[] = [
   {
     id: "ig-001",
-    title: "Digital Arrest — A New-Age Scam",
+    title: "Fake E-Challan — Cyber Crime Alert",
     description:
-      "Scammers impersonate police or government officials and threaten victims with 'digital arrest' to extort money. This infographic explains the red flags and how to stay safe.",
+      "Cyber criminals send fake e-challan messages via SMS, WhatsApp and email with fraudulent payment links to steal money and personal data. Learn how to verify a challan only at echallan.parivahan.gov.in and report fraud on 1930.",
     category: "Social Engineering",
     imageSrc: "/infographics/infographics_1.jpeg",
-    publishedAt: "2024-05-01",
-    tags: ["digital arrest", "scam", "impersonation", "India"],
+    publishedAt: "2026-04-01",
+    tags: ["e-challan", "scam", "phishing", "India", "awareness"],
   },
   {
     id: "ig-002",
-    title: "Ransomware Kill Chain",
+    title: "Smartphone OTP Scam — How It Works",
     description:
-      "Illustrates the seven stages of a ransomware attack: initial access, persistence, lateral movement, data exfiltration, encryption, and ransom demand.",
-    category: "Ransomware",
+      "Scammers pose as bank, KYC, or government officials to trick you into sharing your OTP in six steps — then drain your account. Learn the warning signs and how to protect yourself.",
+    category: "Social Engineering",
     imageSrc: "/infographics/infographics_2.jpeg",
     publishedAt: "2026-04-08",
-    tags: ["ransomware", "kill chain", "malware"],
+    tags: ["OTP", "scam", "bank fraud", "awareness", "India"],
   },
   {
     id: "ig-003",
-    title: "10 Rules of Digital Hygiene",
+    title: "How Your WhatsApp Gets Hacked",
     description:
-      "Quick-reference poster covering password managers, MFA, software updates, public Wi-Fi risks, and secure backup practices.",
+      "Hackers lure you with fake links, redirect you to clone sites, request your OTP, and take over your account in seconds. This guide explains the attack chain and how to secure WhatsApp with two-step verification.",
     category: "Awareness",
     imageSrc: "/infographics/infographics_3.jpeg",
     publishedAt: "2026-04-15",
-    tags: ["awareness", "passwords", "MFA", "updates"],
+    tags: ["WhatsApp", "hacking", "OTP", "account security"],
   },
   {
     id: "ig-004",
-    title: "Social Engineering Red Flags",
+    title: "Digital Forensics & Investigation Services",
     description:
-      "Visual guide to recognising social engineering tactics: urgency cues, impersonation, pretexting, and baiting in everyday digital interactions.",
-    category: "Social Engineering",
+      "An overview of professional digital forensics services — digital evidence collection, data recovery, forensic analysis, cybercrime investigation, and cloud & mobile forensics — for individuals and businesses.",
+    category: "Statistics",
     imageSrc: "/infographics/infographics_4.jpeg",
     publishedAt: "2026-04-22",
-    tags: ["social engineering", "awareness", "impersonation"],
+    tags: ["digital forensics", "investigation", "cyber crime", "evidence"],
   },
   {
     id: "ig-005",
-    title: "India Cyber Crime Report 2025",
+    title: "Digital Arrest — Prevention is Protection",
     description:
-      "Key statistics from India's 2025 cyber crime landscape — sector-wise losses, top attack vectors, and state-level incident counts.",
-    category: "Statistics",
-    publishedAt: "2026-04-29",
-    tags: ["statistics", "India", "cyber crime"],
+      "No government agency arrests anyone over a phone or video call. This poster breaks down the Digital Arrest scam and lists six steps to protect yourself — from refusing unknown calls to reporting on cybercrime.gov.in.",
+    category: "Social Engineering",
+    imageSrc: "/infographics/infographics_5.jpeg",
+    publishedAt: "2024-05-01",
+    tags: ["digital arrest", "scam", "awareness", "India"],
   },
   {
     id: "ig-006",
-    title: "Secure Your UPI Transactions",
+    title: "Digital Banking — Safe Banking, Secure India",
     description:
-      "Common UPI fraud patterns in India — fake collect requests, SIM swap, screen-share scams — and how to avoid them.",
+      "Government of India awareness guide on safe digital banking. Covers essential do's and don'ts — strong passwords, 2FA, avoiding public Wi-Fi, not sharing OTPs — and how to report cyber fraud on the 1930 helpline.",
     category: "Financial Security",
+    imageSrc: "/infographics/infographics_6.jpeg",
     publishedAt: "2026-04-29",
-    tags: ["UPI", "fraud", "financial security"],
+    tags: ["digital banking", "UPI", "fraud", "financial security", "India"],
+  },
+  {
+    id: "ig-007",
+    title: "Cyberbullying & Data Breaches — Stay Aware, Stay Safe",
+    description:
+      "A two-part awareness poster covering cyberbullying (how to recognise it, report it, and support others) and data breaches (common causes, impact, and six steps to protect your personal data).",
+    category: "Awareness",
+    imageSrc: "/infographics/infographics_7.jpeg",
+    publishedAt: "2026-05-06",
+    tags: ["cyberbullying", "data breach", "awareness", "online safety"],
   },
 ];
 
@@ -165,7 +177,7 @@ export default function GalleryClient() {
               >
                 {/* Image area */}
                 <div
-                  className={`flex aspect-video items-center justify-center ${style.bg} border-b ${style.border} ${item.imageSrc ? "cursor-zoom-in" : ""}`}
+                  className={`flex aspect-[3/4] items-center justify-center ${style.bg} border-b ${style.border} ${item.imageSrc ? "cursor-zoom-in" : ""}`}
                   onClick={() => item.imageSrc && setLightboxItem(item)}
                   role={item.imageSrc ? "button" : undefined}
                   tabIndex={item.imageSrc ? 0 : undefined}
