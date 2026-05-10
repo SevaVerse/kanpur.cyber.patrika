@@ -1,30 +1,14 @@
 import type { Metadata } from "next";
 
 import { getAllArticles } from "@/lib/news";
+import { getSiteUrl } from "@/lib/site";
 import { Navbar } from "@/components/navbar";
 
 import "./globals.css";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const logoPath = `${basePath}/Site_logo.jpeg`;
-
-function getMetadataBase() {
-  const repository = process.env.GITHUB_REPOSITORY;
-
-  if (!repository) {
-    return new URL("https://sevaverse.github.io/kanpur.cyber.patrika/");
-  }
-
-  const [owner, repo] = repository.split("/");
-
-  if (!owner || !repo) {
-    return new URL("https://sevaverse.github.io/kanpur.cyber.patrika/");
-  }
-
-  return new URL(`https://${owner.toLowerCase()}.github.io/${repo}/`);
-}
-
-const metadataBase = getMetadataBase();
+const metadataBase = getSiteUrl();
 
 const organizationSchema = {
   "@context": "https://schema.org",

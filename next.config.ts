@@ -1,18 +1,9 @@
 import type { NextConfig } from "next";
 
-function getBasePath() {
-  const repository = process.env.GITHUB_REPOSITORY;
-
-  if (!repository) {
-    return "";
-  }
-
-  const repoName = repository.split("/")[1];
-
-  return repoName ? `/${repoName}` : "";
-}
+import { getBasePath, getSiteUrl } from "./src/lib/site";
 
 const basePath = getBasePath();
+const siteUrl = getSiteUrl();
 
 const nextConfig: NextConfig = {
   output: "export",
@@ -24,6 +15,7 @@ const nextConfig: NextConfig = {
   assetPrefix: basePath || undefined,
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
+    NEXT_PUBLIC_SITE_URL: siteUrl.toString(),
   },
 };
 

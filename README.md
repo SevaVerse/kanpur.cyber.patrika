@@ -2,6 +2,8 @@
 
 A static cyber security news site built with Next.js App Router, TypeScript, and Tailwind CSS. The site fetches cybersecurity headlines during the build, pre-renders article routes, and deploys the exported `out` directory to GitHub Pages on a weekly GitHub Actions schedule.
 
+Production domain: `https://cybervani.com/`
+
 ## Stack
 
 - Next.js App Router with static export
@@ -60,6 +62,7 @@ Create a local `.env.local` or repository secrets with:
 ```bash
 NEWSDATA_API_KEY=your_newsdata_api_key
 NEXT_PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/your-form-id
+NEXT_PUBLIC_SITE_URL=https://cybervani.com
 ```
 
 ## News Data Layer
@@ -96,7 +99,15 @@ npm run dev
 
 ## GitHub Pages Notes
 
-- `next.config.ts` derives `basePath` and `assetPrefix` automatically from `GITHUB_REPOSITORY`.
+- `next.config.ts` derives `basePath` and `assetPrefix` automatically from `GITHUB_REPOSITORY` for project-site deployments.
+- Set `NEXT_PUBLIC_SITE_URL=https://cybervani.com` for custom-domain builds so exported asset paths resolve from the domain root.
 - `output: "export"` writes a static site into `out/`.
-- The default project-site URL for this repository is `https://sevaverse.github.io/kanpur.cyber.patrika/`.
-- If you use a custom domain or user site deployment, adjust `metadataBase` and base path logic as needed.
+- The site now defaults metadata and canonical URLs to `https://cybervani.com/`.
+- Add the DNS records required by your host and GitHub Pages, then keep the repository custom-domain setting aligned with `public/CNAME`.
+
+## Custom Domain Checklist
+
+- Add `cybervani.com` in the repository Pages settings.
+- Point your apex domain DNS to GitHub Pages using the current GitHub A records.
+- Optionally add `www` as a `CNAME` pointing to your GitHub Pages host and configure a redirect to the apex domain.
+- Wait for GitHub to issue the TLS certificate, then verify that `https://cybervani.com` loads the exported site.
