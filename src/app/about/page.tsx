@@ -9,7 +9,7 @@ const founder = {
   role: "Founder",
   focus:
     "Leads Cyber Vani with a focus on cyber awareness, practical reporting, and making security news accessible to everyday readers across India.",
-  imageSrc: `${basePath}/founder-pic.png`,
+  imageSrc: `${basePath}/founder-pic.jpeg`,
 };
 
 export const metadata: Metadata = {
