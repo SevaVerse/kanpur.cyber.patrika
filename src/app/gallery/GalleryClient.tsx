@@ -106,6 +106,13 @@ type Comic = {
   tags: string[];
 };
 
+type GalleryLightboxItem = {
+  title: string;
+  imageSrc: string;
+  subtitle: string;
+  isWide?: boolean;
+};
+
 const comics: Comic[] = [
   {
     id: "cm-001",
@@ -186,10 +193,28 @@ function formatDate(iso: string) {
 }
 
 export default function GalleryClient() {
-  const [lightboxItem, setLightboxItem] = useState<Infographic | null>(null);
+  const [lightboxItem, setLightboxItem] = useState<GalleryLightboxItem | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const closeLightbox = useCallback(() => setLightboxItem(null), []);
+
+  function openInfographic(item: Infographic) {
+    if (!item.imageSrc) return;
+    setLightboxItem({
+      title: item.title,
+      imageSrc: item.imageSrc,
+      subtitle: item.category,
+    });
+  }
+
+  function openComic(comic: Comic) {
+    setLightboxItem({
+      title: comic.title,
+      imageSrc: comic.imageSrc,
+      subtitle: "Comic Strip",
+      isWide: true,
+    });
+  }
 
   async function shareItem(item: Infographic, e: React.MouseEvent) {
     e.stopPropagation();
@@ -239,12 +264,12 @@ export default function GalleryClient() {
               >
                 {/* Image area */}
                 <div
-                  className={`flex aspect-[3/4] items-center justify-center ${style.bg} border-b ${style.border} ${item.imageSrc ? "cursor-zoom-in" : ""}`}
-                  onClick={() => item.imageSrc && setLightboxItem(item)}
+                  className={`flex aspect-3/4 items-center justify-center ${style.bg} border-b ${style.border} ${item.imageSrc ? "cursor-zoom-in" : ""}`}
+                  onClick={() => openInfographic(item)}
                   role={item.imageSrc ? "button" : undefined}
                   tabIndex={item.imageSrc ? 0 : undefined}
                   onKeyDown={(e) => {
-                    if (item.imageSrc && (e.key === "Enter" || e.key === " ")) setLightboxItem(item);
+                    if (item.imageSrc && (e.key === "Enter" || e.key === " ")) openInfographic(item);
                   }}
                   aria-label={item.imageSrc ? `View ${item.title} full size` : undefined}
                 >
@@ -334,31 +359,29 @@ export default function GalleryClient() {
           aria-label={lightboxItem.title}
         >
           <div
-            className="relative mx-4 max-h-[90vh] max-w-5xl w-full"
+            className={`relative mx-4 w-full ${lightboxItem.isWide ? "max-w-7xl" : "max-w-5xl"}`}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close button */}
             <button
+              type="button"
               onClick={closeLightbox}
-              className="absolute -top-10 right-0 text-white/80 hover:text-white text-sm font-bold uppercase tracking-widest flex items-center gap-2 transition"
+              className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/55 text-2xl leading-none text-white transition hover:bg-black/75"
               aria-label="Close lightbox"
             >
-              Close ✕
+              &times;
             </button>
 
-            {/* Image */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={`${basePath}${lightboxItem.imageSrc}`}
               alt={lightboxItem.title}
-              className="max-h-[80vh] w-full rounded-2xl object-contain shadow-2xl"
+              className="max-h-[85vh] w-full rounded-2xl object-contain shadow-2xl"
             />
 
-            {/* Caption bar */}
             <div className="mt-3 flex items-center justify-between gap-4 rounded-xl bg-black/60 px-4 py-3 backdrop-blur-sm">
               <div>
                 <p className="text-sm font-black text-white leading-snug">{lightboxItem.title}</p>
-                <p className="mt-0.5 text-xs text-white/60">{lightboxItem.category}</p>
+                <p className="mt-0.5 text-xs text-white/60">{lightboxItem.subtitle}</p>
               </div>
               <a
                 href={`${basePath}${lightboxItem.imageSrc}`}
@@ -377,7 +400,7 @@ export default function GalleryClient() {
       <section className="mt-10">
         <div className="mb-6">
           <p className="text-xs font-bold uppercase tracking-[0.45em] text-accent">Cyber Awareness Comics</p>
-          <h2 className="mt-2 text-3xl font-black text-hero">Comics — explained visually in Hindi</h2>
+          <h2 className="mt-2 text-3xl font-black text-hero">Comics Kona</h2>
           <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-600">
             Multi-panel illustrated comic strips that break down complex cyber scams in simple, relatable Hindi storytelling.
           </p>
@@ -388,12 +411,19 @@ export default function GalleryClient() {
               key={comic.id}
               className="group overflow-hidden rounded-4xl border border-border bg-surface shadow-[0_16px_50px_-35px_rgba(15,23,42,0.3)] transition hover:shadow-[0_20px_60px_-30px_rgba(15,23,42,0.4)]"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={`${basePath}${comic.imageSrc}`}
-                alt={comic.title}
-                className="w-full object-cover transition duration-300 group-hover:scale-[1.02]"
-              />
+              <button
+                type="button"
+                onClick={() => openComic(comic)}
+                className="block w-full cursor-zoom-in overflow-hidden"
+                aria-label={`View ${comic.title} full size`}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`${basePath}${comic.imageSrc}`}
+                  alt={comic.title}
+                  className="w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+                />
+              </button>
               <div className="p-6">
                 <time className="text-xs text-muted" dateTime={comic.publishedAt}>
                   {new Date(comic.publishedAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}
