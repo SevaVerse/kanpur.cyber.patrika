@@ -12,6 +12,7 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
   { href: "/gallery", label: "Gallery" },
+  { href: "/comics", label: "Comics Kona" },
   { href: "/sponsors", label: "Sponsors" },
   { href: "/contact", label: "Contact Us" },
 ];

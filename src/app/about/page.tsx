@@ -14,7 +14,7 @@ const teamMembers = [
   },
   {
     name: "Vishal Srivastava",
-    role: "Team Member",
+    role: "Co-founder",
     bio:
       "Advocate Vishal Srivastava has been practicing and handling cases independently with a result-oriented approach, both professionally and ethically, and has acquired many years of professional experience in providing legal consultancy and advisory services. He is a member of the Lucknow Bar Association and the Central Bar Association.",
     imageSrc: `${basePath}/Team_mate_1.jpeg`,

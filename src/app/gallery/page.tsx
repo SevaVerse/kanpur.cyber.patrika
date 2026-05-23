@@ -41,6 +41,12 @@ export default function GalleryPage() {
           Download and share these free infographics to spread cyber awareness in your organisation, school, or
           community. New graphics are added with every weekly edition.
         </p>
+        <a
+          href="/comics"
+          className="mt-6 inline-block rounded-2xl border border-white/20 bg-white/10 px-6 py-3 text-sm font-bold uppercase tracking-widest text-white transition hover:bg-white/20"
+        >
+          Visit Comics Kona
+        </a>
       </section>
 
       {/* Interactive grid + lightbox */}

@@ -97,43 +97,6 @@ const infographics: Infographic[] = [
   },
 ];
 
-type Comic = {
-  id: string;
-  title: string;
-  description: string;
-  imageSrc: string;
-  publishedAt: string;
-  tags: string[];
-};
-
-type GalleryLightboxItem = {
-  title: string;
-  imageSrc: string;
-  subtitle: string;
-  isWide?: boolean;
-};
-
-const comics: Comic[] = [
-  {
-    id: "cm-001",
-    title: "Digital Arrest — Ek Saazish (Hindi Comic)",
-    description:
-      "An 8-panel Hindi comic strip exposing the Digital Arrest scam step-by-step — from the fraudster's first call to the money transfer. Learn how to stay alert, never trust unknown video calls, and report fraud on 1930 or cybercrime.gov.in.",
-    imageSrc: "/comics/comics_1.jpeg",
-    publishedAt: "2026-05-13",
-    tags: ["digital arrest", "comic", "Hindi", "scam", "awareness"],
-  },
-  {
-    id: "cm-002",
-    title: "Digital Arrest Kaise Hota Hai — CyberVani Guide (Hindi Comic)",
-    description:
-      "A Hindi comic guide in 8 panels showing exactly how the Digital Arrest fraud unfolds — fake CBI call, threats, sham video arrest, and forced bank transfer — and how CyberVani helps you file a complaint, get expert advice, and protect your family.",
-    imageSrc: "/comics/comics_2.jpeg",
-    publishedAt: "2026-05-19",
-    tags: ["digital arrest", "comic", "Hindi", "CBI fraud", "CyberVani"],
-  },
-];
-
 const categoryColors: Record<string, { bg: string; text: string; border: string; icon: string }> = {
   Phishing: {
     bg: "bg-[rgba(220,38,38,0.07)]",
@@ -193,28 +156,10 @@ function formatDate(iso: string) {
 }
 
 export default function GalleryClient() {
-  const [lightboxItem, setLightboxItem] = useState<GalleryLightboxItem | null>(null);
+  const [lightboxItem, setLightboxItem] = useState<Infographic | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const closeLightbox = useCallback(() => setLightboxItem(null), []);
-
-  function openInfographic(item: Infographic) {
-    if (!item.imageSrc) return;
-    setLightboxItem({
-      title: item.title,
-      imageSrc: item.imageSrc,
-      subtitle: item.category,
-    });
-  }
-
-  function openComic(comic: Comic) {
-    setLightboxItem({
-      title: comic.title,
-      imageSrc: comic.imageSrc,
-      subtitle: "Comic Strip",
-      isWide: true,
-    });
-  }
 
   async function shareItem(item: Infographic, e: React.MouseEvent) {
     e.stopPropagation();
@@ -265,11 +210,11 @@ export default function GalleryClient() {
                 {/* Image area */}
                 <div
                   className={`flex aspect-3/4 items-center justify-center ${style.bg} border-b ${style.border} ${item.imageSrc ? "cursor-zoom-in" : ""}`}
-                  onClick={() => openInfographic(item)}
+                  onClick={() => item.imageSrc && setLightboxItem(item)}
                   role={item.imageSrc ? "button" : undefined}
                   tabIndex={item.imageSrc ? 0 : undefined}
                   onKeyDown={(e) => {
-                    if (item.imageSrc && (e.key === "Enter" || e.key === " ")) openInfographic(item);
+                    if (item.imageSrc && (e.key === "Enter" || e.key === " ")) setLightboxItem(item);
                   }}
                   aria-label={item.imageSrc ? `View ${item.title} full size` : undefined}
                 >
@@ -359,29 +304,29 @@ export default function GalleryClient() {
           aria-label={lightboxItem.title}
         >
           <div
-            className={`relative mx-4 w-full ${lightboxItem.isWide ? "max-w-7xl" : "max-w-5xl"}`}
+            className="relative mx-4 max-h-[90vh] w-full max-w-5xl"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               type="button"
               onClick={closeLightbox}
-              className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/55 text-2xl leading-none text-white transition hover:bg-black/75"
+              className="absolute -top-10 right-0 flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-white/80 transition hover:text-white"
               aria-label="Close lightbox"
             >
-              &times;
+              Close ✕
             </button>
 
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={`${basePath}${lightboxItem.imageSrc}`}
               alt={lightboxItem.title}
-              className="max-h-[85vh] w-full rounded-2xl object-contain shadow-2xl"
+              className="max-h-[80vh] w-full rounded-2xl object-contain shadow-2xl"
             />
 
             <div className="mt-3 flex items-center justify-between gap-4 rounded-xl bg-black/60 px-4 py-3 backdrop-blur-sm">
               <div>
                 <p className="text-sm font-black text-white leading-snug">{lightboxItem.title}</p>
-                <p className="mt-0.5 text-xs text-white/60">{lightboxItem.subtitle}</p>
+                <p className="mt-0.5 text-xs text-white/60">{lightboxItem.category}</p>
               </div>
               <a
                 href={`${basePath}${lightboxItem.imageSrc}`}
@@ -395,67 +340,6 @@ export default function GalleryClient() {
           </div>
         </div>
       )}
-
-      {/* Comics Section */}
-      <section className="mt-10">
-        <div className="mb-6">
-          <p className="text-xs font-bold uppercase tracking-[0.45em] text-accent">Cyber Awareness Comics</p>
-          <h2 className="mt-2 text-3xl font-black text-hero">Comics Kona</h2>
-          <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-600">
-            Multi-panel illustrated comic strips that break down complex cyber scams in simple, relatable Hindi storytelling.
-          </p>
-        </div>
-        <div className="grid gap-6 sm:grid-cols-2">
-          {comics.map((comic) => (
-            <article
-              key={comic.id}
-              className="group overflow-hidden rounded-4xl border border-border bg-surface shadow-[0_16px_50px_-35px_rgba(15,23,42,0.3)] transition hover:shadow-[0_20px_60px_-30px_rgba(15,23,42,0.4)]"
-            >
-              <button
-                type="button"
-                onClick={() => openComic(comic)}
-                className="block w-full cursor-zoom-in overflow-hidden"
-                aria-label={`View ${comic.title} full size`}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={`${basePath}${comic.imageSrc}`}
-                  alt={comic.title}
-                  className="w-full object-cover transition duration-300 group-hover:scale-[1.02]"
-                />
-              </button>
-              <div className="p-6">
-                <time className="text-xs text-muted" dateTime={comic.publishedAt}>
-                  {new Date(comic.publishedAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}
-                </time>
-                <h3 className="mt-2 text-lg font-black leading-snug text-hero group-hover:text-accent transition">
-                  {comic.title}
-                </h3>
-                <p className="mt-2 text-sm leading-7 text-slate-700">{comic.description}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {comic.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-lg border border-border bg-surface-strong px-2 py-0.5 text-[11px] font-semibold text-muted"
-                    >
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
-                <div className="mt-5">
-                  <a
-                    href={`${basePath}${comic.imageSrc}`}
-                    download
-                    className="inline-block rounded-xl border border-border bg-surface-strong px-4 py-2 text-xs font-bold uppercase tracking-widest text-hero transition hover:border-accent hover:text-accent"
-                  >
-                    Download ↓
-                  </a>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
     </>
   );
 }

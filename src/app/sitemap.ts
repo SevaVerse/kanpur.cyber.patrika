@@ -9,7 +9,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl = getSiteUrl();
   const articles = await getAllArticles();
 
-  const staticRoutes = ["", "about/", "contact/", "gallery/", "sponsors/"];
+  const staticRoutes = ["", "about/", "contact/", "gallery/", "comics/", "sponsors/"];
 
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
     url: new URL(route, siteUrl).toString(),
