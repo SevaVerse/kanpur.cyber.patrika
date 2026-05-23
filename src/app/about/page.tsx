@@ -4,13 +4,22 @@ import Image from "next/image";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const logoPath = `${basePath}/Site_logo.jpeg`;
 
-const founder = {
-  name: "Nitin Srivastava",
-  role: "Founder",
-  focus:
-    "Leads Cyber Vani with a focus on cyber awareness, practical reporting, and making security news accessible to everyday readers across India.",
-  imageSrc: `${basePath}/founder-pic.jpeg`,
-};
+const teamMembers = [
+  {
+    name: "Nitin Srivastava",
+    role: "Founder",
+    bio:
+      "Leads Cyber Vani with a focus on cyber awareness, practical reporting, and making security news accessible to everyday readers across India. He holds a PGDM (IT) from Symbiosis Pune and a software quality assurance certification from Pune.",
+    imageSrc: `${basePath}/founder-pic.jpeg`,
+  },
+  {
+    name: "Vishal Srivastava",
+    role: "Team Member",
+    bio:
+      "Advocate Vishal Srivastava has been practicing and handling cases independently with a result-oriented approach, both professionally and ethically, and has acquired many years of professional experience in providing legal consultancy and advisory services. He is a member of the Lucknow Bar Association and the Central Bar Association.",
+    imageSrc: `${basePath}/Team_mate_1.jpeg`,
+  },
+];
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -92,31 +101,35 @@ export default function AboutPage() {
 
       <section className="rounded-4xl border border-border bg-surface p-8 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.35)]">
         <div className="max-w-3xl">
-          <p className="text-xs font-bold uppercase tracking-[0.35em] text-accent">Founders Information</p>
-          <h2 className="mt-3 text-3xl font-black text-hero">Founder</h2>
+          <p className="text-xs font-bold uppercase tracking-[0.35em] text-accent">Team Information</p>
+          <h2 className="mt-3 text-3xl font-black text-hero">Leadership & Team</h2>
           <p className="mt-4 text-sm leading-7 text-slate-700 sm:text-base">
-            Cyber Vani is led by a founder-driven editorial vision that combines cyber reporting, public awareness, and reliable digital publishing.
+            Cyber Vani is supported by a founder-led editorial vision and experienced team members who contribute reporting, public awareness, and specialist guidance.
           </p>
         </div>
 
-        <div className="mt-8 grid gap-6 md:grid-cols-[260px_1fr]">
-          <div className="overflow-hidden rounded-3xl border border-border bg-surface-strong shadow-[0_16px_50px_-38px_rgba(15,23,42,0.45)]">
-            <div className="relative aspect-4/5">
-              <Image
-                src={founder.imageSrc}
-                alt={founder.name}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 260px"
-              />
-            </div>
-          </div>
+        <div className="mt-8 space-y-6">
+          {teamMembers.map((member) => (
+            <div key={member.name} className="grid gap-6 md:grid-cols-[260px_1fr]">
+              <div className="mx-auto w-full max-w-65 overflow-hidden rounded-3xl border border-border bg-surface-strong shadow-[0_16px_50px_-38px_rgba(15,23,42,0.45)] md:mx-0">
+                <div className="relative h-81.25 w-full">
+                  <Image
+                    src={member.imageSrc}
+                    alt={member.name}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 260px"
+                  />
+                </div>
+              </div>
 
-          <article className="rounded-3xl border border-border bg-surface-strong p-6 shadow-[0_16px_50px_-38px_rgba(15,23,42,0.45)]">
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent">{founder.role}</p>
-            <h3 className="mt-3 text-3xl font-black text-hero">{founder.name}</h3>
-            <p className="mt-4 text-base leading-8 text-slate-700">{founder.focus}</p>
-          </article>
+              <article className="rounded-3xl border border-border bg-surface-strong p-6 shadow-[0_16px_50px_-38px_rgba(15,23,42,0.45)]">
+                <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent">{member.role}</p>
+                <h3 className="mt-3 text-3xl font-black text-hero">{member.name}</h3>
+                <p className="mt-4 text-base leading-8 text-slate-700">{member.bio}</p>
+              </article>
+            </div>
+          ))}
         </div>
       </section>
     </div>
