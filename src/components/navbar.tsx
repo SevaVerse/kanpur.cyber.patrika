@@ -109,16 +109,16 @@ export function Navbar({ articles }: NavbarProps) {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-6 text-sm font-semibold uppercase tracking-[0.25em] text-muted md:flex">
+        <nav className="hidden items-center gap-4 text-xs font-semibold uppercase tracking-[0.16em] text-muted xl:gap-5 xl:text-sm xl:tracking-[0.2em] md:flex">
           <button
             type="button"
             onClick={() => setSearchOpen(true)}
-            className="rounded-full border border-border bg-surface-strong px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-hero transition hover:border-accent hover:text-accent"
+            className="whitespace-nowrap rounded-full border border-border bg-surface-strong px-4 py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-hero transition hover:border-accent hover:text-accent xl:text-xs xl:tracking-[0.2em]"
           >
             Search
           </button>
           {links.map((link) => (
-            <Link key={link.href} href={link.href} className="transition hover:text-accent">
+            <Link key={link.href} href={link.href} className="whitespace-nowrap transition hover:text-accent">
               {link.label}
             </Link>
           ))}
