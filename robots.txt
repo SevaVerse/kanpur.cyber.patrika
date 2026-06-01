@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://cybervani.com/
+Sitemap: https://cybervani.com/sitemap.xml

@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[22016,["/_next/static/chunks/113hqpwvc7bnu.js","/_next/static/chunks/0d3shmwh5_nmn.js"],""]
+3:I[97367,["/_next/static/chunks/113hqpwvc7bnu.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"mx-auto flex min-h-[60vh] max-w-3xl flex-col items-center justify-center gap-6 px-4 text-center sm:px-6 lg:px-8","children":[["$","p",null,{"className":"text-xs font-bold uppercase tracking-[0.45em] text-accent","children":"404"}],["$","h1",null,{"className":"text-4xl font-black text-hero sm:text-5xl","children":"The requested briefing is not available."}],["$","p",null,{"className":"max-w-xl text-base leading-8 text-slate-700","children":"The article may have been removed from the latest static export cycle. Return to the homepage to browse current coverage."}],["$","$L2",null,{"href":"/","className":"rounded-full bg-accent px-6 py-3 text-sm font-bold uppercase tracking-[0.24em] text-white transition hover:bg-accent-dark","children":"Return Home"}]]}],null,["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"wcpVyd6jCXHdHvVVBCSeX"}
+5:null
