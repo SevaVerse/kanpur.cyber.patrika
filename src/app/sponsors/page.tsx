@@ -77,10 +77,10 @@ const sponsors: Sponsor[] = [
   },
   {
     id: "sponsor-4",
-    name: "Katyayani Telecom Services Pvt. Ltd.",
+    name: "Mr. Ved Ashish",
     category: "Gold Sponsor",
-    tagline: "Connecting communities through technology, spirituality, and creative enterprise.",
-    bio: "Led by Mr. Ved Ashish, Director of Katyayani Telecom Services Pvt. Ltd., this organisation embodies the spirit of visionary entrepreneurship. Starting his entrepreneurial journey at just 20, Mr. Ved Ashish has built a globally recognised presence spanning Spirituality, Social Work, and Hindi Film Entertainment production. His diverse ventures reflect a rare blend of technological acumen and cultural commitment — driven by a belief that meaningful enterprise must serve both commerce and community. Katyayani Telecom Services Pvt. Ltd. is proud to support Cyber Vani's mission of making cyber safety knowledge accessible to every citizen across India.",
+    tagline: "Director, Katyayani Telecom Services Pvt. Ltd. — connecting communities through technology, spirituality, and creative enterprise.",
+    bio: "Starting his entrepreneurial journey at just 20, Mr. Ved Ashish — Director of Katyayani Telecom Services Pvt. Ltd. — has built a globally recognised presence spanning Spirituality, Social Work, and Hindi Film Entertainment production. His diverse ventures reflect a rare blend of technological acumen and cultural commitment, driven by a belief that meaningful enterprise must serve both commerce and community. Mr. Ved Ashish is proud to support Cyber Vani's mission of making cyber safety knowledge accessible to every citizen across India.",
     imageSrc: `${basePath}/Sponser-1.jpeg`,
     initials: "KT",
     avatarBg: "bg-[#b45309]",
