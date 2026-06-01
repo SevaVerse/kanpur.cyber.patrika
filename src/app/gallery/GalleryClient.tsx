@@ -219,7 +219,7 @@ export default function GalleryClient() {
               >
                 {/* Image area */}
                 <div
-                  className={`flex aspect-3/4 items-center justify-center ${style.bg} border-b ${style.border} ${item.imageSrc ? "cursor-zoom-in" : ""}`}
+                  className={`flex h-72 shrink-0 items-center justify-center ${style.bg} border-b ${style.border} ${item.imageSrc ? "cursor-zoom-in" : ""}`}
                   onClick={() => item.imageSrc && setLightboxItem(item)}
                   role={item.imageSrc ? "button" : undefined}
                   tabIndex={item.imageSrc ? 0 : undefined}

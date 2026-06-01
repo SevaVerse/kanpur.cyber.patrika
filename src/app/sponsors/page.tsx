@@ -87,41 +87,8 @@ const sponsors: Sponsor[] = [
   },
 ];
 
-const tierOrder = ["Platinum Sponsor", "Gold Sponsor", "Silver Sponsor", "Community Partner"];
-
-const tierStyle: Record<string, { badge: string; card: string }> = {
-  "Platinum Sponsor": {
-    badge: "bg-[rgba(180,35,24,0.1)] text-[#b42318]",
-    card: "border-[#b42318]/25 shadow-[0_20px_60px_-35px_rgba(180,35,24,0.25)]",
-  },
-  "Gold Sponsor": {
-    badge: "bg-[rgba(180,83,9,0.1)] text-[#b45309]",
-    card: "border-[#b45309]/25 shadow-[0_20px_60px_-35px_rgba(180,83,9,0.2)]",
-  },
-  "Silver Sponsor": {
-    badge: "bg-[rgba(30,64,175,0.1)] text-[#1e40af]",
-    card: "border-[#1e40af]/20 shadow-[0_20px_60px_-35px_rgba(30,64,175,0.15)]",
-  },
-  "Community Partner": {
-    badge: "bg-[rgba(15,23,42,0.07)] text-slate-600",
-    card: "border-border shadow-[0_20px_60px_-35px_rgba(15,23,42,0.2)]",
-  },
-};
-
-function defaultStyle(category: string) {
-  return (
-    tierStyle[category] ?? {
-      badge: "bg-[rgba(15,23,42,0.07)] text-slate-600",
-      card: "border-border shadow-[0_20px_60px_-35px_rgba(15,23,42,0.2)]",
-    }
-  );
-}
-
-const grouped = tierOrder.reduce<Record<string, Sponsor[]>>((acc, tier) => {
-  const inTier = sponsors.filter((s) => s.category === tier);
-  if (inTier.length > 0) acc[tier] = inTier;
-  return acc;
-}, {});
+const featuredSponsors = sponsors.filter((s) => !!s.imageSrc);
+const supportSponsors = sponsors.filter((s) => !s.imageSrc);
 
 export default function SponsorsPage() {
   return (
@@ -138,76 +105,100 @@ export default function SponsorsPage() {
         </p>
       </section>
 
-      {/* Sponsor tiers */}
-      {Object.entries(grouped).map(([tier, tierSponsors]) => (
-        <section key={tier} className="space-y-6">
-          <h2 className="text-xs font-bold uppercase tracking-[0.4em] text-accent">{tier}</h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {tierSponsors.map((sponsor) => {
-              const style = defaultStyle(sponsor.category);
-              return (
-                <article
-                  key={sponsor.id}
-                  className={`flex flex-col rounded-4xl border bg-surface p-6 ${style.card}`}
-                >
-                  {/* Avatar / logo */}
-                  {sponsor.imageSrc ? (
-                    <div className="relative h-20 w-20 overflow-hidden rounded-3xl">
-                      <Image
-                        src={sponsor.imageSrc}
-                        alt={sponsor.name}
-                        fill
-                        className="object-cover object-top"
-                        sizes="80px"
-                      />
-                    </div>
-                  ) : (
-                    <div
-                      className={`flex h-20 w-20 items-center justify-center rounded-3xl text-2xl font-black text-white ${sponsor.avatarBg}`}
-                      aria-label={`${sponsor.name} logo placeholder`}
+      {/* Featured sponsors — portrait image + bio layout */}
+      {featuredSponsors.length > 0 && (
+        <section className="space-y-6">
+          <p className="text-xs font-bold uppercase tracking-[0.4em] text-accent">Our Sponsors</p>
+          {featuredSponsors.map((sponsor) => (
+            <div key={sponsor.id} className="grid gap-6 md:grid-cols-[260px_1fr]">
+              {/* Portrait image */}
+              <div className="mx-auto w-full max-w-65 overflow-hidden rounded-3xl border border-border bg-surface-strong shadow-[0_16px_50px_-38px_rgba(15,23,42,0.45)] md:mx-0">
+                <div className="relative h-81.25 w-full">
+                  <Image
+                    src={sponsor.imageSrc!}
+                    alt={sponsor.name}
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 100vw, 260px"
+                  />
+                </div>
+              </div>
+
+              {/* Bio card */}
+              <article className="rounded-3xl border border-border bg-surface-strong p-8 shadow-[0_16px_50px_-38px_rgba(15,23,42,0.45)]">
+                <h3 className="text-3xl font-black text-hero">{sponsor.name}</h3>
+                <p className="mt-2 text-base font-semibold text-accent">{sponsor.tagline}</p>
+                <p className="mt-4 text-base leading-8 text-slate-700">{sponsor.bio}</p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  {sponsor.website && (
+                    <a
+                      href={sponsor.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-xl border border-border bg-surface px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-hero transition hover:border-accent hover:text-accent"
                     >
-                      {sponsor.initials}
-                    </div>
+                      Website ↗
+                    </a>
                   )}
+                  {sponsor.contact && (
+                    <a
+                      href={`mailto:${sponsor.contact}`}
+                      className="rounded-xl border border-border bg-surface px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-hero transition hover:border-accent hover:text-accent"
+                    >
+                      Contact
+                    </a>
+                  )}
+                </div>
+              </article>
+            </div>
+          ))}
+        </section>
+      )}
 
-                  {/* Badge */}
-                  <span
-                    className={`mt-4 inline-block self-start rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-widest ${style.badge}`}
-                  >
-                    {sponsor.category}
-                  </span>
-
-                  <h3 className="mt-3 text-xl font-black text-hero">{sponsor.name}</h3>
-                  <p className="mt-1 text-sm font-semibold text-accent">{sponsor.tagline}</p>
-                  <p className="mt-3 flex-1 text-sm leading-7 text-slate-700">{sponsor.bio}</p>
-
-                  {/* Links */}
-                  <div className="mt-5 flex flex-wrap gap-3">
-                    {sponsor.website && (
-                      <a
-                        href={sponsor.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="rounded-xl border border-border bg-surface-strong px-4 py-2 text-xs font-bold uppercase tracking-widest text-hero transition hover:border-accent hover:text-accent"
-                      >
-                        Website ↗
-                      </a>
-                    )}
-                    {sponsor.contact && (
-                      <a
-                        href={`mailto:${sponsor.contact}`}
-                        className="rounded-xl border border-border bg-surface-strong px-4 py-2 text-xs font-bold uppercase tracking-widest text-hero transition hover:border-accent hover:text-accent"
-                      >
-                        Contact
-                      </a>
-                    )}
-                  </div>
-                </article>
-              );
-            })}
+      {/* Support sponsors — compact cards without image */}
+      {supportSponsors.length > 0 && (
+        <section className="space-y-6">
+          <p className="text-xs font-bold uppercase tracking-[0.4em] text-accent">Partners &amp; Supporters</p>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {supportSponsors.map((sponsor) => (
+              <article
+                key={sponsor.id}
+                className="flex flex-col rounded-4xl border border-border bg-surface p-6 shadow-[0_20px_60px_-35px_rgba(15,23,42,0.2)]"
+              >
+                <div
+                  className={`flex h-20 w-20 items-center justify-center rounded-3xl text-2xl font-black text-white ${sponsor.avatarBg}`}
+                  aria-label={`${sponsor.name} logo placeholder`}
+                >
+                  {sponsor.initials}
+                </div>
+                <h3 className="mt-5 text-xl font-black text-hero">{sponsor.name}</h3>
+                <p className="mt-1 text-sm font-semibold text-accent">{sponsor.tagline}</p>
+                <p className="mt-3 flex-1 text-sm leading-7 text-slate-700">{sponsor.bio}</p>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  {sponsor.website && (
+                    <a
+                      href={sponsor.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-xl border border-border bg-surface-strong px-4 py-2 text-xs font-bold uppercase tracking-widest text-hero transition hover:border-accent hover:text-accent"
+                    >
+                      Website ↗
+                    </a>
+                  )}
+                  {sponsor.contact && (
+                    <a
+                      href={`mailto:${sponsor.contact}`}
+                      className="rounded-xl border border-border bg-surface-strong px-4 py-2 text-xs font-bold uppercase tracking-widest text-hero transition hover:border-accent hover:text-accent"
+                    >
+                      Contact
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
           </div>
         </section>
-      ))}
+      )}
 
       {/* Become a sponsor CTA */}
       <section className="rounded-4xl border border-accent/20 bg-[linear-gradient(135deg,rgba(180,35,24,0.06),rgba(245,158,11,0.08))] p-8 sm:p-10">
