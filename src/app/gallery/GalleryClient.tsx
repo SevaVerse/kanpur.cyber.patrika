@@ -95,6 +95,16 @@ const infographics: Infographic[] = [
     publishedAt: "2026-05-13",
     tags: ["mole account", "fake identity", "impersonation", "social media", "awareness"],
   },
+  {
+    id: "ig-009",
+    title: "Nagar Nigam Website Hack — NIC Emergency Alert (Hindi Infographic)",
+    description:
+      "A breaking-news-style Hindi infographic covering the midday hack of a Nagar Nigam's official website (www.nagarnigam.gov.in). The National Informatics Centre (NIC) issued an immediate alert as the technical team worked to investigate and restore services. Tenders, online proposals, tax payments, and other digital services were temporarily suspended. Citizens were urged to rely only on official Nagar Nigam social media and notice boards and to avoid unverified information. Published by CyberVani — Jagruk banein, surakshit rahein, cyber apradh ko rokein.",
+    category: "Awareness",
+    imageSrc: "/infographics/infographics_9.jpeg",
+    publishedAt: "2026-06-01",
+    tags: ["website hack", "nagar nigam", "NIC", "municipal corporation", "India", "cyber crime"],
+  },
 ];
 
 const categoryColors: Record<string, { bg: string; text: string; border: string; icon: string }> = {

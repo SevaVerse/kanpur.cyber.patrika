@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const logoPath = `${basePath}/Site_logo.jpeg`;
@@ -35,6 +36,8 @@ type Sponsor = {
   bio: string;
   website?: string;
   contact?: string;
+  /** Optional photo/logo from public/ */
+  imageSrc?: string;
   /** Initials shown when no image is provided */
   initials: string;
   /** Tailwind bg class for the placeholder avatar */
@@ -71,6 +74,16 @@ const sponsors: Sponsor[] = [
     contact: "editor@example.com",
     initials: "CP",
     avatarBg: "bg-[#1e40af]",
+  },
+  {
+    id: "sponsor-4",
+    name: "Katyayani Telecom Services Pvt. Ltd.",
+    category: "Gold Sponsor",
+    tagline: "Connecting communities through technology, spirituality, and creative enterprise.",
+    bio: "Led by Mr. Ved Ashish, Director of Katyayani Telecom Services Pvt. Ltd., this organisation embodies the spirit of visionary entrepreneurship. Starting his entrepreneurial journey at just 20, Mr. Ved Ashish has built a globally recognised presence spanning Spirituality, Social Work, and Hindi Film Entertainment production. His diverse ventures reflect a rare blend of technological acumen and cultural commitment — driven by a belief that meaningful enterprise must serve both commerce and community. Katyayani Telecom Services Pvt. Ltd. is proud to support Cyber Vani's mission of making cyber safety knowledge accessible to every citizen across India.",
+    imageSrc: `${basePath}/Sponser-1.jpeg`,
+    initials: "KT",
+    avatarBg: "bg-[#b45309]",
   },
 ];
 
@@ -138,12 +151,24 @@ export default function SponsorsPage() {
                   className={`flex flex-col rounded-4xl border bg-surface p-6 ${style.card}`}
                 >
                   {/* Avatar / logo */}
-                  <div
-                    className={`flex h-20 w-20 items-center justify-center rounded-3xl text-2xl font-black text-white ${sponsor.avatarBg}`}
-                    aria-label={`${sponsor.name} logo placeholder`}
-                  >
-                    {sponsor.initials}
-                  </div>
+                  {sponsor.imageSrc ? (
+                    <div className="relative h-20 w-20 overflow-hidden rounded-3xl">
+                      <Image
+                        src={sponsor.imageSrc}
+                        alt={sponsor.name}
+                        fill
+                        className="object-cover object-top"
+                        sizes="80px"
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className={`flex h-20 w-20 items-center justify-center rounded-3xl text-2xl font-black text-white ${sponsor.avatarBg}`}
+                      aria-label={`${sponsor.name} logo placeholder`}
+                    >
+                      {sponsor.initials}
+                    </div>
+                  )}
 
                   {/* Badge */}
                   <span

@@ -4,20 +4,28 @@ import Image from "next/image";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const logoPath = `${basePath}/Site_logo.jpeg`;
 
-const teamMembers = [
-  {
-    name: "Nitin Srivastava",
-    role: "Founder",
-    bio:
-      "Leads Cyber Vani with a focus on cyber awareness, practical reporting, and making security news accessible to everyday readers across India. He holds a PGDM (IT) from Symbiosis Pune and a software quality assurance certification from Pune.",
-    imageSrc: `${basePath}/founder-pic.jpeg`,
-  },
+const founderMember = {
+  name: "Nitin Srivastava",
+  role: "Founder",
+  bio:
+    "Leads Cyber Vani with a focus on cyber awareness, practical reporting, and making security news accessible to everyday readers across India. He holds a PGDM (IT) from Symbiosis Pune and a software quality assurance certification from Pune.",
+  imageSrc: `${basePath}/founder-pic.jpeg`,
+};
+
+const associateMembers = [
   {
     name: "Vishal Srivastava",
     role: "Co-founder",
     bio:
       "Advocate Vishal Srivastava has been practicing and handling cases independently with a result-oriented approach, both professionally and ethically, and has acquired many years of professional experience in providing legal consultancy and advisory services. He is a member of the Lucknow Bar Association and the Central Bar Association.",
     imageSrc: `${basePath}/Team_mate_1.jpeg`,
+  },
+  {
+    name: "Rajesh Choudhary",
+    role: "Associate",
+    bio:
+      "With over 15 years of distinguished practice at the Kanpur Bar Association, Advocate Rajesh Choudhary brings deep expertise in civil, criminal, and cyber law matters. A committed and respected member of the Kanpur Bar Association, he is known for his methodical legal approach, thorough command of the Indian Penal Code and IT Act, and unwavering professional integrity. His extensive courtroom experience and nuanced understanding of the evolving legal landscape surrounding digital crimes make him an invaluable resource for Cyber Vani's readers — whether navigating online fraud redressal, understanding their digital rights, or seeking guidance on cyber-related legal proceedings. Advocate Choudhary actively works to bridge the gap between legal literacy and digital safety across Uttar Pradesh.",
+    imageSrc: `${basePath}/Team_mate_2.jpeg`,
   },
 ];
 
@@ -108,27 +116,48 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="mt-8 space-y-6">
-          {teamMembers.map((member) => (
-            <div key={member.name} className="grid gap-6 md:grid-cols-[260px_1fr]">
-              <div className="mx-auto w-full max-w-65 overflow-hidden rounded-3xl border border-border bg-surface-strong shadow-[0_16px_50px_-38px_rgba(15,23,42,0.45)] md:mx-0">
-                <div className="relative h-81.25 w-full">
-                  <Image
-                    src={member.imageSrc}
-                    alt={member.name}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 260px"
-                  />
-                </div>
-              </div>
-
-              <article className="rounded-3xl border border-border bg-surface-strong p-6 shadow-[0_16px_50px_-38px_rgba(15,23,42,0.45)]">
-                <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent">{member.role}</p>
-                <h3 className="mt-3 text-3xl font-black text-hero">{member.name}</h3>
-                <p className="mt-4 text-base leading-8 text-slate-700">{member.bio}</p>
-              </article>
+        {/* Founder — full-width row */}
+        <div className="mt-8 grid gap-6 md:grid-cols-[260px_1fr]">
+          <div className="mx-auto w-full max-w-65 overflow-hidden rounded-3xl border border-border bg-surface-strong shadow-[0_16px_50px_-38px_rgba(15,23,42,0.45)] md:mx-0">
+            <div className="relative h-81.25 w-full">
+              <Image
+                src={founderMember.imageSrc}
+                alt={founderMember.name}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 260px"
+              />
             </div>
+          </div>
+          <article className="rounded-3xl border border-border bg-surface-strong p-6 shadow-[0_16px_50px_-38px_rgba(15,23,42,0.45)]">
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent">{founderMember.role}</p>
+            <h3 className="mt-3 text-3xl font-black text-hero">{founderMember.name}</h3>
+            <p className="mt-4 text-base leading-8 text-slate-700">{founderMember.bio}</p>
+          </article>
+        </div>
+
+        {/* Associates — two portrait cards side by side */}
+        <div className="mt-6 grid gap-6 sm:grid-cols-2">
+          {associateMembers.map((member) => (
+            <article
+              key={member.name}
+              className="overflow-hidden rounded-4xl border border-border bg-surface-strong shadow-[0_16px_50px_-38px_rgba(15,23,42,0.45)]"
+            >
+              <div className="relative h-80 w-full">
+                <Image
+                  src={member.imageSrc}
+                  alt={member.name}
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                />
+              </div>
+              <div className="p-6">
+                <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent">{member.role}</p>
+                <h3 className="mt-2 text-2xl font-black text-hero">{member.name}</h3>
+                <p className="mt-3 text-sm leading-7 text-slate-700">{member.bio}</p>
+              </div>
+            </article>
           ))}
         </div>
       </section>

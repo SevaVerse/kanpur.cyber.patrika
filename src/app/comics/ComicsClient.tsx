@@ -32,6 +32,15 @@ const comics: Comic[] = [
     publishedAt: "2026-05-19",
     tags: ["digital arrest", "comic", "Hindi", "CBI fraud", "CyberVani"],
   },
+  {
+    id: "cm-003",
+    title: "Digitalization aur Cyber Khatra — Bharat Ko Khatre Mein Daalne Wali Saazish (Hindi Comic)",
+    description:
+      "An 8-panel Hindi educational comic tracing how India's rapid digitalization — UPI, e-commerce, online education, 5G — has simultaneously expanded the cyber attack surface. Panels cover phishing, malware, ransomware, data theft, identity fraud, and the growing toll on ordinary citizens. The final panels highlight India's key defenders (CERT-In, Cyber Swachhta Kendra, Digital India, I4C) and close with a call to action: strong passwords, 2FA, software updates, avoiding unknown links, regular backups, and spreading cyber awareness. Published by CyberVani — Jagrukta hi suraksha hai.",
+    imageSrc: "/comics/comics_3.jpeg",
+    publishedAt: "2026-06-01",
+    tags: ["digitalization", "cyber threat", "Hindi", "awareness", "CERT-In", "India", "comic"],
+  },
 ];
 
 function formatDate(iso: string) {
