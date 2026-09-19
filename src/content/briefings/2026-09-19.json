@@ -3,6 +3,7 @@
   "title": "Cyber security briefing — 19 September 2026",
   "summary": "",
   "published": true,
+  "generated": "ai-assisted",
   "stories": [
     {
       "headline": "Nigerian Cybersecurity Startup Aeon Raises $1m to Protect Critical Infrastructure",
@@ -14,7 +15,13 @@
       "headline": "AI hacking other AI systems? Researchers claim Claude helped exploit OpenAI systems; what exactly happened?",
       "source": "News 24",
       "url": "https://news24online.com/world/ai-hacking-other-ai-systems-researchers-claim-claude-helped-exploit-openai-systems-what-exactly-happened/927997/",
-      "publishedAt": "2026-09-18 17:54:13"
+      "publishedAt": "2026-09-18 17:54:13",
+      "take": "The report shows that advanced AI models can help create working exploits, lowering the technical skill needed to launch attacks. This means cyber‑criminals could develop sophisticated attacks more quickly, increasing the risk of data breaches and fraud for ordinary users.",
+      "guide": {
+        "path": "/awareness/hi/digitalization-cyber-khatra",
+        "title": "डिजिटलीकरण और साइबर खतरा",
+        "lang": "hi"
+      }
     },
     {
       "headline": "Google warns AI is reshaping cyber attacks & defences",
