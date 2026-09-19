@@ -19,6 +19,10 @@ on:
 
 permissions:
   contents: write
+  # Needed to dispatch deploy.yml below. A push made with GITHUB_TOKEN does not
+  # trigger other workflows (GitHub prevents recursion), so without an explicit
+  # dispatch the briefing would be committed every week and never published.
+  actions: write
 
 concurrency:
   group: publish-briefing
@@ -54,9 +58,11 @@ jobs:
         run: npm run build
 
       - name: Commit and push
+        id: commit
         run: |
           if [ -z "$(git status --porcelain src/content/briefings)" ]; then
             echo "No briefing changes to commit."
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git config user.name "cyber-vani-bot"
@@ -64,3 +70,12 @@ jobs:
           git add src/content/briefings
           git commit -m "content: weekly briefing $(date -u +%Y-%m-%d)"
           git push
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy the new briefing
+        if: steps.commit.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # The push above cannot trigger deploy.yml on its own, so ask for it
+        # explicitly. Without this the site silently serves last week's edition.
+        run: gh workflow run deploy.yml --ref main

@@ -9,7 +9,7 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
-import { numbersAreGrounded, numericTokens, validateTake } from "./enrich.mjs";
+import { numbersAreGrounded, numericTokens, parseJsonLoosely, validateTake } from "./enrich.mjs";
 
 const SOURCE =
   "Police in Kanpur arrested 4 people on Tuesday over a digital arrest scam that cost " +
@@ -96,5 +96,27 @@ describe("validateTake", () => {
     const result = validateTake(hallucinated, SOURCE);
     assert.equal(result.ok, false);
     assert.match(result.why, /number absent from the source/);
+  });
+});
+
+describe("parseJsonLoosely", () => {
+  it("parses a clean JSON object", () => {
+    assert.deepEqual(parseJsonLoosely('{"take":"x","guide":null}'), { take: "x", guide: null });
+  });
+
+  it("recovers JSON wrapped in reasoning or prose", () => {
+    const wrapped = 'Let me think about this.\n\n{"take":"x","guide":"hi:otp-scam"}\n\nThat is my answer.';
+    assert.deepEqual(parseJsonLoosely(wrapped), { take: "x", guide: "hi:otp-scam" });
+  });
+
+  it("recovers JSON from a fenced code block", () => {
+    assert.deepEqual(parseJsonLoosely('```json\n{"take":null,"guide":null}\n```'), {
+      take: null,
+      guide: null,
+    });
+  });
+
+  it("returns null when there is no JSON at all", () => {
+    assert.equal(parseJsonLoosely("I could not complete that request."), null);
   });
 });
