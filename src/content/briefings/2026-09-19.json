@@ -1,79 +1,16 @@
 {
   "date": "2026-09-19",
   "title": "Cyber security briefing — 19 September 2026",
-  "summary": "This week: AI models were shown to hack each other, prompting warnings about AI‑driven attacks and the need for AI observability, while Indian SMEs ramped up security spending.",
+  "summary": "This week: a surge in impersonation scams duping citizens, multi‑crore cyber‑fraud cases highlighting massive financial losses, and new police initiatives like the 1930 helpline and dedicated cybercrime mechanisms to combat online fraud.",
   "published": true,
   "generated": "ai-assisted",
   "stories": [
     {
-      "headline": "Nigerian Cybersecurity Startup Aeon Raises $1m to Protect Critical Infrastructure",
-      "source": "Brand Icon Image - Latest Brand, Tech And Business",
-      "url": "http://www.brandiconimage.com/2026/09/nigerian-cybersecurity-startup-aeon.html",
-      "publishedAt": "2026-09-18 22:15:02"
-    },
-    {
-      "headline": "AI hacking other AI systems? Researchers claim Claude helped exploit OpenAI systems; what exactly happened?",
-      "source": "News 24",
-      "url": "https://news24online.com/world/ai-hacking-other-ai-systems-researchers-claim-claude-helped-exploit-openai-systems-what-exactly-happened/927997/",
-      "publishedAt": "2026-09-18 17:54:13",
-      "take": "The report shows that advanced AI models can be used to discover and exploit software flaws, meaning that cyber‑attacks could become more sophisticated and affect online services people rely on."
-    },
-    {
-      "headline": "Google warns AI is reshaping cyber attacks & defences",
-      "source": "It Brief India",
-      "url": "https://itbrief.in/story/google-warns-ai-is-reshaping-cyber-attacks-defences",
-      "publishedAt": "2026-09-18 15:00:00",
-      "take": "AI‑driven coding tools can insert malicious code into software supply chains, so developers may unwittingly use compromised components that expose users to attacks."
-    },
-    {
-      "headline": "Researchers used Claude to hack OpenAI",
-      "source": "Ars Technica",
-      "url": "https://arstechnica.com/ai/2026/09/researchers-used-claude-to-hack-openai/",
-      "publishedAt": "2026-09-18 13:30:12",
-      "take": "The breach demonstrates that even major AI providers can be compromised, meaning services that many people rely on could expose private information if similar flaws are exploited."
-    },
-    {
-      "headline": "OpenAI discloses six new AI misalignment cases after Hugging Face incident",
-      "source": "Mashable Me",
-      "url": "https://me.mashable.com/tech/76267/openai-discloses-six-new-ai-misalignment-cases-after-hugging-face-incident",
-      "publishedAt": "2026-09-18 13:09:46"
-    },
-    {
-      "headline": "Why AI observability is becoming critical as AI systems grow more autonomous",
-      "source": "Pcquest",
-      "url": "https://www.pcquest.com/artificial-intelligence/ai-observability-12549100",
-      "publishedAt": "2026-09-18 12:00:24",
-      "take": "As AI agents gain more autonomy, hidden glitches or malicious actions can go unnoticed, potentially disrupting services and exposing data, so organisations need new monitoring to keep systems safe.",
-      "guide": {
-        "path": "/awareness/hi/digitalization-cyber-khatra",
-        "title": "डिजिटलीकरण और साइबर खतरा",
-        "lang": "hi"
-      }
-    },
-    {
-      "headline": "Rising cyberattacks push Indian SMEs to boost security spending: Report",
-      "source": "Business Standard",
-      "url": "https://www.business-standard.com/technology/tech-news/rising-cyberattacks-push-indian-smes-to-boost-security-spending-report-126091800816_1.html",
-      "publishedAt": "2026-09-18 10:48:25"
-    },
-    {
-      "headline": "From cybersecurity to cyber resilience: Preparing India’s critical infrastructure for the next decade",
-      "source": "Cio&leader",
-      "url": "https://www.cioandleader.com/from-cybersecurity-to-cyber-resilience-preparing-indias-critical-infrastructure-for-the-next-decade/",
-      "publishedAt": "2026-09-18 09:24:10",
-      "take": "As more essential services such as transport, energy and manufacturing rely on interconnected digital systems, failures or attacks on that invisible layer could interrupt everyday services, making resilience as important as physical safety.",
-      "guide": {
-        "path": "/awareness/hi/digitalization-cyber-khatra",
-        "title": "डिजिटलीकरण और साइबर खतरा",
-        "lang": "hi"
-      }
-    },
-    {
-      "headline": "Court dismisses bail plea of cyber fraud accused",
-      "source": "The Times of India",
-      "url": "https://timesofindia.indiatimes.com/city/kanpur/court-dismisses-bail-plea-of-cyber-fraud-accused/articleshow/134319599.cms",
-      "publishedAt": "2026-09-17T18:19:38Z",
-      "take": "The court’s refusal to grant bail to a suspect accused of withdrawing large sums through online fraud highlights the seriousness with which Indian authorities are treating cyber‑financial crimes, underscoring the risk of losing money through fraudulent digital transactions.",
+      "headline": "Dial 1930: J&K Police’s new weapon against online fraud",
+      "source": "Rising Kashmir",
+      "url": "https://risingkashmir.com/top-stories/dial-1930-jk-polices-new-weapon-against-online-fraud-12550382",
+      "publishedAt": "2026-09-18 21:46:37",
+      "take": "The new 1930 helpline lets victims of online financial fraud report incidents instantly, giving police and banks a chance to trace and freeze suspicious transactions before the money moves further.",
       "guide": {
         "path": "/awareness/safe-digital-banking",
         "title": "Digital Banking — Safe Banking, Secure India",
@@ -81,10 +18,112 @@
       }
     },
     {
-      "headline": "SBI CISO vacancy 2026: Check eligibility, salary and application date",
-      "source": "Business Standard",
-      "url": "https://www.business-standard.com/education/news/sbi-ciso-vacancy-2026-check-eligibility-salary-and-application-date-nc-126091700837_1.html",
-      "publishedAt": "2026-09-17T11:12:30Z"
+      "headline": "Mumbai Cyber Fraud: 52-Year-Old Man Duped Of ₹11.50 Lakh In ‘Digital Arrest’ Scam By Fake ATS Officer; Case Registered",
+      "source": "The Free Press Journal",
+      "url": "https://www.freepressjournal.in/mumbai/mumbai-cyber-fraud-52-year-old-man-duped-of-1150-lakh-in-digital-arrest-scam-by-fake-ats-officer-case-registered",
+      "publishedAt": "2026-09-18 21:15:00",
+      "take": "The story shows how scammers can impersonate law‑enforcement officers on WhatsApp, use fabricated arrest threats and fake documents to coerce victims into transferring their savings, highlighting a growing fraud method that can trap ordinary citizens.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "16 held for running fake call centre to target US citizens",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/lucknow/16-held-for-running-fake-call-centre-to-target-us-citizens/articleshow/134343511.cms",
+      "publishedAt": "2026-09-18 19:35:32",
+      "take": "The bust shows that call centres in Indian cities are being used to run scams against foreign victims, highlighting the presence of organized fraud operations that can lead to arrests and increased police activity in local areas.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Mohali man loses ₹98k in UPI fraud",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/chandigarh/mohali-man-loses-98k-in-upi-fraud/articleshow/134343484.cms",
+      "publishedAt": "2026-09-18 19:33:21",
+      "take": "A compromised phone can be used to trigger unauthorized UPI transfers, causing significant financial loss even when the victim quickly blocks the account. It highlights the need to secure mobile devices and monitor transaction alerts to prevent similar fraud.",
+      "guide": {
+        "path": "/awareness/safe-digital-banking",
+        "title": "Digital Banking — Safe Banking, Secure India",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Pension trap tightens grip, two retirees conned of Rs 37L",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/nagpur/pension-trap-tightens-grip-two-retirees-conned-of-rs-37l/articleshow/134342664.cms",
+      "publishedAt": "2026-09-18 18:37:39",
+      "take": "Elderly pensioners are being targeted with phone calls and fake online forms that claim to fix pension cards, leading fraudsters to obtain their bank and card details and withdraw large sums, putting seniors’ savings at risk.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "E-fraud syndicate uses fake bank docus to steal Rs 32L, busted",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/kolkata/e-fraud-syndicate-uses-fake-bank-docus-to-steal-rs-32l-busted/articleshow/134341857.cms",
+      "publishedAt": "2026-09-18 18:03:54",
+      "take": "The case shows how stolen identity documents and forged digital paperwork can be used to impersonate bank customers and siphon money, underscoring the need to safeguard personal KYC and banking details.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Man held in Rs 6.8cr cyberfraud case",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/bhubaneswar/man-held-in-rs-6-8cr-cyberfraud-case/articleshow/134341288.cms",
+      "publishedAt": "2026-09-18 17:48:36",
+      "take": "A man was arrested for a multi‑crore cyber fraud in which a large sum was transferred to a local bank account, highlighting that sophisticated online scams can affect ordinary bank customers.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "JKP Roll Out Dedicated Cybercrime Mechanism",
+      "source": "Kashmir Observer",
+      "url": "https://kashmirobserver.net/2026/09/18/jkp-roll-out-dedicated-cybercrime-mechanism/",
+      "publishedAt": "2026-09-18 16:31:00",
+      "take": "The new mechanism will allow faster handling of cybercrime complaints and quicker freezing of suspected fraudulent funds, improving protection for victims of online fraud.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Court dismisses bail plea of cyber fraud accused",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/city/kanpur/court-dismisses-bail-plea-of-cyber-fraud-accused/articleshow/134319599.cms",
+      "publishedAt": "2026-09-17T18:19:38Z",
+      "take": "The court’s refusal to grant bail to a suspect accused of withdrawing large sums through online fraud underscores the seriousness with which Indian authorities are treating cyber‑related financial crimes, highlighting the risk of substantial monetary loss from such schemes.",
+      "guide": {
+        "path": "/awareness/safe-digital-banking",
+        "title": "Digital Banking — Safe Banking, Secure India",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "34-year-old woman told Rs 9 crore sent to her from abroad was stuck at customs; she paid for its release, lost Rs 1.2 crore to fraud",
+      "source": "The Times of India",
+      "url": "https://economictimes.indiatimes.com/news/new-updates/34-year-old-woman-told-rs-9-crore-sent-to-her-from-abroad-was-stuck-at-customs-she-paid-for-its-release-lost-rs-1-2-crore-to-fraud/articleshow/134307393.cms",
+      "publishedAt": "2026-09-17T09:56:36Z",
+      "take": "The story shows how fraudsters can use fake messages about customs or diplomatic parcels to trick individuals into paying large sums, demonstrating the need for vigilance against impersonation scams.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
     }
   ]
 }
