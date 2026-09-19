@@ -26,24 +26,31 @@ import { loadGuides } from "./lib/guides.mjs";
 const OUTPUT_DIR = join("src", "content", "briefings");
 const MAX_STORIES = 10;
 
-const CYBER_KEYWORDS = [
-  "cyber",
-  "cybersecurity",
-  "cyber fraud",
-  "cyber crime",
-  "cyber incident",
-  "ransomware",
-  "malware",
-  "phishing",
-  "breach",
-  "zero-day",
-  "zero day",
-  "vulnerability",
-  "infosec",
-  "hacker",
-  "threat",
-  "security",
-];
+/**
+ * NewsData caps `q` at 100 characters, so the terms have to earn their place.
+ * These are the phrases that actually surface Indian cyber-fraud reporting;
+ * broader words like "cybersecurity" pull in global AI-security news instead.
+ */
+const NEWSDATA_QUERY = '"cyber fraud" OR "online fraud" OR "digital arrest" OR "OTP fraud"';
+
+const NEWSAPI_QUERY =
+  '("cyber fraud" OR "digital arrest" OR "online fraud" OR "UPI fraud" OR "cyber crime") AND India';
+
+/**
+ * A story qualifies on its HEADLINE, not its body.
+ *
+ * Matching on the description let general news through whenever an article
+ * mentioned cyber crime in passing — exam results, cricket, a hospital story.
+ * Requiring the signal in the title costs a little recall and buys a lot of
+ * precision, and both wires return far more than the ten stories we need.
+ */
+const CYBER_TITLE =
+  /cyber|digital arrest|online fraud|upi fraud|otp|phish|hack|malware|ransomware|data breach|scam|fraud|cheat|dupe|conned|sextortion|impersonat|call cent(re|er)/i;
+
+/** Headlines that match on a keyword but are never the story we want. */
+const HEADLINE_NOISE =
+  /vacancy|recruitment|admit card|answer key|result out|eligibility|salary|syllabus|horoscope|school assembly|news headlines today|live updates|box office|bigg boss|cricket|ipl|match preview/i;
+
 
 // ───────────────────────────── helpers ─────────────────────────────
 
@@ -85,10 +92,15 @@ function nextSaturday(from = new Date()) {
   return date.toISOString().slice(0, 10);
 }
 
-function isCyberRelevant(...parts) {
-  const haystack = parts.filter(Boolean).join(" ").toLowerCase();
-  return CYBER_KEYWORDS.some((keyword) => haystack.includes(keyword));
+function isCyberRelevant(title) {
+  const headline = (title ?? "").trim();
+
+  if (!headline) return false;
+  if (HEADLINE_NOISE.test(headline)) return false;
+
+  return CYBER_TITLE.test(headline);
 }
+
 
 /** Collapses near-duplicates that both wires carry. */
 function dedupeKey(headline) {
@@ -112,10 +124,9 @@ async function fetchNewsData() {
 
   const url = new URL("https://newsdata.io/api/1/latest");
   url.searchParams.set("apikey", apiKey);
-  url.searchParams.set("q", "cyber fraud OR cyber crime OR cyber incident");
+  url.searchParams.set("q", NEWSDATA_QUERY);
   url.searchParams.set("language", "en");
   url.searchParams.set("country", "in");
-  url.searchParams.set("category", "technology");
 
   const response = await fetch(url, { headers: { Accept: "application/json" } });
 
@@ -127,9 +138,7 @@ async function fetchNewsData() {
   const payload = await response.json();
 
   return (payload.results ?? [])
-    .filter((article) =>
-      isCyberRelevant(article.title, article.description, (article.keywords ?? []).join(" ")),
-    )
+    .filter((article) => isCyberRelevant(article.title))
     .map((article) => ({
       headline: article.title?.trim() ?? "",
       source: article.source_name?.trim() || "NewsData.io",
@@ -146,7 +155,7 @@ async function fetchNewsApiOrg() {
   }
 
   const url = new URL("https://newsapi.org/v2/everything");
-  url.searchParams.set("q", '("cyber fraud" OR "cyber crime" OR "cyber incident" OR "cybersecurity") +India');
+  url.searchParams.set("q", NEWSAPI_QUERY);
   url.searchParams.set("language", "en");
   url.searchParams.set("sortBy", "publishedAt");
   url.searchParams.set("pageSize", "20");
@@ -169,7 +178,7 @@ async function fetchNewsApiOrg() {
 
   return (payload.articles ?? [])
     .filter((article) => article.title && article.title !== "[Removed]")
-    .filter((article) => isCyberRelevant(article.title, article.description))
+    .filter((article) => isCyberRelevant(article.title))
     .map((article) => ({
       headline: article.title.trim(),
       source: article.source?.name?.trim() || "NewsAPI",
@@ -237,6 +246,14 @@ const { stories: enrichedStories, stats } = await enrichStories(stories, guides,
   fetchArticleText,
 });
 
+if (stats.declined.length > 0) {
+  console.log(`
+${stats.declined.length} story(ies) the model declined to write a take for:`);
+  for (const item of stats.declined) {
+    console.log(`  - ${item.headline.slice(0, 70)}`);
+  }
+}
+
 if (stats.dropped.length > 0) {
   console.log(`\n${stats.dropped.length} take(s) dropped rather than guessed:`);
   for (const drop of stats.dropped) {
@@ -251,7 +268,7 @@ if (stats.dropped.length > 0) {
  * up as a red run instead of quietly publishing a briefing with no takes and
  * leaving last week's edition in place.
  */
-if (process.env.GROQ_API_KEY && stats.attempted > 0 && stats.takes === 0) {
+if (process.env.GROQ_API_KEY && stats.attempted > 0 && stats.takes === 0 && stats.dropped.length > 0) {
   console.error(
     `\nEvery take failed (0/${stats.attempted}). Refusing to publish a briefing with nothing written.\n` +
       "Check the errors above — a rejected model id is the usual cause.",

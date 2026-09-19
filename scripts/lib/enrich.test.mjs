@@ -77,8 +77,17 @@ describe("validateTake", () => {
     assert.equal(result.take, VALID_TAKE);
   });
 
-  it("rejects null, which the model returns when the excerpt is too thin", () => {
-    assert.equal(validateTake(null, SOURCE).ok, false);
+  it("treats null as a deliberate decline, not a failure", () => {
+    const result = validateTake(null, SOURCE);
+    assert.equal(result.ok, false);
+    assert.equal(result.declined, true, "a decline must be distinguishable from a malfunction");
+    assert.match(result.why, /declined/);
+  });
+
+  it("treats a non-string, non-null take as a genuine failure", () => {
+    const result = validateTake(42, SOURCE);
+    assert.equal(result.ok, false);
+    assert.equal(result.declined, undefined);
   });
 
   it("rejects a take that is too short to say anything", () => {
