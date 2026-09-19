@@ -98,6 +98,13 @@ export function numbersAreGrounded(take, sourceText) {
 }
 
 export function validateTake(take, sourceText) {
+  // null is the documented, correct answer when the excerpt is too thin to
+  // support a specific take. It is a decision, not a malfunction, and the
+  // caller reports it separately so a quiet week does not read like a fault.
+  if (take === null || take === undefined) {
+    return { ok: false, declined: true, why: "model declined — excerpt too thin for a specific take" };
+  }
+
   if (typeof take !== "string") return { ok: false, why: "take was not a string" };
 
   const trimmed = take.trim();
@@ -273,7 +280,7 @@ function callGroq(apiKey, model, story, articleText, catalogue) {
  */
 export async function enrichStories(stories, guides, { fetchArticleText }) {
   const apiKey = process.env.GROQ_API_KEY;
-  const stats = { attempted: 0, takes: 0, guides: 0, dropped: [] };
+  const stats = { attempted: 0, takes: 0, guides: 0, dropped: [], declined: [] };
 
   if (!apiKey) {
     console.warn("GROQ_API_KEY not set — publishing as a curated link list with no takes.");
@@ -328,10 +335,12 @@ export async function enrichStories(stories, guides, { fetchArticleText }) {
     const validation = validateTake(result.data?.take, articleText);
     const guide = findGuide(guides, result.data?.guide);
 
-    if (!validation.ok) {
-      stats.dropped.push({ headline: story.headline, why: validation.why });
-    } else {
+    if (validation.ok) {
       stats.takes += 1;
+    } else if (validation.declined) {
+      stats.declined.push({ headline: story.headline, why: validation.why });
+    } else {
+      stats.dropped.push({ headline: story.headline, why: validation.why });
     }
 
     if (guide) stats.guides += 1;

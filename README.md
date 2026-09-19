@@ -109,6 +109,20 @@ unreadable sources, a Groq outage).
 Some publishers block non-browser agents. We identify the bot honestly and accept the refusal rather than
 spoofing a browser, so those stories publish without a take.
 
+### What the drafter looks for
+
+Two lessons from live runs shaped the queries:
+
+- **`category=technology` was filtering out the beat.** It surfaced AI-security research and startup funding
+  rounds while suppressing the arrests, UPI frauds and digital-arrest cases the site exists to cover. Dropped.
+- **Broad terms cost relevance.** A bare `cybersecurity` matched global AI research; quoted fraud phrases
+  (`"digital arrest"`, `"UPI fraud"`) match Indian reporting. NewsData caps `q` at 100 characters, so the
+  terms have to earn their place.
+
+A story then qualifies on its **headline**, not its body. Matching the description let general news through
+whenever an article mentioned cyber crime in passing — exam results, cricket, a job vacancy. A small noise
+list rejects the rest.
+
 ### The guide match
 
 Alongside the take, each story is matched to one guide from the awareness library — or none. This is
