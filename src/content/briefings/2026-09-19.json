@@ -1,64 +1,69 @@
 {
   "date": "2026-09-19",
   "title": "Cyber security briefing — 19 September 2026",
-  "summary": "This week: researchers demonstrate AI models being used to attack other AI systems, Google warns that AI is reshaping both attack and defence, and Indian SMEs respond to rising attacks by increasing security spending.",
+  "summary": "",
   "published": true,
+  "generated": "ai-assisted",
   "stories": [
     {
       "headline": "Nigerian Cybersecurity Startup Aeon Raises $1m to Protect Critical Infrastructure",
       "source": "Brand Icon Image - Latest Brand, Tech And Business",
       "url": "http://www.brandiconimage.com/2026/09/nigerian-cybersecurity-startup-aeon.html",
-      "publishedAt": "2026-09-18 22:15:02",
-      "take": ""
+      "publishedAt": "2026-09-18 22:15:02"
     },
     {
       "headline": "AI hacking other AI systems? Researchers claim Claude helped exploit OpenAI systems; what exactly happened?",
       "source": "News 24",
       "url": "https://news24online.com/world/ai-hacking-other-ai-systems-researchers-claim-claude-helped-exploit-openai-systems-what-exactly-happened/927997/",
-      "publishedAt": "2026-09-18 17:54:13",
-      "take": ""
+      "publishedAt": "2026-09-18 17:54:13"
     },
     {
       "headline": "Google warns AI is reshaping cyber attacks & defences",
       "source": "It Brief India",
       "url": "https://itbrief.in/story/google-warns-ai-is-reshaping-cyber-attacks-defences",
-      "publishedAt": "2026-09-18 15:00:00",
-      "take": ""
+      "publishedAt": "2026-09-18 15:00:00"
     },
     {
       "headline": "Researchers used Claude to hack OpenAI",
       "source": "Ars Technica",
       "url": "https://arstechnica.com/ai/2026/09/researchers-used-claude-to-hack-openai/",
-      "publishedAt": "2026-09-18 13:30:12",
-      "take": ""
+      "publishedAt": "2026-09-18 13:30:12"
     },
     {
       "headline": "OpenAI discloses six new AI misalignment cases after Hugging Face incident",
       "source": "Mashable Me",
       "url": "https://me.mashable.com/tech/76267/openai-discloses-six-new-ai-misalignment-cases-after-hugging-face-incident",
-      "publishedAt": "2026-09-18 13:09:46",
-      "take": ""
+      "publishedAt": "2026-09-18 13:09:46"
     },
     {
       "headline": "Why AI observability is becoming critical as AI systems grow more autonomous",
       "source": "Pcquest",
       "url": "https://www.pcquest.com/artificial-intelligence/ai-observability-12549100",
-      "publishedAt": "2026-09-18 12:00:24",
-      "take": ""
+      "publishedAt": "2026-09-18 12:00:24"
     },
     {
       "headline": "Rising cyberattacks push Indian SMEs to boost security spending: Report",
       "source": "Business Standard",
       "url": "https://www.business-standard.com/technology/tech-news/rising-cyberattacks-push-indian-smes-to-boost-security-spending-report-126091800816_1.html",
-      "publishedAt": "2026-09-18 10:48:25",
-      "take": ""
+      "publishedAt": "2026-09-18 10:48:25"
     },
     {
       "headline": "From cybersecurity to cyber resilience: Preparing India’s critical infrastructure for the next decade",
       "source": "Cio&leader",
       "url": "https://www.cioandleader.com/from-cybersecurity-to-cyber-resilience-preparing-indias-critical-infrastructure-for-the-next-decade/",
-      "publishedAt": "2026-09-18 09:24:10",
-      "take": ""
+      "publishedAt": "2026-09-18 09:24:10"
+    },
+    {
+      "headline": "Court dismisses bail plea of cyber fraud accused",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/city/kanpur/court-dismisses-bail-plea-of-cyber-fraud-accused/articleshow/134319599.cms",
+      "publishedAt": "2026-09-17T18:19:38Z"
+    },
+    {
+      "headline": "SBI CISO vacancy 2026: Check eligibility, salary and application date",
+      "source": "Business Standard",
+      "url": "https://www.business-standard.com/education/news/sbi-ciso-vacancy-2026-check-eligibility-salary-and-application-date-nc-126091700837_1.html",
+      "publishedAt": "2026-09-17T11:12:30Z"
     }
   ]
 }
