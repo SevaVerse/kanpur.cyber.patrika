@@ -1,7 +1,7 @@
 {
   "date": "2026-09-19",
   "title": "Cyber security briefing — 19 September 2026",
-  "summary": "",
+  "summary": "This week: AI models were shown to hack each other, prompting warnings about AI‑driven attacks and the need for AI observability, while Indian SMEs ramped up security spending.",
   "published": true,
   "generated": "ai-assisted",
   "stories": [
@@ -16,24 +16,21 @@
       "source": "News 24",
       "url": "https://news24online.com/world/ai-hacking-other-ai-systems-researchers-claim-claude-helped-exploit-openai-systems-what-exactly-happened/927997/",
       "publishedAt": "2026-09-18 17:54:13",
-      "take": "The report shows that advanced AI models can help create working exploits, lowering the technical skill needed to launch attacks. This means cyber‑criminals could develop sophisticated attacks more quickly, increasing the risk of data breaches and fraud for ordinary users.",
-      "guide": {
-        "path": "/awareness/hi/digitalization-cyber-khatra",
-        "title": "डिजिटलीकरण और साइबर खतरा",
-        "lang": "hi"
-      }
+      "take": "The report shows that advanced AI models can be used to discover and exploit software flaws, meaning that cyber‑attacks could become more sophisticated and affect online services people rely on."
     },
     {
       "headline": "Google warns AI is reshaping cyber attacks & defences",
       "source": "It Brief India",
       "url": "https://itbrief.in/story/google-warns-ai-is-reshaping-cyber-attacks-defences",
-      "publishedAt": "2026-09-18 15:00:00"
+      "publishedAt": "2026-09-18 15:00:00",
+      "take": "AI‑driven coding tools can insert malicious code into software supply chains, so developers may unwittingly use compromised components that expose users to attacks."
     },
     {
       "headline": "Researchers used Claude to hack OpenAI",
       "source": "Ars Technica",
       "url": "https://arstechnica.com/ai/2026/09/researchers-used-claude-to-hack-openai/",
-      "publishedAt": "2026-09-18 13:30:12"
+      "publishedAt": "2026-09-18 13:30:12",
+      "take": "The breach demonstrates that even major AI providers can be compromised, meaning services that many people rely on could expose private information if similar flaws are exploited."
     },
     {
       "headline": "OpenAI discloses six new AI misalignment cases after Hugging Face incident",
@@ -45,7 +42,13 @@
       "headline": "Why AI observability is becoming critical as AI systems grow more autonomous",
       "source": "Pcquest",
       "url": "https://www.pcquest.com/artificial-intelligence/ai-observability-12549100",
-      "publishedAt": "2026-09-18 12:00:24"
+      "publishedAt": "2026-09-18 12:00:24",
+      "take": "As AI agents gain more autonomy, hidden glitches or malicious actions can go unnoticed, potentially disrupting services and exposing data, so organisations need new monitoring to keep systems safe.",
+      "guide": {
+        "path": "/awareness/hi/digitalization-cyber-khatra",
+        "title": "डिजिटलीकरण और साइबर खतरा",
+        "lang": "hi"
+      }
     },
     {
       "headline": "Rising cyberattacks push Indian SMEs to boost security spending: Report",
@@ -57,13 +60,25 @@
       "headline": "From cybersecurity to cyber resilience: Preparing India’s critical infrastructure for the next decade",
       "source": "Cio&leader",
       "url": "https://www.cioandleader.com/from-cybersecurity-to-cyber-resilience-preparing-indias-critical-infrastructure-for-the-next-decade/",
-      "publishedAt": "2026-09-18 09:24:10"
+      "publishedAt": "2026-09-18 09:24:10",
+      "take": "As more essential services such as transport, energy and manufacturing rely on interconnected digital systems, failures or attacks on that invisible layer could interrupt everyday services, making resilience as important as physical safety.",
+      "guide": {
+        "path": "/awareness/hi/digitalization-cyber-khatra",
+        "title": "डिजिटलीकरण और साइबर खतरा",
+        "lang": "hi"
+      }
     },
     {
       "headline": "Court dismisses bail plea of cyber fraud accused",
       "source": "The Times of India",
       "url": "https://timesofindia.indiatimes.com/city/kanpur/court-dismisses-bail-plea-of-cyber-fraud-accused/articleshow/134319599.cms",
-      "publishedAt": "2026-09-17T18:19:38Z"
+      "publishedAt": "2026-09-17T18:19:38Z",
+      "take": "The court’s refusal to grant bail to a suspect accused of withdrawing large sums through online fraud highlights the seriousness with which Indian authorities are treating cyber‑financial crimes, underscoring the risk of losing money through fraudulent digital transactions.",
+      "guide": {
+        "path": "/awareness/safe-digital-banking",
+        "title": "Digital Banking — Safe Banking, Secure India",
+        "lang": "en"
+      }
     },
     {
       "headline": "SBI CISO vacancy 2026: Check eligibility, salary and application date",
