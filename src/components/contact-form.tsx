@@ -9,11 +9,11 @@ export function ContactForm() {
       <form
         action={formAction}
         method="POST"
-        className="space-y-5 rounded-4xl border border-border bg-surface-strong p-8 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.4)]"
+        className="space-y-5 rounded-panel border border-border bg-surface-strong p-8 shadow-card"
       >
         <div className="space-y-2">
-          <p className="text-xs font-bold uppercase tracking-[0.35em] text-accent">Secure Contact</p>
-          <h2 className="text-3xl font-black text-hero">Send a tip or editorial request</h2>
+          <p className="text-xs font-bold uppercase tracking-kicker text-accent">Secure Contact</p>
+          <h2 className="text-3xl font-bold text-hero">Send a tip or editorial request</h2>
           <p className="max-w-2xl text-sm leading-7 text-slate-700">
             Share a story tip, report an error, or ask about sponsorship. We read every message and reply to
             the ones that need a reply. Please do not send passwords, OTPs, or bank details — no one at Cyber
@@ -23,7 +23,7 @@ export function ContactForm() {
 
         {/* Build-time guard for the maintainer; never shown to readers in production. */}
         {!isConfigured && !isProduction ? (
-          <div className="rounded-2xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+          <div className="rounded-card border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">
             Developer note: set <span className="font-semibold">NEXT_PUBLIC_FORMSPREE_ENDPOINT</span> before
             deploying, or submissions will go nowhere.
           </div>
@@ -38,7 +38,7 @@ export function ContactForm() {
               type="text"
               name="name"
               required
-              className="w-full rounded-2xl border border-border bg-white px-4 py-3 text-base font-normal outline-none transition focus:border-accent"
+              className="w-full rounded-card border border-border bg-white px-4 py-3 text-base font-normal outline-none transition focus:border-accent"
               placeholder="Your name"
             />
           </label>
@@ -48,7 +48,7 @@ export function ContactForm() {
               type="email"
               name="email"
               required
-              className="w-full rounded-2xl border border-border bg-white px-4 py-3 text-base font-normal outline-none transition focus:border-accent"
+              className="w-full rounded-card border border-border bg-white px-4 py-3 text-base font-normal outline-none transition focus:border-accent"
               placeholder="name@company.com"
             />
           </label>
@@ -59,7 +59,7 @@ export function ContactForm() {
           <input
             type="text"
             name="topic"
-            className="w-full rounded-2xl border border-border bg-white px-4 py-3 text-base font-normal outline-none transition focus:border-accent"
+            className="w-full rounded-card border border-border bg-white px-4 py-3 text-base font-normal outline-none transition focus:border-accent"
             placeholder="Story tip, correction, sponsorship"
           />
         </label>
@@ -70,22 +70,22 @@ export function ContactForm() {
             name="message"
             required
             rows={6}
-            className="w-full rounded-3xl border border-border bg-white px-4 py-3 text-base font-normal outline-none transition focus:border-accent"
+            className="w-full rounded-card border border-border bg-white px-4 py-3 text-base font-normal outline-none transition focus:border-accent"
             placeholder="Share the details you want the editorial desk to review."
           />
         </label>
 
         <button
           type="submit"
-          className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-bold uppercase tracking-[0.24em] text-white transition hover:bg-accent-dark"
+          className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-bold uppercase tracking-label text-white transition hover:bg-accent-dark"
         >
           Send Message
         </button>
       </form>
 
       {editorEmail ? (
-        <aside className="rounded-4xl border border-border bg-surface p-6">
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent">Prefer email?</p>
+        <aside className="rounded-panel border border-border bg-surface p-6">
+          <p className="text-xs font-bold uppercase tracking-kicker text-accent">Prefer email?</p>
           <p className="mt-3 text-sm leading-7 text-slate-700">
             Write to us directly at{" "}
             <a href={`mailto:${editorEmail}`} className="font-semibold text-accent hover:underline">
@@ -96,8 +96,8 @@ export function ContactForm() {
         </aside>
       ) : null}
 
-      <aside className="rounded-4xl border border-accent/20 bg-[linear-gradient(135deg,rgba(180,35,24,0.06),rgba(245,158,11,0.08))] p-6">
-        <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent">Reporting a live fraud?</p>
+      <aside className="rounded-panel border border-accent/20 bg-[linear-gradient(135deg,rgba(180,35,24,0.06),rgba(245,158,11,0.08))] p-6">
+        <p className="text-xs font-bold uppercase tracking-kicker text-accent">Reporting a live fraud?</p>
         <p className="mt-3 text-sm leading-7 text-slate-700">
           This form is for the editorial desk and is not an emergency channel. If money has just left your
           account, call <a href="tel:1930" className="font-bold text-accent hover:underline">1930</a> or file

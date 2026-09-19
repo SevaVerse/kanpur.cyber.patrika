@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Hind } from "next/font/google";
 
 import { getSearchEntries } from "@/lib/search";
 import { getSiteUrl } from "@/lib/site";
@@ -7,6 +8,25 @@ import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 
 import "./globals.css";
+
+/**
+ * One family for Latin and Devanagari, self-hosted at build time by
+ * next/font so the static export makes no request to Google.
+ */
+const hind = Hind({
+  subsets: ["latin", "devanagari"],
+  weight: ["400", "600", "700"],
+  display: "swap",
+  variable: "--font-hind",
+});
+
+/**
+ * Opts out of Chrome Android Auto Dark Theme, which recoloured the page and
+ * made the 1930 helpline button invisible until hovered.
+ */
+export const viewport: Viewport = {
+  colorScheme: "light",
+};
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const logoPath = `${basePath}/Site_logo.jpeg`;
@@ -71,7 +91,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   const searchEntries = getSearchEntries();
 
   return (
-    <html lang="en">
+    <html lang="en" className={hind.variable}>
       <body>
         <link
           rel="alternate"

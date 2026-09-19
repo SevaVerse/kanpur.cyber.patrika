@@ -1,6 +1,16 @@
 @import "tailwindcss";
 
 :root {
+  /*
+   * The site commits to a light, warm-paper identity.
+   *
+   * Declaring color-scheme is not cosmetic: without it Chrome on Android
+   * applies Auto Dark Theme and recolours the page algorithmically, which is
+   * what made the 1930 helpline button invisible until hovered (the white
+   * background was darkened while the navy number stayed dark).
+   */
+  color-scheme: light;
+
   --background: #f4efe6;
   --foreground: #111827;
   --surface: rgba(255, 251, 245, 0.9);
@@ -8,8 +18,12 @@
   --border: rgba(17, 24, 39, 0.12);
   --accent: #b42318;
   --accent-dark: #7a1a16;
-  --muted: #6b7280;
+  /* 5.43:1 on --background, 6.03:1 on --surface. Was #6b7280, which failed
+     WCAG AA at 4.22:1 against the page background. */
+  --muted: #5b616d;
   --hero: #0f172a;
+  /* Amber is for DARK surfaces only: 8.31:1 on --hero, but 2.15:1 on white,
+     which fails even for large text. Never use it as a foreground on paper. */
   --hero-accent: #f59e0b;
 }
 
@@ -37,7 +51,6 @@ body {
     radial-gradient(circle at 85% 10%, rgba(180, 35, 24, 0.12), transparent 24%),
     linear-gradient(180deg, #fcf8f2 0%, var(--background) 100%);
   color: var(--foreground);
-  font-family: Georgia, "Times New Roman", serif;
 }
 
 a {
@@ -61,6 +74,36 @@ img {
   --color-muted: var(--muted);
   --color-hero: var(--hero);
   --color-hero-accent: var(--hero-accent);
+
+  /*
+   * One typeface for both scripts. Hind covers Latin and Devanagari, so an
+   * English guide and a Hindi comic read as the same publication — previously
+   * Georgia had no Devanagari glyphs and every Hindi page fell back to
+   * whatever font the device happened to ship.
+   *
+   * Hind stops at 700, so there is no font-black: headline weight comes from
+   * size and spacing instead of a synthesised 900.
+   */
+  --font-sans: var(--font-hind), ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+
+  /* Three radii, by role. Replaces seven ad-hoc values. */
+  --radius-control: 0.75rem;
+  --radius-card: 1.25rem;
+  --radius-panel: 1.75rem;
+
+  /* Three elevations. Replaces ten hand-written box-shadows. */
+  --shadow-card: 0 16px 40px -32px rgba(15, 23, 42, 0.45);
+  --shadow-panel: 0 24px 70px -48px rgba(15, 23, 42, 0.5);
+  --shadow-lift: 0 26px 80px -40px rgba(15, 23, 42, 0.45);
+
+  /* Three letter-spacings. Replaces twelve values between 0.16em and 0.45em. */
+  --tracking-label: 0.14em;
+  --tracking-kicker: 0.28em;
+  --tracking-hero: 0.38em;
+}
+
+body {
+  font-family: var(--font-sans);
 }
 
 @keyframes rise-in {
@@ -79,12 +122,12 @@ img {
   animation: rise-in 0.55s ease-out both;
 }
 
-.prose-copy p {
-  margin: 0 0 1rem;
-  font-size: 1.05rem;
-  line-height: 1.8;
-}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 
-.prose-copy p:last-child {
-  margin-bottom: 0;
+  .animate-rise-in {
+    animation: none;
+  }
 }

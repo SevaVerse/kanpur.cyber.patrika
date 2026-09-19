@@ -95,7 +95,7 @@ export function LibraryGrid({ items }: { items: LibraryCard[] }) {
             <article
               key={`${item.lang}-${item.slug}`}
               lang={item.lang}
-              className="group flex flex-col overflow-hidden rounded-4xl border border-border bg-surface shadow-[0_16px_50px_-35px_rgba(15,23,42,0.3)] transition hover:shadow-[0_20px_60px_-30px_rgba(15,23,42,0.4)]"
+              className="group flex flex-col overflow-hidden rounded-panel border border-border bg-surface shadow-card transition hover:shadow-lift"
             >
               <Link href={item.href} className="block overflow-hidden border-b border-border">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -121,7 +121,7 @@ export function LibraryGrid({ items }: { items: LibraryCard[] }) {
                   </time>
                 </div>
 
-                <h3 className="mt-4 text-xl font-black leading-snug text-hero">
+                <h3 className="mt-4 text-xl font-bold leading-snug text-hero">
                   <Link href={item.href} className="transition hover:text-accent">
                     {item.title}
                   </Link>
@@ -131,21 +131,21 @@ export function LibraryGrid({ items }: { items: LibraryCard[] }) {
                 <div className="mt-5 flex flex-wrap items-center gap-3 border-t border-border pt-4">
                   <Link
                     href={item.href}
-                    className="text-xs font-bold uppercase tracking-[0.2em] text-accent transition hover:text-accent-dark"
+                    className="text-xs font-bold uppercase tracking-label text-accent transition hover:text-accent-dark"
                   >
                     {item.lang === "hi" ? "पूरा पढ़ें" : "Read the guide"}
                   </Link>
                   <button
                     type="button"
                     onClick={() => setLightbox(item)}
-                    className="ml-auto rounded-xl border border-border px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest text-muted transition hover:border-accent hover:text-accent"
+                    className="ml-auto rounded-control border border-border px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest text-muted transition hover:border-accent hover:text-accent"
                   >
                     {item.lang === "hi" ? "बड़ा करें" : "Full size"}
                   </button>
                   <button
                     type="button"
                     onClick={(event) => share(item, event)}
-                    className="rounded-xl border border-border px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest text-muted transition hover:border-accent hover:text-accent"
+                    className="rounded-control border border-border px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest text-muted transition hover:border-accent hover:text-accent"
                   >
                     {copiedSlug === item.slug ? (item.lang === "hi" ? "कॉपी हुआ" : "Copied") : "Share"}
                   </button>
@@ -167,7 +167,7 @@ export function LibraryGrid({ items }: { items: LibraryCard[] }) {
           <button
             type="button"
             onClick={closeLightbox}
-            className="absolute right-4 top-4 rounded-xl border border-white/30 px-4 py-2 text-xs font-bold uppercase tracking-widest text-white transition hover:border-white"
+            className="absolute right-4 top-4 rounded-control border border-white/30 px-4 py-2 text-xs font-bold uppercase tracking-widest text-white transition hover:border-white"
           >
             Close
           </button>
@@ -175,7 +175,7 @@ export function LibraryGrid({ items }: { items: LibraryCard[] }) {
           <img
             src={`${basePath}${lightbox.imageSrc}`}
             alt={lightbox.imageAlt}
-            className="max-h-full max-w-full rounded-2xl object-contain"
+            className="max-h-full max-w-full rounded-card object-contain"
             onClick={(event) => event.stopPropagation()}
           />
         </div>

@@ -9,14 +9,24 @@ import type { SearchEntry } from "@/lib/search";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
-const links = [
-  { href: "/", label: "Home" },
+/**
+ * The bar carries only the four destinations worth a permanent slot.
+ * Sponsors and Contact live in the footer, which already lists both, and
+ * Home lives on the logo where readers expect it.
+ */
+const primaryLinks = [
   { href: "/briefing", label: "Briefings" },
-  { href: "/about", label: "About Us" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/comics", label: "Comics Kona" },
+  { href: "/gallery", label: "Infographics" },
+  { href: "/comics", label: "Comics" },
+  { href: "/about", label: "About" },
+];
+
+/** The mobile drawer keeps everything reachable. */
+const mobileLinks = [
+  { href: "/", label: "Home" },
+  ...primaryLinks,
   { href: "/sponsors", label: "Sponsors" },
-  { href: "/contact", label: "Contact Us" },
+  { href: "/contact", label: "Contact" },
 ];
 
 type NavbarProps = {
@@ -64,7 +74,7 @@ export function Navbar({ entries }: NavbarProps) {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3" onClick={closeMenus}>
-          <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
+          <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-card border border-border bg-white shadow-sm">
             <Image
               src={`${basePath}/Site_logo.jpeg`}
               alt="Cyber Vani logo"
@@ -75,31 +85,31 @@ export function Navbar({ entries }: NavbarProps) {
               unoptimized
             />
           </div>
-          <div className="min-w-0">
-            <span className="block text-[0.62rem] font-semibold uppercase tracking-[0.42em] text-accent sm:text-xs">
-              Digital Newsroom
-            </span>
-            <span className="block truncate text-lg font-black uppercase tracking-[0.14em] text-hero sm:text-2xl sm:tracking-[0.18em]">
-              Cyber Vani
-            </span>
-          </div>
+          <span className="truncate text-xl font-bold text-hero sm:text-2xl">Cyber Vani</span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-4 text-xs font-semibold uppercase tracking-[0.16em] text-muted xl:gap-5 xl:text-sm xl:tracking-[0.2em] md:flex">
-          <button
-            type="button"
-            onClick={() => setSearchOpen(true)}
-            className="whitespace-nowrap rounded-full border border-border bg-surface-strong px-4 py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-hero transition hover:border-accent hover:text-accent xl:text-xs xl:tracking-[0.2em]"
-          >
-            Search
-          </button>
-          {links.map((link) => (
-            <Link key={link.href} href={link.href} className="whitespace-nowrap transition hover:text-accent">
+        <nav className="hidden items-center gap-7 text-sm font-semibold text-muted md:flex">
+          {primaryLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="whitespace-nowrap transition hover:text-accent"
+            >
               {link.label}
             </Link>
           ))}
-          <LanguageToggle />
+          <div className="flex items-center gap-3 border-l border-border pl-6">
+            <button
+              type="button"
+              onClick={() => setSearchOpen(true)}
+              aria-label="Search"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface-strong text-base text-hero transition hover:border-accent hover:text-accent"
+            >
+              <span aria-hidden="true">⌕</span>
+            </button>
+            <LanguageToggle />
+          </div>
         </nav>
 
         {/* Mobile: language toggle + hamburger */}
@@ -108,7 +118,7 @@ export function Navbar({ entries }: NavbarProps) {
             type="button"
             onClick={() => setSearchOpen(true)}
             aria-label="Open search"
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-surface-strong text-sm font-black text-hero transition hover:border-accent hover:text-accent"
+            className="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface-strong text-sm font-bold text-hero transition hover:border-accent hover:text-accent"
           >
             ⌕
           </button>
@@ -117,7 +127,7 @@ export function Navbar({ entries }: NavbarProps) {
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 rounded-lg border border-border bg-surface-strong transition hover:border-accent"
+            className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 rounded-control border border-border bg-surface-strong transition hover:border-accent"
           >
             <span className={`block h-0.5 w-5 bg-hero transition-transform duration-200 ${open ? "translate-y-2 rotate-45" : ""}`} />
             <span className={`block h-0.5 w-5 bg-hero transition-opacity duration-200 ${open ? "opacity-0" : ""}`} />
@@ -129,12 +139,12 @@ export function Navbar({ entries }: NavbarProps) {
       {/* Mobile dropdown */}
       {open && (
         <div className="relative z-10 border-t border-border/60 bg-surface/95 px-4 pb-5 md:hidden">
-          <nav className="flex flex-col gap-1 pt-3 text-sm font-semibold uppercase tracking-[0.2em] text-muted">
-            {links.map((link) => (
+          <nav className="flex flex-col gap-1 pt-3 text-sm font-semibold uppercase tracking-label text-muted">
+            {mobileLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-xl px-3 py-3 transition hover:bg-surface-strong hover:text-accent"
+                className="rounded-control px-3 py-3 transition hover:bg-surface-strong hover:text-accent"
                 onClick={closeMenus}
               >
                 {link.label}
@@ -150,7 +160,7 @@ export function Navbar({ entries }: NavbarProps) {
           onClick={() => setSearchOpen(false)}
         >
           <div
-            className="mx-auto flex max-w-3xl flex-col overflow-hidden rounded-4xl border border-border bg-surface shadow-[0_30px_100px_-60px_rgba(15,23,42,0.75)]"
+            className="mx-auto flex max-w-3xl flex-col overflow-hidden rounded-panel border border-border bg-surface shadow-panel"
             onClick={(event) => event.stopPropagation()}
             role="dialog"
             aria-modal="true"
@@ -158,19 +168,19 @@ export function Navbar({ entries }: NavbarProps) {
           >
             <div className="border-b border-border px-5 py-4 sm:px-6">
               <div className="flex items-center gap-3">
-                <span className="text-sm font-black uppercase tracking-[0.28em] text-accent">Search</span>
+                <span className="text-sm font-bold uppercase tracking-kicker text-accent">Search</span>
                 <input
                   type="search"
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder="Search headlines, topics, sources..."
                   autoFocus
-                  className="w-full rounded-2xl border border-border bg-white px-4 py-3 text-sm font-medium text-hero outline-none transition focus:border-accent"
+                  className="w-full rounded-card border border-border bg-white px-4 py-3 text-sm font-normal text-hero outline-none transition focus:border-accent"
                 />
                 <button
                   type="button"
                   onClick={() => setSearchOpen(false)}
-                  className="rounded-xl border border-border px-3 py-2 text-xs font-bold uppercase tracking-[0.2em] text-muted transition hover:border-accent hover:text-accent"
+                  className="rounded-control border border-border px-3 py-2 text-xs font-bold uppercase tracking-label text-muted transition hover:border-accent hover:text-accent"
                 >
                   Close
                 </button>
@@ -178,7 +188,7 @@ export function Navbar({ entries }: NavbarProps) {
             </div>
 
             <div className="max-h-[70vh] overflow-y-auto p-4 sm:p-5">
-              <div className="mb-3 flex items-center justify-between gap-3 px-1 text-xs font-semibold uppercase tracking-[0.22em] text-muted">
+              <div className="mb-3 flex items-center justify-between gap-3 px-1 text-xs font-semibold uppercase tracking-label text-muted">
                 <span>{normalizedQuery ? `Results for "${query}"` : "Suggested articles"}</span>
                 <span>{searchResults.length} shown</span>
               </div>
@@ -190,19 +200,19 @@ export function Navbar({ entries }: NavbarProps) {
                       key={entry.id}
                       href={entry.href}
                       lang={entry.lang}
-                      className="block rounded-3xl border border-border bg-surface-strong px-4 py-4 transition hover:border-accent hover:bg-white"
+                      className="block rounded-card border border-border bg-surface-strong px-4 py-4 transition hover:border-accent hover:bg-white"
                       onClick={closeMenus}
                     >
-                      <div className="flex flex-wrap items-center gap-3 text-[0.68rem] font-bold uppercase tracking-[0.22em] text-muted">
+                      <div className="flex flex-wrap items-center gap-3 text-[0.68rem] font-bold uppercase tracking-label text-muted">
                         <span>{entry.category}</span>
                         {entry.lang === "hi" ? <span>हिंदी</span> : null}
                       </div>
-                      <h3 className="mt-3 text-lg font-black leading-snug text-hero">{entry.title}</h3>
+                      <h3 className="mt-3 text-lg font-bold leading-snug text-hero">{entry.title}</h3>
                       <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-700">{entry.description}</p>
                     </Link>
                   ))
                 ) : (
-                  <div className="rounded-3xl border border-dashed border-border bg-surface-strong px-5 py-10 text-center">
+                  <div className="rounded-card border border-dashed border-border bg-surface-strong px-5 py-10 text-center">
                     <p className="text-base font-bold text-hero">No articles matched that search.</p>
                     <p className="mt-2 text-sm leading-6 text-slate-700">
                       Try terms like ransomware, breach, malware, policy, or India.
