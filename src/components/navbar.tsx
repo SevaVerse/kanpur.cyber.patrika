@@ -118,7 +118,7 @@ export function Navbar({ entries }: NavbarProps) {
             type="button"
             onClick={() => setSearchOpen(true)}
             aria-label="Open search"
-            className="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface-strong text-sm font-bold text-hero transition hover:border-accent hover:text-accent"
+            className="flex h-11 w-11 items-center justify-center rounded-control border border-border bg-surface-strong text-base font-bold text-hero transition hover:border-accent hover:text-accent"
           >
             ⌕
           </button>
@@ -127,7 +127,7 @@ export function Navbar({ entries }: NavbarProps) {
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 rounded-control border border-border bg-surface-strong transition hover:border-accent"
+            className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-control border border-border bg-surface-strong transition hover:border-accent"
           >
             <span className={`block h-0.5 w-5 bg-hero transition-transform duration-200 ${open ? "translate-y-2 rotate-45" : ""}`} />
             <span className={`block h-0.5 w-5 bg-hero transition-opacity duration-200 ${open ? "opacity-0" : ""}`} />
@@ -139,7 +139,7 @@ export function Navbar({ entries }: NavbarProps) {
       {/* Mobile dropdown */}
       {open && (
         <div className="relative z-10 border-t border-border/60 bg-surface/95 px-4 pb-5 md:hidden">
-          <nav className="flex flex-col gap-1 pt-3 text-sm font-semibold uppercase tracking-label text-muted">
+          <nav className="flex flex-col gap-1 pt-3 text-base font-semibold text-muted">
             {mobileLinks.map((link) => (
               <Link
                 key={link.href}
