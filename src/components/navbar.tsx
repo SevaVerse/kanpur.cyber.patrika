@@ -29,6 +29,28 @@ const mobileLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
+/**
+ * Drawn rather than typed. The previous affordance was U+2315, a technical
+ * symbol outside both the Latin and Devanagari subsets the webfont ships,
+ * so it fell back to a system font or rendered as tofu.
+ */
+function SearchIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      className="h-[1.15rem] w-[1.15rem]"
+    >
+      <circle cx="9" cy="9" r="5.5" />
+      <path d="m13.5 13.5 3.5 3.5" />
+    </svg>
+  );
+}
+
 type NavbarProps = {
   entries: SearchEntry[];
 };
@@ -106,7 +128,7 @@ export function Navbar({ entries }: NavbarProps) {
               aria-label="Search"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface-strong text-base text-hero transition hover:border-accent hover:text-accent"
             >
-              <span aria-hidden="true">⌕</span>
+              <SearchIcon />
             </button>
             <LanguageToggle />
           </div>
@@ -120,7 +142,7 @@ export function Navbar({ entries }: NavbarProps) {
             aria-label="Open search"
             className="flex h-11 w-11 items-center justify-center rounded-control border border-border bg-surface-strong text-base font-bold text-hero transition hover:border-accent hover:text-accent"
           >
-            ⌕
+            <SearchIcon />
           </button>
           <LanguageToggle />
           <button
