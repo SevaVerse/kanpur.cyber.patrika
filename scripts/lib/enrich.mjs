@@ -24,6 +24,15 @@ const GROQ_MODELS_URL = "https://api.groq.com/openai/v1/models";
 const DEFAULT_MODEL = process.env.GROQ_MODEL || "openai/gpt-oss-120b";
 
 const MIN_TAKE_CHARS = 60;
+// Reasoning tokens count against max_tokens, so the ceiling has to clear the
+// reasoning AND the JSON. 400 was too low: the model ran out mid-document.
+const MAX_TAKE_TOKENS = 1024;
+const MAX_SUMMARY_TOKENS = 512;
+const MAX_ATTEMPTS = 4;
+const MAX_RETRY_WAIT_MS = 30_000;
+// Free tier meters tokens per minute; spacing requests keeps us under it so
+// the retry path stays an exception rather than the normal route.
+const PACING_MS = Number.parseInt(process.env.GROQ_PACING_MS ?? "15000", 10);
 const MAX_TAKE_CHARS = 420;
 const REQUEST_TIMEOUT_MS = 30_000;
 
@@ -147,48 +156,113 @@ async function listAvailableModels(apiKey) {
   }
 }
 
-async function callGroq(apiKey, model, story, articleText, catalogue) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-  try {
-    const response = await fetch(GROQ_URL, {
-      method: "POST",
-      signal: controller.signal,
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model,
-        temperature: 0.2,
-        max_tokens: 400,
-        response_format: { type: "json_object" },
-        messages: [
-          { role: "system", content: systemPrompt(catalogue) },
-          { role: "user", content: userPrompt(story, articleText) },
-        ],
-      }),
-    });
-
-    if (!response.ok) {
-      const body = await response.text();
-      return { error: `HTTP ${response.status}: ${body.slice(0, 300)}` };
-    }
-
-    const payload = await response.json();
-    const content = payload.choices?.[0]?.message?.content;
-
-    if (!content) return { error: "empty completion" };
-
-    const parsed = parseJsonLoosely(content);
-
-    return parsed ? { data: parsed } : { error: "completion was not valid JSON" };
-  } catch (error) {
-    return { error: error.name === "AbortError" ? "request timed out" : error.message };
-  } finally {
-    clearTimeout(timer);
+/**
+ * How long to wait after a 429. Groq states the exact delay in the error body
+ * ("Please try again in 4.5225s"), which beats guessing; the `retry-after`
+ * header is used when present, and exponential backoff is the last resort.
+ */
+export function retryDelayMs(headerValue, body, attempt) {
+  const header = Number.parseFloat(headerValue ?? "");
+  if (Number.isFinite(header) && header > 0) {
+    return Math.min(header * 1000 + 250, MAX_RETRY_WAIT_MS);
   }
+
+  const stated = /try again in ([\d.]+)\s*s/i.exec(body ?? "");
+  if (stated) {
+    return Math.min(Number.parseFloat(stated[1]) * 1000 + 250, MAX_RETRY_WAIT_MS);
+  }
+
+  return Math.min(2 ** attempt * 1000, MAX_RETRY_WAIT_MS);
+}
+
+/**
+ * One chat completion, with retry on 429.
+ *
+ * The free tier meters tokens per minute and counts `max_tokens` against the
+ * budget as requested, so the ceiling is kept only as high as a reasoning
+ * model needs to reach its JSON — not higher.
+ */
+// Cleared for the rest of the run if the API rejects the parameter, so an
+// unsupported option costs one request rather than every take.
+let reasoningEffortSupported = true;
+
+async function postChat(apiKey, model, messages, maxTokens) {
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
+    // gpt-oss reasons before answering, and that reasoning is billed against
+    // max_tokens. Keeping it low leaves room to finish the JSON.
+    const useReasoningEffort = reasoningEffortSupported && /gpt-oss/i.test(model);
+
+    try {
+      const response = await fetch(GROQ_URL, {
+        method: "POST",
+        signal: controller.signal,
+        headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model,
+          temperature: 0.2,
+          max_tokens: maxTokens,
+          response_format: { type: "json_object" },
+          ...(useReasoningEffort ? { reasoning_effort: "low" } : {}),
+          messages,
+        }),
+      });
+
+      if (response.ok) {
+        const payload = await response.json();
+        const content = payload.choices?.[0]?.message?.content;
+
+        if (!content) return { error: "empty completion" };
+
+        const parsed = parseJsonLoosely(content);
+        return parsed ? { data: parsed } : { error: "completion was not valid JSON" };
+      }
+
+      const body = await response.text();
+
+      if (response.status === 429 && attempt < MAX_ATTEMPTS) {
+        const wait = retryDelayMs(response.headers.get("retry-after"), body, attempt);
+        console.warn(`  rate limited, waiting ${Math.round(wait / 1000)}s (attempt ${attempt})`);
+        await sleep(wait);
+        continue;
+      }
+
+      // If the model does not take reasoning_effort, drop it and carry on
+      // rather than losing every take to one unsupported parameter.
+      if (useReasoningEffort && /reasoning_effort/i.test(body)) {
+        console.warn("  model rejected reasoning_effort — retrying without it");
+        reasoningEffortSupported = false;
+        continue;
+      }
+
+      return { error: `HTTP ${response.status}: ${body.slice(0, 300)}` };
+    } catch (error) {
+      if (attempt >= MAX_ATTEMPTS) {
+        return { error: error.name === "AbortError" ? "request timed out" : error.message };
+      }
+      await sleep(2 ** attempt * 1000);
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
+  return { error: "exhausted retries" };
+}
+
+function callGroq(apiKey, model, story, articleText, catalogue) {
+  return postChat(
+    apiKey,
+    model,
+    [
+      { role: "system", content: systemPrompt(catalogue) },
+      { role: "user", content: userPrompt(story, articleText) },
+    ],
+    MAX_TAKE_TOKENS,
+  );
 }
 
 /**
@@ -207,6 +281,7 @@ export async function enrichStories(stories, guides, { fetchArticleText }) {
   }
 
   const catalogue = guideCatalogue(guides);
+  let callsMade = 0;
   const enriched = [];
   let modelChecked = false;
 
@@ -220,6 +295,14 @@ export async function enrichStories(stories, guides, { fetchArticleText }) {
       enriched.push(story);
       continue;
     }
+
+    // Space the calls out. The free tier meters tokens per minute, and firing
+    // ten requests back to back burned the budget four stories in.
+    if (callsMade > 0 && PACING_MS > 0) {
+      await sleep(PACING_MS);
+    }
+
+    callsMade += 1;
 
     const result = await callGroq(apiKey, DEFAULT_MODEL, story, articleText, catalogue);
 
@@ -278,55 +361,39 @@ export async function summariseBriefing(stories) {
     .map((story) => `- ${story.headline}${story.take ? `\n  ${story.take}` : ""}`)
     .join("\n");
 
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-
-  try {
-    const response = await fetch(GROQ_URL, {
-      method: "POST",
-      signal: controller.signal,
-      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: DEFAULT_MODEL,
-        temperature: 0.2,
-        max_tokens: 200,
-        response_format: { type: "json_object" },
-        messages: [
-          {
-            role: "system",
-            content: `You write the one-sentence standfirst for a weekly cyber security briefing from Cyber Vani, an Indian publication.
+  const result = await postChat(
+    apiKey,
+    DEFAULT_MODEL,
+    [
+      {
+        role: "system",
+        content: `You write the one-sentence standfirst for a weekly cyber security briefing from Cyber Vani, an Indian publication.
 
 Given this week's stories, write ONE sentence naming the two or three most significant threads, in the form "This week: A, B, and C."
 
 Use only what appears in the list. Introduce no fact, figure, name or date that is not there. Plain language, no hype.
 
 Respond with JSON only: {"summary": string}`,
-          },
-          { role: "user", content: `THIS WEEK'S STORIES:\n${grounding}` },
-        ],
-      }),
-    });
+      },
+      { role: "user", content: `THIS WEEK'S STORIES:\n${grounding}` },
+    ],
+    MAX_SUMMARY_TOKENS,
+  );
 
-    if (!response.ok) return "";
-
-    const payload = await response.json();
-    const content = payload.choices?.[0]?.message?.content;
-    if (!content) return "";
-
-    const summary = JSON.parse(content)?.summary;
-
-    if (typeof summary !== "string") return "";
-
-    const trimmed = summary.trim();
-
-    if (trimmed.length < 40 || trimmed.length > 320) return "";
-    if (REFUSAL_MARKERS.some((marker) => trimmed.toLowerCase().includes(marker))) return "";
-    if (!numbersAreGrounded(trimmed, grounding)) return "";
-
-    return trimmed;
-  } catch {
+  if (result.error) {
+    console.warn(`  summary skipped: ${result.error}`);
     return "";
-  } finally {
-    clearTimeout(timer);
   }
+
+  const summary = result.data?.summary;
+  if (typeof summary !== "string") return "";
+
+  const trimmed = summary.trim();
+
+  if (trimmed.length < 40 || trimmed.length > 320) return "";
+  if (REFUSAL_MARKERS.some((marker) => trimmed.toLowerCase().includes(marker))) return "";
+  if (!numbersAreGrounded(trimmed, grounding)) return "";
+
+  return trimmed;
 }
+

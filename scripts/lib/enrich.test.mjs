@@ -9,7 +9,13 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
-import { numbersAreGrounded, numericTokens, parseJsonLoosely, validateTake } from "./enrich.mjs";
+import {
+  numbersAreGrounded,
+  numericTokens,
+  parseJsonLoosely,
+  retryDelayMs,
+  validateTake,
+} from "./enrich.mjs";
 
 const SOURCE =
   "Police in Kanpur arrested 4 people on Tuesday over a digital arrest scam that cost " +
@@ -118,5 +124,30 @@ describe("parseJsonLoosely", () => {
 
   it("returns null when there is no JSON at all", () => {
     assert.equal(parseJsonLoosely("I could not complete that request."), null);
+  });
+});
+
+describe("retryDelayMs", () => {
+  it("prefers the retry-after header when present", () => {
+    assert.equal(retryDelayMs("5", "", 1), 5250);
+  });
+
+  it("parses the delay Groq states in the 429 body", () => {
+    const body = '{"error":{"message":"Rate limit reached ... Please try again in 4.5225s."}}';
+    assert.equal(retryDelayMs(null, body, 1), 4772.5);
+  });
+
+  it("falls back to exponential backoff when neither is available", () => {
+    assert.equal(retryDelayMs(null, "no hint here", 1), 2000);
+    assert.equal(retryDelayMs(null, "no hint here", 3), 8000);
+  });
+
+  it("caps the wait so a bad header cannot stall the run", () => {
+    assert.equal(retryDelayMs("600", "", 1), 30000);
+    assert.equal(retryDelayMs(null, "try again in 900s", 1), 30000);
+  });
+
+  it("ignores a non-numeric header", () => {
+    assert.equal(retryDelayMs("soon", "no hint", 2), 4000);
   });
 });
