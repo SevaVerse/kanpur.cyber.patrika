@@ -30,7 +30,7 @@ export function Footer() {
       <div className="border-b border-white/10 bg-accent/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-6 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.35em] text-hero-accent">
+            <p className="text-xs font-bold uppercase tracking-kicker text-hero-accent">
               Victim of cyber fraud?
             </p>
             <p className="mt-2 text-sm leading-7 text-slate-200">
@@ -40,7 +40,7 @@ export function Footer() {
           <div className="flex flex-wrap items-center gap-3">
             <a
               href="tel:1930"
-              className="rounded-full bg-white px-6 py-3 text-sm font-black uppercase tracking-[0.2em] text-hero transition hover:bg-hero-accent"
+              className="rounded-full bg-white px-6 py-3 text-sm font-bold uppercase tracking-label text-hero transition hover:bg-hero-accent"
             >
               Call 1930
             </a>
@@ -48,7 +48,7 @@ export function Footer() {
               href="https://cybercrime.gov.in"
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-white/25 px-6 py-3 text-sm font-bold uppercase tracking-[0.2em] text-white transition hover:border-hero-accent hover:text-hero-accent"
+              className="rounded-full border border-white/25 px-6 py-3 text-sm font-bold uppercase tracking-label text-white transition hover:border-hero-accent hover:text-hero-accent"
             >
               cybercrime.gov.in
             </a>
@@ -58,7 +58,7 @@ export function Footer() {
 
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.6fr_1fr_1fr] lg:px-8">
         <div className="space-y-4">
-          <p className="text-lg font-black uppercase tracking-[0.18em] text-white">Cyber Vani</p>
+          <p className="text-lg font-bold uppercase tracking-label text-white">Cyber Vani</p>
           <p className="max-w-md text-sm leading-7">
             A weekly cyber security briefing and awareness library for readers across Uttar Pradesh and
             India — breaches, scams, threats, and the practical steps that protect you.
@@ -71,7 +71,7 @@ export function Footer() {
 
         {sections.map((section) => (
           <nav key={section.heading} className="space-y-4">
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-hero-accent">{section.heading}</p>
+            <p className="text-xs font-bold uppercase tracking-kicker text-hero-accent">{section.heading}</p>
             <ul className="space-y-3 text-sm">
               {section.links.map((link) => (
                 <li key={link.href}>

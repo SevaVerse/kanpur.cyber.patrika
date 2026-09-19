@@ -56,9 +56,9 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-6xl space-y-8 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-      <section className="overflow-hidden rounded-4xl border border-border bg-hero px-6 py-8 text-white shadow-[0_30px_100px_-60px_rgba(15,23,42,0.9)] sm:px-10 sm:py-12">
-        <p className="text-xs font-bold uppercase tracking-[0.45em] text-hero-accent">About The Publication</p>
-        <h1 className="mt-4 max-w-4xl text-4xl font-black leading-tight sm:text-5xl">
+      <section className="overflow-hidden rounded-panel border border-border bg-hero px-6 py-8 text-white shadow-panel sm:px-10 sm:py-12">
+        <p className="text-xs font-bold uppercase tracking-hero text-hero-accent">About The Publication</p>
+        <h1 className="mt-4 max-w-4xl text-4xl font-bold leading-tight sm:text-5xl">
           Cyber Vani publishes clear, honest reporting on cyber threats, breaches, and digital policy.
         </h1>
         <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300 sm:text-base">
@@ -67,9 +67,9 @@ export default function AboutPage() {
       </section>
 
       <section className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-        <article className="rounded-4xl border border-border bg-surface-strong p-8 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.45)]">
-          <p className="text-xs font-bold uppercase tracking-[0.35em] text-accent">Mission</p>
-          <h2 className="mt-3 text-3xl font-black text-hero">Why this newsroom exists</h2>
+        <article className="rounded-panel border border-border bg-surface-strong p-8 shadow-card">
+          <p className="text-xs font-bold uppercase tracking-kicker text-accent">Mission</p>
+          <h2 className="mt-3 text-3xl font-bold text-hero">Why this newsroom exists</h2>
           <div className="mt-5 space-y-4 text-sm leading-7 text-slate-700 sm:text-base">
             <p>
               Cyber Vani focuses on the stories security teams, founders, students, and public-interest readers need to track: active threat campaigns, data exposure incidents, policy shifts, and operational security lessons.
@@ -80,19 +80,19 @@ export default function AboutPage() {
           </div>
         </article>
 
-        <aside className="space-y-4 rounded-4xl border border-accent/20 bg-[linear-gradient(180deg,rgba(180,35,24,0.08),rgba(245,158,11,0.1))] p-8 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.35)]">
-          <p className="text-xs font-bold uppercase tracking-[0.35em] text-accent">Cyber Helplines</p>
+        <aside className="space-y-4 rounded-panel border border-accent/20 bg-[linear-gradient(180deg,rgba(180,35,24,0.08),rgba(245,158,11,0.1))] p-8 shadow-card">
+          <p className="text-xs font-bold uppercase tracking-kicker text-accent">Cyber Helplines</p>
 
-          <div className="rounded-3xl border border-accent/15 bg-white/80 p-6">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-muted">National Cyber Crime Helpline</p>
-            <p className="mt-3 text-5xl font-black text-hero">1930</p>
+          <div className="rounded-card border border-accent/15 bg-white/80 p-6">
+            <p className="text-sm font-semibold uppercase tracking-label text-muted">National Cyber Crime Helpline</p>
+            <p className="mt-3 text-5xl font-bold text-hero">1930</p>
             <p className="mt-3 text-sm leading-7 text-slate-700">
               Call 1930 to report cyber fraud, online scams, and financial cyber crimes directly to the national response desk.
             </p>
           </div>
 
-          <div className="rounded-3xl border border-accent/15 bg-white/80 p-6">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-muted">Safedigital Uttar Pradesh</p>
+          <div className="rounded-card border border-accent/15 bg-white/80 p-6">
+            <p className="text-sm font-semibold uppercase tracking-label text-muted">Safedigital Uttar Pradesh</p>
             <p className="mt-2 text-base font-bold text-hero">UP Police Cyber Cell</p>
             <a
               href="mailto:sp-cyber.lu@up.gov.in"
@@ -107,10 +107,10 @@ export default function AboutPage() {
         </aside>
       </section>
 
-      <section className="rounded-4xl border border-border bg-surface p-8 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.35)]">
+      <section className="rounded-panel border border-border bg-surface p-8 shadow-card">
         <div className="max-w-3xl">
-          <p className="text-xs font-bold uppercase tracking-[0.35em] text-accent">Team Information</p>
-          <h2 className="mt-3 text-3xl font-black text-hero">Leadership & Team</h2>
+          <p className="text-xs font-bold uppercase tracking-kicker text-accent">Team Information</p>
+          <h2 className="mt-3 text-3xl font-bold text-hero">Leadership & Team</h2>
           <p className="mt-4 text-sm leading-7 text-slate-700 sm:text-base">
             Cyber Vani is supported by a founder-led editorial vision and experienced team members who contribute reporting, public awareness, and specialist guidance.
           </p>
@@ -118,7 +118,7 @@ export default function AboutPage() {
 
         {/* Founder — full-width row */}
         <div className="mt-8 grid gap-6 md:grid-cols-[260px_1fr]">
-          <div className="mx-auto w-full max-w-65 overflow-hidden rounded-3xl border border-border bg-surface-strong shadow-[0_16px_50px_-38px_rgba(15,23,42,0.45)] md:mx-0">
+          <div className="mx-auto w-full max-w-65 overflow-hidden rounded-card border border-border bg-surface-strong shadow-card md:mx-0">
             <div className="relative h-81.25 w-full">
               <Image
                 src={founderMember.imageSrc}
@@ -129,9 +129,9 @@ export default function AboutPage() {
               />
             </div>
           </div>
-          <article className="rounded-3xl border border-border bg-surface-strong p-6 shadow-[0_16px_50px_-38px_rgba(15,23,42,0.45)]">
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent">{founderMember.role}</p>
-            <h3 className="mt-3 text-3xl font-black text-hero">{founderMember.name}</h3>
+          <article className="rounded-card border border-border bg-surface-strong p-6 shadow-card">
+            <p className="text-xs font-bold uppercase tracking-kicker text-accent">{founderMember.role}</p>
+            <h3 className="mt-3 text-3xl font-bold text-hero">{founderMember.name}</h3>
             <p className="mt-4 text-base leading-8 text-slate-700">{founderMember.bio}</p>
           </article>
         </div>
@@ -141,7 +141,7 @@ export default function AboutPage() {
           {associateMembers.map((member) => (
             <article
               key={member.name}
-              className="overflow-hidden rounded-4xl border border-border bg-surface-strong shadow-[0_16px_50px_-38px_rgba(15,23,42,0.45)]"
+              className="overflow-hidden rounded-panel border border-border bg-surface-strong shadow-card"
             >
               <div className="relative h-80 w-full">
                 <Image
@@ -153,8 +153,8 @@ export default function AboutPage() {
                 />
               </div>
               <div className="p-6">
-                <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent">{member.role}</p>
-                <h3 className="mt-2 text-2xl font-black text-hero">{member.name}</h3>
+                <p className="text-xs font-bold uppercase tracking-kicker text-accent">{member.role}</p>
+                <h3 className="mt-2 text-2xl font-bold text-hero">{member.name}</h3>
                 <p className="mt-3 text-sm leading-7 text-slate-700">{member.bio}</p>
               </div>
             </article>

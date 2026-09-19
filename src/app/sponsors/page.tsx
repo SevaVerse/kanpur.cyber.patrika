@@ -64,9 +64,9 @@ export default function SponsorsPage() {
   return (
     <div className="mx-auto max-w-6xl space-y-10 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
       {/* Hero */}
-      <section className="overflow-hidden rounded-4xl border border-border bg-hero px-6 py-8 text-white shadow-[0_30px_100px_-60px_rgba(15,23,42,0.9)] sm:px-10 sm:py-12">
-        <p className="text-xs font-bold uppercase tracking-[0.45em] text-hero-accent">Our Supporters</p>
-        <h1 className="mt-4 max-w-4xl text-4xl font-black leading-tight sm:text-5xl">
+      <section className="overflow-hidden rounded-panel border border-border bg-hero px-6 py-8 text-white shadow-panel sm:px-10 sm:py-12">
+        <p className="text-xs font-bold uppercase tracking-hero text-hero-accent">Our Supporters</p>
+        <h1 className="mt-4 max-w-4xl text-4xl font-bold leading-tight sm:text-5xl">
           Sponsors &amp; Partners backing cyber awareness in Uttar Pradesh.
         </h1>
         <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300 sm:text-base">
@@ -78,11 +78,11 @@ export default function SponsorsPage() {
       {/* Featured sponsors — portrait image + bio layout */}
       {featuredSponsors.length > 0 && (
         <section className="space-y-6">
-          <p className="text-xs font-bold uppercase tracking-[0.4em] text-accent">Our Sponsors</p>
+          <p className="text-xs font-bold uppercase tracking-hero text-accent">Our Sponsors</p>
           {featuredSponsors.map((sponsor) => (
             <div key={sponsor.id} className="grid gap-6 md:grid-cols-[260px_1fr]">
               {/* Portrait image */}
-              <div className="mx-auto w-full max-w-65 overflow-hidden rounded-3xl border border-border bg-surface-strong shadow-[0_16px_50px_-38px_rgba(15,23,42,0.45)] md:mx-0">
+              <div className="mx-auto w-full max-w-65 overflow-hidden rounded-card border border-border bg-surface-strong shadow-card md:mx-0">
                 <div className="relative h-81.25 w-full">
                   <Image
                     src={sponsor.imageSrc!}
@@ -95,8 +95,8 @@ export default function SponsorsPage() {
               </div>
 
               {/* Bio card */}
-              <article className="rounded-3xl border border-border bg-surface-strong p-8 shadow-[0_16px_50px_-38px_rgba(15,23,42,0.45)]">
-                <h3 className="text-3xl font-black text-hero">{sponsor.name}</h3>
+              <article className="rounded-card border border-border bg-surface-strong p-8 shadow-card">
+                <h3 className="text-3xl font-bold text-hero">{sponsor.name}</h3>
                 <p className="mt-2 text-base font-semibold text-accent">{sponsor.tagline}</p>
                 <p className="mt-4 text-base leading-8 text-slate-700">{sponsor.bio}</p>
                 <div className="mt-6 flex flex-wrap gap-3">
@@ -105,7 +105,7 @@ export default function SponsorsPage() {
                       href={sponsor.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-xl border border-border bg-surface px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-hero transition hover:border-accent hover:text-accent"
+                      className="rounded-control border border-border bg-surface px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-hero transition hover:border-accent hover:text-accent"
                     >
                       Website ↗
                     </a>
@@ -113,7 +113,7 @@ export default function SponsorsPage() {
                   {sponsor.contact && (
                     <a
                       href={`mailto:${sponsor.contact}`}
-                      className="rounded-xl border border-border bg-surface px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-hero transition hover:border-accent hover:text-accent"
+                      className="rounded-control border border-border bg-surface px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-hero transition hover:border-accent hover:text-accent"
                     >
                       Contact
                     </a>
@@ -128,20 +128,20 @@ export default function SponsorsPage() {
       {/* Support sponsors — compact cards without image */}
       {supportSponsors.length > 0 && (
         <section className="space-y-6">
-          <p className="text-xs font-bold uppercase tracking-[0.4em] text-accent">Partners &amp; Supporters</p>
+          <p className="text-xs font-bold uppercase tracking-hero text-accent">Partners &amp; Supporters</p>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {supportSponsors.map((sponsor) => (
               <article
                 key={sponsor.id}
-                className="flex flex-col rounded-4xl border border-border bg-surface p-6 shadow-[0_20px_60px_-35px_rgba(15,23,42,0.2)]"
+                className="flex flex-col rounded-panel border border-border bg-surface p-6 shadow-card"
               >
                 <div
-                  className={`flex h-20 w-20 items-center justify-center rounded-3xl text-2xl font-black text-white ${sponsor.avatarBg}`}
+                  className={`flex h-20 w-20 items-center justify-center rounded-card text-2xl font-bold text-white ${sponsor.avatarBg}`}
                   aria-label={`${sponsor.name} logo placeholder`}
                 >
                   {sponsor.initials}
                 </div>
-                <h3 className="mt-5 text-xl font-black text-hero">{sponsor.name}</h3>
+                <h3 className="mt-5 text-xl font-bold text-hero">{sponsor.name}</h3>
                 <p className="mt-1 text-sm font-semibold text-accent">{sponsor.tagline}</p>
                 <p className="mt-3 flex-1 text-sm leading-7 text-slate-700">{sponsor.bio}</p>
                 <div className="mt-5 flex flex-wrap gap-3">
@@ -150,7 +150,7 @@ export default function SponsorsPage() {
                       href={sponsor.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-xl border border-border bg-surface-strong px-4 py-2 text-xs font-bold uppercase tracking-widest text-hero transition hover:border-accent hover:text-accent"
+                      className="rounded-control border border-border bg-surface-strong px-4 py-2 text-xs font-bold uppercase tracking-widest text-hero transition hover:border-accent hover:text-accent"
                     >
                       Website ↗
                     </a>
@@ -158,7 +158,7 @@ export default function SponsorsPage() {
                   {sponsor.contact && (
                     <a
                       href={`mailto:${sponsor.contact}`}
-                      className="rounded-xl border border-border bg-surface-strong px-4 py-2 text-xs font-bold uppercase tracking-widest text-hero transition hover:border-accent hover:text-accent"
+                      className="rounded-control border border-border bg-surface-strong px-4 py-2 text-xs font-bold uppercase tracking-widest text-hero transition hover:border-accent hover:text-accent"
                     >
                       Contact
                     </a>
@@ -171,9 +171,9 @@ export default function SponsorsPage() {
       )}
 
       {/* Become a sponsor CTA */}
-      <section className="rounded-4xl border border-accent/20 bg-[linear-gradient(135deg,rgba(180,35,24,0.06),rgba(245,158,11,0.08))] p-8 sm:p-10">
-        <p className="text-xs font-bold uppercase tracking-[0.4em] text-accent">Partner With Us</p>
-        <h2 className="mt-3 text-3xl font-black text-hero">Interested in sponsoring Cyber Vani?</h2>
+      <section className="rounded-panel border border-accent/20 bg-[linear-gradient(135deg,rgba(180,35,24,0.06),rgba(245,158,11,0.08))] p-8 sm:p-10">
+        <p className="text-xs font-bold uppercase tracking-hero text-accent">Partner With Us</p>
+        <h2 className="mt-3 text-3xl font-bold text-hero">Interested in sponsoring Cyber Vani?</h2>
         <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-700 sm:text-base">
           We offer editorial partnerships and sponsorship opportunities for organisations that want to reach an engaged
           audience of cyber-aware readers across Uttar Pradesh and India. Reach out via the Contact page to discuss
@@ -181,7 +181,7 @@ export default function SponsorsPage() {
         </p>
         <a
           href="/contact"
-          className="mt-6 inline-block rounded-2xl bg-hero px-6 py-3 text-sm font-bold uppercase tracking-widest text-white shadow transition hover:opacity-90"
+          className="mt-6 inline-block rounded-card bg-hero px-6 py-3 text-sm font-bold uppercase tracking-widest text-white shadow transition hover:opacity-90"
         >
           Get In Touch
         </a>

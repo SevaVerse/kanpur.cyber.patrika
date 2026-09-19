@@ -18,11 +18,11 @@ export default function HomePage() {
   return (
     <div className="mx-auto flex max-w-7xl flex-col gap-14 px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
       {/* Hero */}
-      <section className="animate-rise-in overflow-hidden rounded-4xl border border-white/10 bg-hero text-white shadow-[0_40px_120px_-60px_rgba(15,23,42,0.85)]">
+      <section className="animate-rise-in overflow-hidden rounded-panel border border-white/10 bg-hero text-white shadow-panel">
         <div className="grid gap-10 px-6 py-8 md:px-10 lg:grid-cols-[1.4fr_0.8fr] lg:px-12 lg:py-12">
           <div className="space-y-6">
-            <p className="text-xs font-bold uppercase tracking-[0.45em] text-hero-accent">Weekly Briefing</p>
-            <h1 className="max-w-4xl text-4xl font-black uppercase leading-none sm:text-5xl lg:text-6xl">
+            <p className="text-xs font-bold uppercase tracking-hero text-hero-accent">Weekly Briefing</p>
+            <h1 className="max-w-4xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
               Cyber security news you can trust, delivered fresh every week.
             </h1>
             <p className="max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
@@ -31,15 +31,15 @@ export default function HomePage() {
             </p>
 
             {latest ? (
-              <div className="rounded-[1.75rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
-                <p className="text-xs font-bold uppercase tracking-[0.35em] text-hero-accent">Latest Edition</p>
-                <h2 className="mt-4 text-2xl font-black leading-tight text-white sm:text-3xl">
+              <div className="rounded-panel border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
+                <p className="text-xs font-bold uppercase tracking-kicker text-hero-accent">Latest Edition</p>
+                <h2 className="mt-4 text-2xl font-bold leading-tight text-white sm:text-3xl">
                   {latest.title}
                 </h2>
                 {latest.summary ? (
                   <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-200">{latest.summary}</p>
                 ) : null}
-                <div className="mt-6 flex flex-wrap items-center gap-4 text-xs font-semibold uppercase tracking-[0.22em] text-slate-300">
+                <div className="mt-6 flex flex-wrap items-center gap-4 text-xs font-semibold uppercase tracking-label text-slate-300">
                   <time dateTime={latest.date}>{formatLongDate(latest.date)}</time>
                   <span>{latest.stories.length} stories</span>
                   <Link
@@ -51,21 +51,21 @@ export default function HomePage() {
                 </div>
               </div>
             ) : (
-              <div className="rounded-[1.75rem] border border-dashed border-white/20 bg-white/5 p-6 text-sm text-slate-300">
+              <div className="rounded-panel border border-dashed border-white/20 bg-white/5 p-6 text-sm text-slate-300">
                 The next briefing publishes on Saturday. Meanwhile, browse the awareness library below.
               </div>
             )}
           </div>
 
           {/* Helpline rail — the most immediately useful thing on the page */}
-          <aside className="space-y-5 rounded-[1.75rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
-            <h2 className="text-lg font-black uppercase tracking-[0.2em] text-white">Been defrauded?</h2>
+          <aside className="space-y-5 rounded-panel border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
+            <h2 className="text-lg font-bold text-white">Been defrauded?</h2>
             <p className="text-sm leading-7 text-slate-300">
               Report it in the first few hours — that is when money is most likely to be recovered.
             </p>
             <a
               href="tel:1930"
-              className="block rounded-2xl bg-white px-5 py-4 text-center text-3xl font-black text-hero transition hover:bg-hero-accent"
+              className="block rounded-card bg-white px-5 py-4 text-center text-3xl font-bold text-hero transition hover:bg-hero-accent"
             >
               1930
             </a>
@@ -73,7 +73,7 @@ export default function HomePage() {
               href="https://cybercrime.gov.in"
               target="_blank"
               rel="noreferrer"
-              className="block rounded-2xl border border-white/20 px-5 py-3 text-center text-xs font-bold uppercase tracking-[0.2em] text-white transition hover:border-hero-accent hover:text-hero-accent"
+              className="block rounded-card border border-white/20 px-5 py-3 text-center text-xs font-bold uppercase tracking-label text-white transition hover:border-hero-accent hover:text-hero-accent"
             >
               cybercrime.gov.in
             </a>
@@ -90,12 +90,12 @@ export default function HomePage() {
         <section className="space-y-6">
           <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-4">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.4em] text-accent">In This Edition</p>
-              <h2 className="mt-2 text-3xl font-black uppercase text-hero">This week&apos;s stories</h2>
+              <p className="text-xs font-bold uppercase tracking-hero text-accent">In This Edition</p>
+              <h2 className="mt-2 text-3xl font-bold text-hero">This week&apos;s stories</h2>
             </div>
             <Link
               href={briefingPath(latest)}
-              className="text-sm font-bold uppercase tracking-[0.22em] text-accent transition hover:text-accent-dark"
+              className="text-sm font-bold uppercase tracking-label text-accent transition hover:text-accent-dark"
             >
               See all {latest.stories.length} →
             </Link>
@@ -104,10 +104,10 @@ export default function HomePage() {
             {latest.stories.slice(0, 6).map((story) => (
               <article
                 key={story.url}
-                className="flex h-full flex-col rounded-[1.75rem] border border-border bg-surface p-6 transition hover:border-accent"
+                className="flex h-full flex-col rounded-panel border border-border bg-surface p-6 transition hover:border-accent"
               >
                 <a href={story.url} target="_blank" rel="noreferrer" className="group">
-                  <h3 className="text-lg font-black leading-snug text-hero transition group-hover:text-accent">
+                  <h3 className="text-lg font-bold leading-snug text-hero transition group-hover:text-accent">
                     {story.headline}
                   </h3>
                 </a>
@@ -120,7 +120,7 @@ export default function HomePage() {
                   <Link
                     href={story.guide.path}
                     lang={story.guide.lang}
-                    className="mt-4 block text-xs font-bold uppercase tracking-[0.18em] text-accent transition hover:text-accent-dark"
+                    className="mt-4 block text-xs font-bold uppercase tracking-label text-accent transition hover:text-accent-dark"
                   >
                     🛡 {story.guide.lang === "hi" ? "बचाव कैसे करें" : "How to protect yourself"} →
                   </Link>
@@ -129,7 +129,7 @@ export default function HomePage() {
                   href={story.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-4 border-t border-border pt-4 text-xs font-bold uppercase tracking-[0.2em] text-muted transition hover:text-accent"
+                  className="mt-4 border-t border-border pt-4 text-xs font-bold uppercase tracking-label text-muted transition hover:text-accent"
                 >
                   {sourceHost(story.url) || story.source} ↗
                 </a>
@@ -143,8 +143,8 @@ export default function HomePage() {
       <section className="space-y-6">
         <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-4">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.4em] text-accent">Awareness Library</p>
-            <h2 className="mt-2 text-3xl font-black uppercase text-hero">Know the scam before it finds you</h2>
+            <p className="text-xs font-bold uppercase tracking-hero text-accent">Awareness Library</p>
+            <h2 className="mt-2 text-3xl font-bold text-hero">Know the scam before it finds you</h2>
             <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-700">
               Free guides in Hindi and English on the frauds doing the rounds right now — digital arrest, fake
               e-challans, OTP theft and more.
@@ -152,7 +152,7 @@ export default function HomePage() {
           </div>
           <Link
             href="/gallery"
-            className="text-sm font-bold uppercase tracking-[0.22em] text-accent transition hover:text-accent-dark"
+            className="text-sm font-bold uppercase tracking-label text-accent transition hover:text-accent-dark"
           >
             Browse all →
           </Link>
@@ -164,20 +164,20 @@ export default function HomePage() {
       {archive.length > 0 ? (
         <section className="space-y-6">
           <div className="border-b border-border pb-4">
-            <p className="text-xs font-bold uppercase tracking-[0.4em] text-accent">Archive</p>
-            <h2 className="mt-2 text-3xl font-black uppercase text-hero">Earlier briefings</h2>
+            <p className="text-xs font-bold uppercase tracking-hero text-accent">Archive</p>
+            <h2 className="mt-2 text-3xl font-bold text-hero">Earlier briefings</h2>
           </div>
           <div className="grid gap-5 md:grid-cols-3">
             {archive.map((briefing) => (
               <Link
                 key={briefing.date}
                 href={briefingPath(briefing)}
-                className="rounded-[1.75rem] border border-border bg-surface p-6 transition hover:border-accent hover:bg-surface-strong"
+                className="rounded-panel border border-border bg-surface p-6 transition hover:border-accent hover:bg-surface-strong"
               >
-                <p className="text-xs font-bold uppercase tracking-[0.22em] text-muted">
+                <p className="text-xs font-bold uppercase tracking-label text-muted">
                   <time dateTime={briefing.date}>{formatLongDate(briefing.date)}</time>
                 </p>
-                <h3 className="mt-3 text-lg font-black leading-snug text-hero">{briefing.title}</h3>
+                <h3 className="mt-3 text-lg font-bold leading-snug text-hero">{briefing.title}</h3>
               </Link>
             ))}
           </div>

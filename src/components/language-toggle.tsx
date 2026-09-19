@@ -105,7 +105,7 @@ export function LanguageToggle() {
       <div
         role="group"
         aria-label="Language switcher"
-        className="flex items-center overflow-hidden rounded-full border border-border text-xs font-bold uppercase tracking-[0.2em]"
+        className="flex items-center overflow-hidden rounded-full border border-border text-xs font-bold uppercase tracking-label"
       >
         <button
           type="button"
