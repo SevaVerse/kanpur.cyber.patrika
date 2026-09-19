@@ -67,6 +67,21 @@ If every take fails — a retired model id, a dead key, no outbound network — 
 anything, rather than quietly publishing a briefing of bare links. Losing a few takes is normal; losing all
 of them means something is broken.
 
+### Staying inside the Groq free tier
+
+The free tier meters **tokens per minute** (8,000 on `on_demand`), and `max_tokens` counts against that
+budget as *requested*, not as used. Three things keep the pipeline under it:
+
+- Requests are spaced by `GROQ_PACING_MS` (default 15s), so ten stories drip through rather than burning the
+  minute's budget in four.
+- A 429 is retried up to four times, waiting for the delay Groq states in the error body.
+- The article excerpt is capped at 2,000 characters — enough to ground a take, and the single biggest lever
+  on tokens per request.
+
+`gpt-oss` is a reasoning model and its reasoning is billed against `max_tokens`, so the ceiling is 1,024
+rather than a few hundred; at 400 it ran out mid-JSON and the API rejected the response. `reasoning_effort`
+is set to `low`, and dropped automatically for the rest of the run if a model rejects the parameter.
+
 Run it by hand at any time:
 
 ```bash

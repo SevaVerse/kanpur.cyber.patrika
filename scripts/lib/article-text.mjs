@@ -10,7 +10,9 @@
 const FETCH_TIMEOUT_MS = 12_000;
 const MAX_BYTES = 2_000_000;
 const MIN_USEFUL_CHARS = 400;
-const EXCERPT_CHARS = 4_000;
+// Trimmed from 4,000: the excerpt dominates each request, and the free tier
+// meters tokens per minute. 2,000 chars still carries the facts a take needs.
+const EXCERPT_CHARS = 2_000;
 
 const USER_AGENT =
   "CyberVaniBot/1.0 (+https://cybervani.com; weekly briefing; contact via https://cybervani.com/contact)";
