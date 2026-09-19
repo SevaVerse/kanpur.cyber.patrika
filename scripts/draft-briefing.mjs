@@ -237,6 +237,28 @@ const { stories: enrichedStories, stats } = await enrichStories(stories, guides,
   fetchArticleText,
 });
 
+if (stats.dropped.length > 0) {
+  console.log(`\n${stats.dropped.length} take(s) dropped rather than guessed:`);
+  for (const drop of stats.dropped) {
+    console.log(`  - ${drop.headline.slice(0, 70)} — ${drop.why}`);
+  }
+}
+
+/*
+ * Losing a few takes is normal: some publishers block bots, some articles are
+ * too thin. Losing *every* take is not — it means a broken model id, a dead
+ * key, or no outbound network. Fail before writing, so a systemic break shows
+ * up as a red run instead of quietly publishing a briefing with no takes and
+ * leaving last week's edition in place.
+ */
+if (process.env.GROQ_API_KEY && stats.attempted > 0 && stats.takes === 0) {
+  console.error(
+    `\nEvery take failed (0/${stats.attempted}). Refusing to publish a briefing with nothing written.\n` +
+      "Check the errors above — a rejected model id is the usual cause.",
+  );
+  process.exit(1);
+}
+
 const summary = await summariseBriefing(enrichedStories);
 
 mkdirSync(OUTPUT_DIR, { recursive: true });
@@ -246,7 +268,9 @@ const briefing = {
   title: `Cyber security briefing — ${formatBriefingDate(date)}`,
   summary,
   published: true,
-  generated: "ai-assisted",
+  // Only claim AI assistance when something was actually written. Declaring it
+  // on a briefing of bare links would be a false disclosure to readers.
+  ...(stats.takes > 0 ? { generated: "ai-assisted" } : {}),
   stories: enrichedStories,
 };
 
@@ -256,10 +280,3 @@ console.log(`\nWrote ${outputPath}`);
 console.log(`  stories:      ${enrichedStories.length}`);
 console.log(`  takes:        ${stats.takes}/${stats.attempted}`);
 console.log(`  guide links:  ${stats.guides}/${stats.attempted}`);
-
-if (stats.dropped.length > 0) {
-  console.log(`\n  ${stats.dropped.length} take(s) dropped rather than guessed:`);
-  for (const drop of stats.dropped) {
-    console.log(`    - ${drop.headline.slice(0, 70)} — ${drop.why}`);
-  }
-}

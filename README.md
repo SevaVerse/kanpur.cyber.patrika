@@ -41,7 +41,7 @@ Copy `.env.example` to `.env.local`. Every variable is optional for local work.
 | `NEWSDATA_API_KEY` | `scripts/draft-briefing.mjs` | Briefing drafting only — never read during a site build. |
 | `NEWSAPI_ORG_KEY` | `scripts/draft-briefing.mjs` | Second source for the drafter. |
 | `GROQ_API_KEY` | `scripts/draft-briefing.mjs` | Writes the takes and guide matches. Without it briefings publish as plain curated links. |
-| `GROQ_MODEL` | `scripts/draft-briefing.mjs` | Optional override. On a retired model id the drafter lists what your key can use. |
+| `GROQ_MODEL` | `scripts/draft-briefing.mjs` | Optional override of the default (`openai/gpt-oss-120b`). On a retired model id the drafter lists what your key can actually use. |
 | `NEXT_PUBLIC_FORMSPREE_ENDPOINT` | `/contact` | Without it, submissions go nowhere. |
 | `NEXT_PUBLIC_EDITOR_EMAIL` | `/contact` | Shows a direct "email us" block. Omitted entirely when unset. |
 | `NEXT_PUBLIC_GA_ID` | all pages | GA4 measurement ID. No analytics is loaded when unset. |
@@ -58,7 +58,14 @@ Fully automated. Nobody has to write anything for a briefing to publish.
 3. **Writes a take** via Groq, constrained to that article's text, and **matches the story to a guide**
    in the awareness library (`scripts/lib/enrich.mjs`).
 4. **Validates** every take, then **builds the site** as a gate.
-5. **Commits** to `main`, which triggers `deploy.yml`.
+5. **Commits** to `main` and explicitly dispatches `deploy.yml`.
+
+That last dispatch is deliberate: a push made with the default `GITHUB_TOKEN` does **not** trigger other
+workflows, so without it the briefing would be committed every week and never published.
+
+If every take fails — a retired model id, a dead key, no outbound network — the run fails before writing
+anything, rather than quietly publishing a briefing of bare links. Losing a few takes is normal; losing all
+of them means something is broken.
 
 Run it by hand at any time:
 

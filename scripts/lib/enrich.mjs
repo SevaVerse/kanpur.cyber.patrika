@@ -21,7 +21,7 @@ const GROQ_MODELS_URL = "https://api.groq.com/openai/v1/models";
 
 // Overridable because Groq rotates its hosted open-weight models. If this id is
 // retired, the script prints the models the account can actually use.
-const DEFAULT_MODEL = process.env.GROQ_MODEL || "llama-3.3-70b-versatile";
+const DEFAULT_MODEL = process.env.GROQ_MODEL || "openai/gpt-oss-120b";
 
 const MIN_TAKE_CHARS = 60;
 const MAX_TAKE_CHARS = 420;
@@ -108,6 +108,30 @@ export function validateTake(take, sourceText) {
   return { ok: true, take: trimmed };
 }
 
+/**
+ * Parses the model's reply, tolerating a JSON object wrapped in prose or
+ * reasoning text. Reasoning-style models sometimes narrate around the answer
+ * even in JSON mode, and losing a valid take to a stray preamble is a waste.
+ */
+export function parseJsonLoosely(content) {
+  try {
+    return JSON.parse(content);
+  } catch {
+    // Fall through to extraction.
+  }
+
+  const start = content.indexOf("{");
+  const end = content.lastIndexOf("}");
+
+  if (start === -1 || end <= start) return null;
+
+  try {
+    return JSON.parse(content.slice(start, end + 1));
+  } catch {
+    return null;
+  }
+}
+
 async function listAvailableModels(apiKey) {
   try {
     const response = await fetch(GROQ_MODELS_URL, {
@@ -157,11 +181,9 @@ async function callGroq(apiKey, model, story, articleText, catalogue) {
 
     if (!content) return { error: "empty completion" };
 
-    try {
-      return { data: JSON.parse(content) };
-    } catch {
-      return { error: "completion was not valid JSON" };
-    }
+    const parsed = parseJsonLoosely(content);
+
+    return parsed ? { data: parsed } : { error: "completion was not valid JSON" };
   } catch (error) {
     return { error: error.name === "AbortError" ? "request timed out" : error.message };
   } finally {
