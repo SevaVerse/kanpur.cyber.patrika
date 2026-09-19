@@ -1,0 +1,66 @@
+name: Publish Weekly Briefing
+
+# Fully automated. Every Saturday morning IST the pipeline collects the week's
+# cyber security headlines, reads each source article, writes a take grounded
+# in that article, links the story to the matching guide in the awareness
+# library, and commits. The commit to main triggers deploy.yml.
+#
+# Any take that cannot be verified against its source is dropped rather than
+# guessed, so a bad week produces a thinner briefing, never a wrong one.
+on:
+  schedule:
+    # 01:30 UTC Saturday = 07:00 IST Saturday
+    - cron: "30 1 * * 6"
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Briefing date (YYYY-MM-DD). Defaults to the next Saturday."
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-briefing
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate briefing
+        env:
+          NEWSDATA_API_KEY: ${{ secrets.NEWSDATA_API_KEY }}
+          NEWSAPI_ORG_KEY: ${{ secrets.NEWSAPI_ORG_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GROQ_MODEL: ${{ vars.GROQ_MODEL }}
+        run: node scripts/draft-briefing.mjs ${{ inputs.date && format('--date {0}', inputs.date) || '' }} --force
+
+      - name: Verify the site still builds with the new briefing
+        env:
+          NEXT_PUBLIC_SITE_URL: https://cybervani.com
+        run: npm run build
+
+      - name: Commit and push
+        run: |
+          if [ -z "$(git status --porcelain src/content/briefings)" ]; then
+            echo "No briefing changes to commit."
+            exit 0
+          fi
+          git config user.name "cyber-vani-bot"
+          git config user.email "noreply@cybervani.com"
+          git add src/content/briefings
+          git commit -m "content: weekly briefing $(date -u +%Y-%m-%d)"
+          git push

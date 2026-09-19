@@ -5,11 +5,13 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { LanguageToggle } from "@/components/language-toggle";
+import type { SearchEntry } from "@/lib/search";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const links = [
   { href: "/", label: "Home" },
+  { href: "/briefing", label: "Briefings" },
   { href: "/about", label: "About Us" },
   { href: "/gallery", label: "Gallery" },
   { href: "/comics", label: "Comics Kona" },
@@ -17,22 +19,11 @@ const links = [
   { href: "/contact", label: "Contact Us" },
 ];
 
-type SearchArticle = {
-  id: string;
-  slug: string;
-  title: string;
-  description: string;
-  category: string;
-  sourceName: string;
-  keywords: string[];
-  publishedAt: string;
-};
-
 type NavbarProps = {
-  articles: SearchArticle[];
+  entries: SearchEntry[];
 };
 
-export function Navbar({ articles }: NavbarProps) {
+export function Navbar({ entries }: NavbarProps) {
   const [open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -59,22 +50,8 @@ export function Navbar({ articles }: NavbarProps) {
 
   const normalizedQuery = query.trim().toLowerCase();
   const searchResults = normalizedQuery
-    ? articles
-        .filter((article) => {
-          const haystack = [
-            article.title,
-            article.description,
-            article.category,
-            article.sourceName,
-            article.keywords.join(" "),
-          ]
-            .join(" ")
-            .toLowerCase();
-
-          return haystack.includes(normalizedQuery);
-        })
-        .slice(0, 6)
-    : articles.slice(0, 6);
+    ? entries.filter((entry) => entry.haystack.includes(normalizedQuery)).slice(0, 6)
+    : entries.slice(0, 6);
 
   function closeMenus() {
     setOpen(false);
@@ -208,31 +185,20 @@ export function Navbar({ articles }: NavbarProps) {
 
               <div className="space-y-3">
                 {searchResults.length > 0 ? (
-                  searchResults.map((article) => (
+                  searchResults.map((entry) => (
                     <Link
-                      key={article.id}
-                      href={`/articles/${article.slug}`}
+                      key={entry.id}
+                      href={entry.href}
+                      lang={entry.lang}
                       className="block rounded-3xl border border-border bg-surface-strong px-4 py-4 transition hover:border-accent hover:bg-white"
                       onClick={closeMenus}
                     >
                       <div className="flex flex-wrap items-center gap-3 text-[0.68rem] font-bold uppercase tracking-[0.22em] text-muted">
-                        <span>{article.category}</span>
-                        <span>{article.sourceName}</span>
+                        <span>{entry.category}</span>
+                        {entry.lang === "hi" ? <span>हिंदी</span> : null}
                       </div>
-                      <h3 className="mt-3 text-lg font-black leading-snug text-hero">{article.title}</h3>
-                      <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-700">{article.description}</p>
-                      {article.keywords.length > 0 && (
-                        <div className="mt-3 flex flex-wrap gap-2">
-                          {article.keywords.slice(0, 3).map((keyword) => (
-                            <span
-                              key={keyword}
-                              className="rounded-full border border-border bg-surface px-3 py-1 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-muted"
-                            >
-                              {keyword}
-                            </span>
-                          ))}
-                        </div>
-                      )}
+                      <h3 className="mt-3 text-lg font-black leading-snug text-hero">{entry.title}</h3>
+                      <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-700">{entry.description}</p>
                     </Link>
                   ))
                 ) : (
