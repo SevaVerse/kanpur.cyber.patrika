@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 
-import { getAllArticles } from "@/lib/news";
+import { getSearchEntries } from "@/lib/search";
 import { getSiteUrl } from "@/lib/site";
+import { Analytics } from "@/components/analytics";
+import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 
 import "./globals.css";
@@ -37,7 +39,7 @@ export const metadata: Metadata = {
     template: "%s | Cyber Vani",
   },
   description: siteDescription,
-  keywords: ["cyber security news", "threat intelligence", "data breach", "ransomware", "Cyber Vani"],
+  keywords: ["cyber security news", "cyber fraud India", "digital arrest", "OTP scam", "साइबर अपराध", "Cyber Vani"],
   icons: {
     icon: logoPath,
     shortcut: logoPath,
@@ -65,22 +67,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const articles = await getAllArticles();
-  const searchArticles = articles.map((article) => ({
-    id: article.id,
-    slug: article.slug,
-    title: article.title,
-    description: article.description,
-    category: article.category,
-    sourceName: article.sourceName,
-    keywords: article.keywords,
-    publishedAt: article.publishedAt,
-  }));
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const searchEntries = getSearchEntries();
 
   return (
     <html lang="en">
       <body>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Cyber Vani"
+          href={`${basePath}/feed.xml`}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -93,10 +91,12 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
             __html: JSON.stringify(webSiteSchema),
           }}
         />
-        <div className="relative min-h-screen">
-          <Navbar articles={searchArticles} />
-          <main>{children}</main>
+        <div className="relative flex min-h-screen flex-col">
+          <Navbar entries={searchEntries} />
+          <main className="flex-1">{children}</main>
+          <Footer />
         </div>
+        <Analytics />
       </body>
     </html>
   );

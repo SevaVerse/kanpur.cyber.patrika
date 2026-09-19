@@ -67,6 +67,9 @@ export function LanguageToggle() {
   useEffect(() => {
     const cookie = document.cookie;
     const isHindi = cookie.includes("googtrans=/en/hi");
+    // Syncing from an external system (document.cookie) that does not exist
+    // during SSR. Reading it as initial state instead would desync hydration.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (isHindi) setActive("hi");
   }, []);
 

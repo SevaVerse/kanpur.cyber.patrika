@@ -1,6 +1,17 @@
 node_modules
 .next
 out
+*.tsbuildinfo
 npm-debug.log*
 .env*
 !.env.example
+
+# Stale static exports must never be committed to the repo root again.
+/404
+/404.html
+/_next
+/_not-found
+/static
+/index.html
+/index.txt
+/__next.*.txt

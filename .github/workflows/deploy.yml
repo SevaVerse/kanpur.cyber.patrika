@@ -1,11 +1,12 @@
 name: Deploy Static Site
 
+# Deploys on push. The site no longer fetches news at build time, so there is
+# nothing for a scheduled rebuild to pick up — briefings are committed content.
+# The weekly draft is prepared by draft-briefing.yml instead.
 on:
   push:
     branches:
       - main
-  schedule:
-    - cron: "0 0 * * 6"
   workflow_dispatch:
 
 permissions:
@@ -27,11 +28,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Lint
+        run: npm run lint
+
       - name: Build static site
         env:
-          NEWSDATA_API_KEY: ${{ secrets.NEWSDATA_API_KEY }}
-          NEWSAPI_ORG_KEY: ${{ secrets.NEWSAPI_ORG_KEY }}
           NEXT_PUBLIC_FORMSPREE_ENDPOINT: ${{ secrets.NEXT_PUBLIC_FORMSPREE_ENDPOINT }}
+          NEXT_PUBLIC_EDITOR_EMAIL: ${{ secrets.NEXT_PUBLIC_EDITOR_EMAIL }}
+          NEXT_PUBLIC_GA_ID: ${{ secrets.NEXT_PUBLIC_GA_ID }}
           NEXT_PUBLIC_SITE_URL: https://cybervani.com
         run: npm run build
 

@@ -46,36 +46,6 @@ type Sponsor = {
 
 const sponsors: Sponsor[] = [
   {
-    id: "sponsor-1",
-    name: "Your Organisation Name",
-    category: "Platinum Sponsor",
-    tagline: "Empowering cyber-safe communities across India.",
-    bio: "This is a placeholder for a platinum-level sponsor. Replace this text with the sponsor's full bio, history, and impact statement. Sponsor images can be added to the public/ directory and referenced here.",
-    website: "https://example.com",
-    initials: "YO",
-    avatarBg: "bg-[#b42318]",
-  },
-  {
-    id: "sponsor-2",
-    name: "Partner Organisation",
-    category: "Gold Sponsor",
-    tagline: "Securing digital infrastructure for a safer tomorrow.",
-    bio: "This is a placeholder for a gold-level sponsor. Add the organisation's logo to public/sponsors/ and update the imageSrc field to display it here.",
-    website: "https://example.com",
-    initials: "PO",
-    avatarBg: "bg-[#b45309]",
-  },
-  {
-    id: "sponsor-3",
-    name: "Community Partner",
-    category: "Silver Sponsor",
-    tagline: "Building awareness, one reader at a time.",
-    bio: "This is a placeholder for a silver-level sponsor or community partner. Contact the editorial desk to discuss sponsorship tiers and publication benefits.",
-    contact: "editor@example.com",
-    initials: "CP",
-    avatarBg: "bg-[#1e40af]",
-  },
-  {
     id: "sponsor-4",
     name: "Mr. Ved Ashish",
     category: "Gold Sponsor",

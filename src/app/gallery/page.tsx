@@ -1,20 +1,24 @@
 import type { Metadata } from "next";
-import GalleryClient from "./GalleryClient";
+import Link from "next/link";
+
+import { LibraryGrid } from "@/components/library-grid";
+import { getInfographics, toLibraryCard } from "@/lib/library";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const logoPath = `${basePath}/Site_logo.jpeg`;
 
+const description =
+  "Free cyber security infographics in Hindi and English — e-challan fraud, OTP scams, WhatsApp hacking, digital arrest, safe banking and more. Every poster has a full text guide.";
+
 export const metadata: Metadata = {
   title: "Infographics Gallery",
-  description:
-    "Visual infographics on cyber security topics — phishing, ransomware, safe browsing, and digital hygiene — published by Cyber Vani.",
+  description,
   alternates: { canonical: "gallery/" },
   openGraph: {
     title: "Infographics Gallery | Cyber Vani",
-    description:
-      "Visual infographics on cyber security topics — phishing, ransomware, safe browsing, and digital hygiene — published by Cyber Vani.",
+    description,
     siteName: "Cyber Vani",
-    locale: "en_US",
+    locale: "en_IN",
     type: "website",
     url: "gallery/",
     images: [{ url: logoPath, alt: "Cyber Vani logo" }],
@@ -22,16 +26,16 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Infographics Gallery | Cyber Vani",
-    description:
-      "Visual infographics on cyber security topics — phishing, ransomware, safe browsing, and digital hygiene — published by Cyber Vani.",
+    description,
     images: [logoPath],
   },
 };
 
 export default function GalleryPage() {
+  const cards = getInfographics().map(toLibraryCard);
+
   return (
     <div className="mx-auto max-w-7xl space-y-10 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-      {/* Hero */}
       <section className="overflow-hidden rounded-4xl border border-border bg-hero px-6 py-8 text-white shadow-[0_30px_100px_-60px_rgba(15,23,42,0.9)] sm:px-10 sm:py-12">
         <p className="text-xs font-bold uppercase tracking-[0.45em] text-hero-accent">Visual Resources</p>
         <h1 className="mt-4 max-w-4xl text-4xl font-black leading-tight sm:text-5xl">
@@ -39,20 +43,18 @@ export default function GalleryPage() {
         </h1>
         <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300 sm:text-base">
           Download and share these free infographics to spread cyber awareness in your organisation, school, or
-          community. New graphics are added with every weekly edition.
+          community. Every poster also has a full written guide you can read, search and share.
         </p>
-        <a
+        <Link
           href="/comics"
           className="mt-6 inline-block rounded-2xl border border-white/20 bg-white/10 px-6 py-3 text-sm font-bold uppercase tracking-widest text-white transition hover:bg-white/20"
         >
           Visit Comics Kona
-        </a>
+        </Link>
       </section>
 
-      {/* Interactive grid + lightbox */}
-      <GalleryClient />
+      <LibraryGrid items={cards} />
 
-      {/* Submission CTA */}
       <section className="rounded-4xl border border-accent/20 bg-[linear-gradient(135deg,rgba(180,35,24,0.06),rgba(245,158,11,0.08))] p-8 sm:p-10">
         <p className="text-xs font-bold uppercase tracking-[0.4em] text-accent">Contribute</p>
         <h2 className="mt-3 text-3xl font-black text-hero">Have an infographic to share?</h2>
@@ -60,12 +62,12 @@ export default function GalleryPage() {
           We welcome submissions from security researchers, educators, and organisations. Send your infographic along
           with a short description and your attribution details to the editorial desk.
         </p>
-        <a
+        <Link
           href="/contact"
           className="mt-6 inline-block rounded-2xl bg-hero px-6 py-3 text-sm font-bold uppercase tracking-widest text-white shadow transition hover:opacity-90"
         >
           Submit Infographic
-        </a>
+        </Link>
       </section>
     </div>
   );

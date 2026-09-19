@@ -1,140 +1,188 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { LatestCoverage } from "@/components/latest-coverage";
-import { getAllArticles, getCategoryGroups, getFeaturedArticle, getTrendingArticles } from "@/lib/news";
+import { LibraryGrid } from "@/components/library-grid";
+import { briefingPath, getAllBriefings, getLatestBriefing, sourceHost } from "@/lib/briefings";
+import { formatLongDate } from "@/lib/format";
+import { getLibraryItems, toLibraryCard } from "@/lib/library";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "" },
+  alternates: { canonical: "/" },
 };
 
-export default async function HomePage() {
-  const [featuredArticle, articles, categoryGroups, trendingArticles] = await Promise.all([
-    getFeaturedArticle(),
-    getAllArticles(),
-    getCategoryGroups(),
-    getTrendingArticles(),
-  ]);
-
-  const latestArticles = articles.filter((article) => !article.featured).slice(0, 6);
+export default function HomePage() {
+  const latest = getLatestBriefing();
+  const archive = getAllBriefings().slice(1, 4);
+  const featured = getLibraryItems().slice(0, 6).map(toLibraryCard);
 
   return (
-    <div className="mx-auto flex max-w-7xl flex-col gap-12 px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
+    <div className="mx-auto flex max-w-7xl flex-col gap-14 px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
+      {/* Hero */}
       <section className="animate-rise-in overflow-hidden rounded-4xl border border-white/10 bg-hero text-white shadow-[0_40px_120px_-60px_rgba(15,23,42,0.85)]">
-        <div className="grid gap-10 px-6 py-8 md:px-10 lg:grid-cols-[1.45fr_0.75fr] lg:px-12 lg:py-12">
+        <div className="grid gap-10 px-6 py-8 md:px-10 lg:grid-cols-[1.4fr_0.8fr] lg:px-12 lg:py-12">
           <div className="space-y-6">
-            <div className="space-y-3">
-              <p className="text-xs font-bold uppercase tracking-[0.45em] text-hero-accent">Weekly Briefing</p>
-              <h1 className="max-w-4xl text-4xl font-black uppercase leading-none sm:text-5xl lg:text-6xl">
-                Cyber security news you can trust, delivered fresh every week.
-              </h1>
-              <p className="max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
-                Every Saturday we curate the most important cyber security stories — breaches, scams, threats, and policy — so you stay informed and one step ahead.
-              </p>
-            </div>
-            {featuredArticle ? (
+            <p className="text-xs font-bold uppercase tracking-[0.45em] text-hero-accent">Weekly Briefing</p>
+            <h1 className="max-w-4xl text-4xl font-black uppercase leading-none sm:text-5xl lg:text-6xl">
+              Cyber security news you can trust, delivered fresh every week.
+            </h1>
+            <p className="max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
+              Every Saturday we curate the cyber security stories that matter — breaches, scams, threats and
+              policy — and explain what they mean for you.
+            </p>
+
+            {latest ? (
               <div className="rounded-[1.75rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
-                <p className="text-xs font-bold uppercase tracking-[0.35em] text-hero-accent">Top Story</p>
-                <h2 className="mt-4 text-3xl font-black leading-tight text-white sm:text-4xl">
-                  {featuredArticle.title}
+                <p className="text-xs font-bold uppercase tracking-[0.35em] text-hero-accent">Latest Edition</p>
+                <h2 className="mt-4 text-2xl font-black leading-tight text-white sm:text-3xl">
+                  {latest.title}
                 </h2>
-                <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-200 sm:text-base">{featuredArticle.description}</p>
+                {latest.summary ? (
+                  <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-200">{latest.summary}</p>
+                ) : null}
                 <div className="mt-6 flex flex-wrap items-center gap-4 text-xs font-semibold uppercase tracking-[0.22em] text-slate-300">
-                  <span>{featuredArticle.sourceName}</span>
-                  <span>{featuredArticle.category}</span>
-                  <Link href={`/articles/${featuredArticle.slug}`} className="rounded-full bg-white px-5 py-3 text-hero transition hover:bg-hero-accent">
-                    Read Full Story
+                  <time dateTime={latest.date}>{formatLongDate(latest.date)}</time>
+                  <span>{latest.stories.length} stories</span>
+                  <Link
+                    href={briefingPath(latest)}
+                    className="rounded-full bg-white px-5 py-3 text-hero transition hover:bg-hero-accent"
+                  >
+                    Read the briefing
                   </Link>
                 </div>
               </div>
             ) : (
               <div className="rounded-[1.75rem] border border-dashed border-white/20 bg-white/5 p-6 text-sm text-slate-300">
-                No stories available right now. Check back on Saturday for this week's briefing.
+                The next briefing publishes on Saturday. Meanwhile, browse the awareness library below.
               </div>
             )}
           </div>
 
+          {/* Helpline rail — the most immediately useful thing on the page */}
           <aside className="space-y-5 rounded-[1.75rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-black uppercase tracking-[0.2em] text-white">Trending</h2>
-              <span className="text-xs font-semibold uppercase tracking-[0.24em] text-hero-accent">This Week</span>
-            </div>
-            <div className="space-y-4">
-              {trendingArticles.map((article, index) => (
-                <Link
-                  key={article.id}
-                  href={`/articles/${article.slug}`}
-                  className="block rounded-2xl border border-white/10 px-4 py-4 transition hover:border-hero-accent hover:bg-white/8"
-                >
-                  <div className="flex items-start gap-4">
-                    <span className="text-3xl font-black text-hero-accent/85">0{index + 1}</span>
-                    <div className="space-y-2">
-                      <p className="text-xs font-bold uppercase tracking-[0.28em] text-slate-400">{article.category}</p>
-                      <h3 className="text-base font-bold leading-6 text-white">{article.title}</h3>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
+            <h2 className="text-lg font-black uppercase tracking-[0.2em] text-white">Been defrauded?</h2>
+            <p className="text-sm leading-7 text-slate-300">
+              Report it in the first few hours — that is when money is most likely to be recovered.
+            </p>
+            <a
+              href="tel:1930"
+              className="block rounded-2xl bg-white px-5 py-4 text-center text-3xl font-black text-hero transition hover:bg-hero-accent"
+            >
+              1930
+            </a>
+            <a
+              href="https://cybercrime.gov.in"
+              target="_blank"
+              rel="noreferrer"
+              className="block rounded-2xl border border-white/20 px-5 py-3 text-center text-xs font-bold uppercase tracking-[0.2em] text-white transition hover:border-hero-accent hover:text-hero-accent"
+            >
+              cybercrime.gov.in
+            </a>
+            <p className="text-xs leading-6 text-slate-400">
+              National Cyber Crime Helpline, 24x7. For Uttar Pradesh incidents you can also write to the UP
+              Police Cyber Cell.
+            </p>
           </aside>
         </div>
       </section>
 
-      <section className="grid gap-8 xl:grid-cols-[minmax(0,1.7fr)_320px]">
-        <LatestCoverage articles={latestArticles} />
+      {/* Latest briefing stories */}
+      {latest ? (
+        <section className="space-y-6">
+          <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-4">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.4em] text-accent">In This Edition</p>
+              <h2 className="mt-2 text-3xl font-black uppercase text-hero">This week&apos;s stories</h2>
+            </div>
+            <Link
+              href={briefingPath(latest)}
+              className="text-sm font-bold uppercase tracking-[0.22em] text-accent transition hover:text-accent-dark"
+            >
+              See all {latest.stories.length} →
+            </Link>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {latest.stories.slice(0, 6).map((story) => (
+              <article
+                key={story.url}
+                className="flex h-full flex-col rounded-[1.75rem] border border-border bg-surface p-6 transition hover:border-accent"
+              >
+                <a href={story.url} target="_blank" rel="noreferrer" className="group">
+                  <h3 className="text-lg font-black leading-snug text-hero transition group-hover:text-accent">
+                    {story.headline}
+                  </h3>
+                </a>
+                {story.take ? (
+                  <p className="mt-3 line-clamp-3 flex-1 text-sm leading-7 text-slate-700">{story.take}</p>
+                ) : (
+                  <span className="flex-1" />
+                )}
+                {story.guide ? (
+                  <Link
+                    href={story.guide.path}
+                    lang={story.guide.lang}
+                    className="mt-4 block text-xs font-bold uppercase tracking-[0.18em] text-accent transition hover:text-accent-dark"
+                  >
+                    🛡 {story.guide.lang === "hi" ? "बचाव कैसे करें" : "How to protect yourself"} →
+                  </Link>
+                ) : null}
+                <a
+                  href={story.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-4 border-t border-border pt-4 text-xs font-bold uppercase tracking-[0.2em] text-muted transition hover:text-accent"
+                >
+                  {sourceHost(story.url) || story.source} ↗
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
-        <aside className="rounded-4xl border border-border bg-surface p-6 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.45)]">
-          <div className="space-y-4">
-            <p className="text-xs font-bold uppercase tracking-[0.35em] text-accent">About This Briefing</p>
-            <h2 className="text-2xl font-black text-hero">How we cover the news</h2>
-            <p className="text-sm leading-7 text-slate-700">
-              Cyber Vani scans the latest cyber security news and hand-picks the stories that matter most to you — every week, without fail.
+      {/* Awareness library */}
+      <section className="space-y-6">
+        <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.4em] text-accent">Awareness Library</p>
+            <h2 className="mt-2 text-3xl font-black uppercase text-hero">Know the scam before it finds you</h2>
+            <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-700">
+              Free guides in Hindi and English on the frauds doing the rounds right now — digital arrest, fake
+              e-challans, OTP theft and more.
             </p>
           </div>
-          <dl className="mt-8 space-y-4 text-sm text-slate-700">
-            <div className="rounded-2xl border border-border bg-surface-strong p-4">
-              <dt className="font-bold uppercase tracking-[0.22em] text-muted">Publication</dt>
-              <dd className="mt-2 text-base font-semibold text-hero">Weekly Edition</dd>
-            </div>
-            <div className="rounded-2xl border border-border bg-surface-strong p-4">
-              <dt className="font-bold uppercase tracking-[0.22em] text-muted">Updated</dt>
-              <dd className="mt-2 text-base font-semibold text-hero">Every Saturday</dd>
-            </div>
-            <div className="rounded-2xl border border-border bg-surface-strong p-4">
-              <dt className="font-bold uppercase tracking-[0.22em] text-muted">Coverage</dt>
-              <dd className="mt-2 text-base font-semibold text-hero">Curated editorial stories</dd>
-            </div>
-          </dl>
-        </aside>
+          <Link
+            href="/gallery"
+            className="text-sm font-bold uppercase tracking-[0.22em] text-accent transition hover:text-accent-dark"
+          >
+            Browse all →
+          </Link>
+        </div>
+        <LibraryGrid items={featured} />
       </section>
 
-      <section className="space-y-6">
-        <div className="flex items-end justify-between gap-4 border-b border-border pb-4">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.4em] text-accent">Category Watch</p>
-            <h2 className="mt-2 text-3xl font-black uppercase text-hero">Coverage by newsroom desk</h2>
+      {/* Archive */}
+      {archive.length > 0 ? (
+        <section className="space-y-6">
+          <div className="border-b border-border pb-4">
+            <p className="text-xs font-bold uppercase tracking-[0.4em] text-accent">Archive</p>
+            <h2 className="mt-2 text-3xl font-black uppercase text-hero">Earlier briefings</h2>
           </div>
-        </div>
-        <div className="grid gap-6 lg:grid-cols-3">
-          {categoryGroups.map((group) => (
-            <section key={group.category} className="rounded-[1.75rem] border border-border bg-surface p-6 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.3)]">
-              <div className="flex items-center justify-between border-b border-border pb-4">
-                <h3 className="text-xl font-black text-hero">{group.category}</h3>
-                <span className="text-xs font-semibold uppercase tracking-[0.24em] text-muted">Desk</span>
-              </div>
-              <div className="mt-5 space-y-5">
-                {group.items.map((article) => (
-                  <Link key={article.id} href={`/articles/${article.slug}`} className="block space-y-2 rounded-2xl transition hover:text-accent">
-                    <p className="text-xs font-bold uppercase tracking-[0.22em] text-muted">{article.sourceName}</p>
-                    <h4 className="line-clamp-2 text-base font-bold leading-6 text-hero">{article.title}</h4>
-                    <p className="line-clamp-2 text-sm leading-6 text-slate-700">{article.description}</p>
-                  </Link>
-                ))}
-              </div>
-            </section>
-          ))}
-        </div>
-      </section>
+          <div className="grid gap-5 md:grid-cols-3">
+            {archive.map((briefing) => (
+              <Link
+                key={briefing.date}
+                href={briefingPath(briefing)}
+                className="rounded-[1.75rem] border border-border bg-surface p-6 transition hover:border-accent hover:bg-surface-strong"
+              >
+                <p className="text-xs font-bold uppercase tracking-[0.22em] text-muted">
+                  <time dateTime={briefing.date}>{formatLongDate(briefing.date)}</time>
+                </p>
+                <h3 className="mt-3 text-lg font-black leading-snug text-hero">{briefing.title}</h3>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
     </div>
   );
 }
