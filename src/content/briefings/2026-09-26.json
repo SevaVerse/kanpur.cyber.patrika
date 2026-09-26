@@ -1,0 +1,129 @@
+{
+  "date": "2026-09-26",
+  "title": "Cyber security briefing — 26 September 2026",
+  "summary": "This week: a surge in impersonation fraud targeting seniors and officials, the professionalisation of scam compounds abroad, and a rise in malicious app scams.",
+  "published": true,
+  "generated": "ai-assisted",
+  "stories": [
+    {
+      "headline": "Fatehpur police to expedite return of cyber fraud funds",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/allahabad/fatehpur-police-to-expedite-return-of-cyber-fraud-funds/articleshow/134490700.cms",
+      "publishedAt": "2026-09-25 18:02:13",
+      "take": "Victims of cyber fraud in the district can now recover their money more quickly, with a dedicated camp helping to release held funds without lengthy court processes for smaller amounts.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Cyber Fraud: CBI arrests key accused in Rs 70 crore US tech support scam",
+      "source": "Deccan Herald",
+      "url": "https://www.deccanherald.com/india/gujarat/cyber-fraud-cbi-arrests-key-accused-in-rs-70-crore-us-tech-support-scam-4159888",
+      "publishedAt": "2026-09-25 15:39:23",
+      "take": "The arrest shows that Indian fraud networks are targeting victims abroad by posing as tech support and making false claims about identity theft and illegal content, highlighting the need for vigilance against such impersonation scams.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "'Free to enter and exit': Job ads lift veil on working in scam compounds",
+      "source": "ABC News (AU)",
+      "url": "https://www.abc.net.au/news/2026-09-25/cambodia-scam-industry-job-advertisements/107185964",
+      "publishedAt": "2026-09-25T05:12:53Z",
+      "take": "The analysis shows that organized scam centres in Cambodia are hiring staff to run large‑scale fraud operations, highlighting the professionalisation of online scams that can target Indian users across messaging platforms.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Police warn of fake Green Gas APK scam; 50+ cyber fraud complaints",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/city/lucknow/police-warn-of-fake-green-gas-apk-scam-50-cyber-fraud-complaints/articleshow/134469552.cms",
+      "publishedAt": "2026-09-24T19:35:09Z",
+      "take": "Scammers are sending fake messages that appear to be from a gas provider and urging people to download a malicious app, which can hijack phones and steal personal or banking details. This highlights the danger of installing unknown APK files received through messaging apps or calls.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Over Rs 9.4 lakh lost in 4 separate cyber fraud cases",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/city/mangaluru/over-rs-9-4-lakh-lost-in-4-separate-cyber-fraud-cases/articleshow/134467764.cms",
+      "publishedAt": "2026-09-24T17:34:23Z",
+      "take": "Fake traffic violation notices sent via WhatsApp can lead victims to download malicious apps and lose money, while investment‑app scams lure users with promises of high returns and drain their accounts. The incidents show how ordinary messages can be used to steal funds, underscoring the need to verify any such links before clicking.",
+      "guide": {
+        "path": "/awareness/hi/fake-e-challan-scam",
+        "title": "फर्जी E-चालान — साइबर अपराध है",
+        "lang": "hi"
+      }
+    },
+    {
+      "headline": "Dibrugarh cops arrest 2 in Kerala over Rs 50L ‘Boss Scam’",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/city/guwahati/dibrugarh-cops-arrest-2-in-kerala-over-rs-50l-boss-scam/articleshow/134418434.cms",
+      "publishedAt": "2026-09-22T17:58:39Z",
+      "take": "The arrest highlights a growing impersonation fraud where scammers pose as senior officials to trick employees into urgent money transfers, underscoring the need for companies and individuals to verify requests before sending funds.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Online fraudsters pose as Nashik police, cheat Pune senior citizen of Rs 19.2 lakh",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/city/pune/online-fraudsters-pose-as-nashik-police-cheat-pune-senior-citizen-of-rs-19-2-lakh/articleshow/134397089.cms",
+      "publishedAt": "2026-09-21T19:07:04Z",
+      "take": "Impersonating police officers to obtain bank details can lead to large financial losses, especially for senior citizens, highlighting the need to verify any such calls before sharing personal information.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "₹38L digital arrest fraud: Man accused of cheating Ahmedabad woman denied bail",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/city/ahmedabad/38l-digital-arrest-fraud-man-accused-of-cheating-ahmedabad-woman-denied-bail/articleshow/134396612.cms",
+      "publishedAt": "2026-09-21T18:37:37Z",
+      "take": "The case shows how scammers can impersonate law‑enforcement agencies and use video calls to trick vulnerable people into sending money, highlighting the need for caution when approached by officials online.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Senior citizen saved from further digital arrest fraud as IFSO traces Rs 60L money trail",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/city/delhi/senior-citizen-saved-from-further-digital-arrest-fraud-as-ifso-traces-rs-60l-money-trail/articleshow/134396120.cms",
+      "publishedAt": "2026-09-21T18:14:39Z",
+      "take": "The incident shows that seniors can be targeted by digital‑arrest scams that demand money, and prompt reporting to the cybercrime portal can lead to police tracing the funds and helping victims.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Fraudsters cite Naresh Goyal case, fleece Kanpur senior citizen of Rs 48.2L",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/city/kanpur/fraudsters-cite-naresh-goyal-case-fleece-kanpur-senior-citizen-of-rs-48-2l/articleshow/134395957.cms",
+      "publishedAt": "2026-09-21T18:05:29Z",
+      "take": "Elderly individuals are being trapped by scams that impersonate government agencies, leading to large financial losses and false detention threats.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    }
+  ]
+}
