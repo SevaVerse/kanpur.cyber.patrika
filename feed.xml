@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cyber Vani</title>
+    <link>https://cybervani.com/</link>
+    <description>Weekly cyber security briefings and a free Hindi/English awareness library from Cyber Vani.</description>
+    <language>en-in</language>
+    <lastBuildDate>Sat, 26 Sep 2026 06:24:13 GMT</lastBuildDate>
+    <atom:link href="https://cybervani.com/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cyber security briefing — 26 September 2026</title>
+      <link>https://cybervani.com/briefing/2026-09-26/</link>
+      <guid isPermaLink="true">https://cybervani.com/briefing/2026-09-26/</guid>
+      <description>This week: a surge in impersonation fraud targeting seniors and officials, the professionalisation of scam compounds abroad, and a rise in malicious app scams.</description>
+      <category>Weekly Briefing</category>
+      <pubDate>Sat, 26 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Cyber security briefing — 19 September 2026</title>
+      <link>https://cybervani.com/briefing/2026-09-19/</link>
+      <guid isPermaLink="true">https://cybervani.com/briefing/2026-09-19/</guid>
+      <description>This week: a surge in impersonation scams duping citizens, multi‑crore cyber‑fraud cases highlighting massive financial losses, and new police initiatives like the 1930 helpline and dedicated cybercrime mechanisms to combat online fraud.</description>
+      <category>Weekly Briefing</category>
+      <pubDate>Sat, 19 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>डिजिटलीकरण और साइबर खतरा</title>
+      <link>https://cybervani.com/awareness/hi/digitalization-cyber-khatra/</link>
+      <guid isPermaLink="true">https://cybervani.com/awareness/hi/digitalization-cyber-khatra/</guid>
+      <description>UPI, ई-कॉमर्स, ऑनलाइन शिक्षा और 5G ने जीवन आसान बनाया, लेकिन साइबर हमलों का दायरा भी बढ़ा दिया। आठ पैनल में भारत की साइबर चुनौती, कारण, बचाव और CERT-In जैसे संस्थानों की भूमिका।</description>
+      <category>जागरूकता</category>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>नगर निगम वेबसाइट हैक — NIC अलर्ट</title>
+      <link>https://cybervani.com/awareness/hi/nagar-nigam-website-hack/</link>
+      <guid isPermaLink="true">https://cybervani.com/awareness/hi/nagar-nigam-website-hack/</guid>
+      <description>नगर निगम की मुख्य आधिकारिक वेबसाइट दोपहर में हैक हो गई। NIC की टीम ने तत्काल अलर्ट जारी किया और टेंडर, कर भुगतान सहित डिजिटल सेवाएं अस्थायी रूप से बंद रहीं।</description>
+      <category>जागरूकता</category>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>डिजिटल अरेस्ट — एक साज़िश</title>
+      <link>https://cybervani.com/awareness/hi/digital-arrest/</link>
+      <guid isPermaLink="true">https://cybervani.com/awareness/hi/digital-arrest/</guid>
+      <description>पुलिस या CBI कभी भी फोन पर गिरफ्तारी नहीं करती। डिजिटल अरेस्ट की पूरी साज़िश — पहली कॉल से लेकर पैसे ट्रांसफर तक — और बचाव के सही कदम, आसान हिंदी में।</description>
+      <category>सोशल इंजीनियरिंग</category>
+      <pubDate>Tue, 19 May 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Mole Account — A Hidden Threat</title>
+      <link>https://cybervani.com/awareness/mole-account/</link>
+      <guid isPermaLink="true">https://cybervani.com/awareness/mole-account/</guid>
+      <description>A mole account is a fake online identity used to deceive, steal information, damage reputation or commit fraud anonymously. Learn what they are used for and six ways to protect yourself.</description>
+      <category>Social Engineering</category>
+      <pubDate>Wed, 13 May 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Cyberbullying &amp; Data Breaches</title>
+      <link>https://cybervani.com/awareness/cyberbullying-and-data-breaches/</link>
+      <guid isPermaLink="true">https://cybervani.com/awareness/cyberbullying-and-data-breaches/</guid>
+      <description>Words online can hurt real lives, and a single breach can expose everything about you. A two-part guide to recognising cyberbullying, supporting others, and protecting your personal data.</description>
+      <category>Awareness</category>
+      <pubDate>Wed, 06 May 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Digital Banking — Safe Banking, Secure India</title>
+      <link>https://cybervani.com/awareness/safe-digital-banking/</link>
+      <guid isPermaLink="true">https://cybervani.com/awareness/safe-digital-banking/</guid>
+      <description>Digital banking is convenient; digital awareness is your protection. The essential dos and don&apos;ts for banking online, and exactly what to do the moment you spot a fraudulent transaction.</description>
+      <category>Financial Security</category>
+      <pubDate>Wed, 29 Apr 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>आपका WhatsApp हैक कैसे होता है?</title>
+      <link>https://cybervani.com/awareness/hi/whatsapp-account-hack/</link>
+      <guid isPermaLink="true">https://cybervani.com/awareness/hi/whatsapp-account-hack/</guid>
+      <description>हैकर नकली लिंक और क्लोन वेबसाइट के जरिए आपका OTP हासिल करके WhatsApp पर कब्जा कर लेते हैं। जानें पूरी प्रक्रिया, Two-Step Verification कैसे चालू करें और अकाउंट वापस कैसे पाएं।</description>
+      <category>जागरूकता</category>
+      <pubDate>Wed, 15 Apr 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>स्मार्ट फोन OTP स्कैम</title>
+      <link>https://cybervani.com/awareness/hi/otp-scam/</link>
+      <guid isPermaLink="true">https://cybervani.com/awareness/hi/otp-scam/</guid>
+      <description>बैंक, KYC या कूरियर अधिकारी बनकर ठग आपसे OTP मांगते हैं और मिनटों में खाता खाली कर देते हैं। छह चरणों में पूरी प्रक्रिया, बचाव के उपाय और ठगी के बाद उठाए जाने वाले कदम।</description>
+      <category>सोशल इंजीनियरिंग</category>
+      <pubDate>Wed, 08 Apr 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>फर्जी E-चालान — साइबर अपराध है</title>
+      <link>https://cybervani.com/awareness/hi/fake-e-challan-scam/</link>
+      <guid isPermaLink="true">https://cybervani.com/awareness/hi/fake-e-challan-scam/</guid>
+      <description>साइबर अपराधी SMS, व्हाट्सएप और ईमेल पर फर्जी ई-चालान भेजकर जुर्माने के नाम पर पैसे ठगते हैं। जानें फर्जी चालान कैसे पहचानें और echallan.parivahan.gov.in पर सही जांच कैसे करें।</description>
+      <category>सोशल इंजीनियरिंग</category>
+      <pubDate>Wed, 01 Apr 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Digital Arrest — Prevention Is Protection</title>
+      <link>https://cybervani.com/awareness/digital-arrest/</link>
+      <guid isPermaLink="true">https://cybervani.com/awareness/digital-arrest/</guid>
+      <description>No government agency arrests anyone over a phone or video call. Learn how the digital arrest scam works, the six steps that protect you, and how to report it on 1930.</description>
+      <category>Social Engineering</category>
+      <pubDate>Wed, 01 May 2024 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>
