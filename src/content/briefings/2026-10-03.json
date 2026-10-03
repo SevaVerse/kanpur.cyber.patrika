@@ -1,0 +1,123 @@
+{
+  "date": "2026-10-03",
+  "title": "Cyber security briefing — 3 October 2026",
+  "summary": "This week: digital‑arrest scams targeting seniors and the rise of fake investment apps and compromised WhatsApp accounts.",
+  "published": true,
+  "generated": "ai-assisted",
+  "stories": [
+    {
+      "headline": "Antique collectors raise alarm over online fraud",
+      "source": "The Hindu",
+      "url": "https://www.thehindu.com/news/national/kerala/antiques-or-artifice-collectors-sound-alarm-over-online-antique-fraud/article71536687.ece",
+      "publishedAt": "2026-10-02 18:43:09",
+      "take": "Online antique sales are being used to sell heavily refurbished items, replicas or nothing at all, often without clear disclosure of restoration or provenance, putting unsuspecting collectors at risk of financial loss."
+    },
+    {
+      "headline": "75-year-old woman loses Rs 3 crore in 14-day ‘digital arrest’ scam",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/aurangabad/75-year-old-woman-loses-rs-3-crore-in-14-day-digital-arrest-scam/articleshow/134644726.cms",
+      "publishedAt": "2026-10-02 17:43:44",
+      "take": "Fraudsters pretending to be police can trap vulnerable people with false threats of arrest, forcing them to pay large sums, as shown by the 75‑year‑old woman’s loss. Such “digital arrest” scams highlight the need to verify any police‑related calls before acting.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Retd govt employee loses Rs 74 lakh to digital arrest",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/hyderabad/retd-govt-employee-loses-rs-74-lakh-to-digital-arrest/articleshow/134644612.cms",
+      "publishedAt": "2026-10-02 17:37:59",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Udupi police conduct cyber awareness cycle rally",
+      "source": "Daijiworld",
+      "url": "https://daijiworld.com/news/newsDisplay?newsID=1328393",
+      "publishedAt": "2026-10-02 16:41:28",
+      "take": "The rally highlights the need for people to keep OTPs, passwords and other confidential codes private, as sharing them can lead to online fraud and financial loss.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Fake Investment App, Hacked WhatsApp Among Cyber Frauds Costing Bhopal Residents ₹6.5 Lakh",
+      "source": "The Free Press Journal",
+      "url": "https://www.freepressjournal.in/bhopal/fake-investment-app-hacked-whatsapp-among-cyber-frauds-costing-bhopal-residents-65-lakh",
+      "publishedAt": "2026-10-02 16:30:00",
+      "take": "The incidents show how fake investment apps and compromised WhatsApp accounts can be used to trick people into sending money through UPI, leading to significant financial loss. It highlights the need for vigilance when clicking links, downloading apps, or responding to payment requests from contacts.",
+      "guide": {
+        "path": "/awareness/safe-digital-banking",
+        "title": "Digital Banking — Safe Banking, Secure India",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Young driver held for impersonating sex educator, cheating users",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/bengaluru/young-driver-held-for-impersonating-sex-educator-cheating-users/articleshow/134643158.cms",
+      "publishedAt": "2026-10-02 15:58:49",
+      "take": "Impersonators can create fake social‑media profiles and lure users into paid sexting chats, resulting in financial loss for unsuspecting victims. This highlights the need to verify online identities before sending money.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Coimbatore District Police call for vigil against cyber frauds as people lose ₹36.23 crore in nine months",
+      "source": "The Hindu",
+      "url": "https://www.thehindu.com/news/cities/Coimbatore/coimbatore-district-police-call-for-vigil-against-cyber-frauds-as-people-lose-3623-crore-nine-months/article71536954.ece",
+      "publishedAt": "2026-10-02 15:39:11",
+      "take": "A large number of residents have lost millions to various online scams, including the so‑called “digital arrest” fraud, highlighting the need for greater caution when dealing with unsolicited digital threats.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Man from Keralam arrested for involvement in digital arrest scam",
+      "source": "The Hindu",
+      "url": "https://www.thehindu.com/news/cities/Coimbatore/man-from-keralam-arrested-for-involvement-in-digital-arrest-scam/article71537357.ece",
+      "publishedAt": "2026-10-02 15:16:45",
+      "take": "The case shows how fraudsters impersonate law enforcement and claim a ‘digital arrest’ to trick victims into transferring money, exposing a method that can target anyone with a bank account.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Worried your bank account is empty after cyber fraud? Here’s what to do immediately",
+      "source": "Livemint",
+      "url": "https://www.livemint.com/money/worried-your-bank-account-is-empty-after-cyber-fraud-here-s-what-to-do-immediately-11790863845984.html",
+      "publishedAt": "2026-10-01T14:32:31Z",
+      "take": "Acting within the first few minutes after unauthorized debits lets banks block the account and improves the chances of recovering the lost money.",
+      "guide": {
+        "path": "/awareness/safe-digital-banking",
+        "title": "Digital Banking — Safe Banking, Secure India",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "80-year-old doctor loses ₹58.5L in digital arrest scam",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/city/rajkot/80-year-old-doctor-loses-58-5l-in-digital-arrest-scam/articleshow/134601362.cms",
+      "publishedAt": "2026-09-30T18:53:37Z",
+      "take": "The incident shows how scammers can falsely claim legal trouble, lock victims in a so‑called ‘digital arrest’ and force large money transfers, highlighting the need to verify any such threats before acting.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    }
+  ]
+}
