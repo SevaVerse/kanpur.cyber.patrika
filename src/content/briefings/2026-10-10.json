@@ -1,0 +1,117 @@
+{
+  "date": "2026-10-10",
+  "title": "Cyber security briefing — 10 October 2026",
+  "summary": "This week: a wave of impersonation scams duping senior citizens out of millions, and police launching outreach programmes to educate the public.",
+  "published": true,
+  "generated": "ai-assisted",
+  "stories": [
+    {
+      "headline": "Cybercrook threatens 71-year-old with arrest for money laundering, dupes him of ₹30L",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/pune/cybercrook-threatens-71-year-old-with-arrest-for-money-laundering-dupes-him-of-30l/articleshow/134842094.cms",
+      "publishedAt": "2026-10-09 19:06:33",
+      "take": "Elderly people are being targeted by callers pretending to be police officers and coerced into sending large sums of money, showing how impersonation scams can cause serious financial loss.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Elderly man loses ₹32L in online share-trading fraud",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/pune/elderly-man-loses-32l-in-online-share-trading-fraud/articleshow/134842091.cms",
+      "publishedAt": "2026-10-09 19:06:26",
+      "take": "Impersonation scams that promise high returns on stock investments can lead to large financial losses, especially for vulnerable seniors, showing the need to verify callers and avoid sending money to unknown accounts.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Kanpur court rejects bail of fraud case accused",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/kanpur/kanpur-court-rejects-bail-of-fraud-case-accused/articleshow/134840255.cms",
+      "publishedAt": "2026-10-09 17:48:17",
+      "take": "The court’s decision highlights that fraudsters can use online investment schemes to cheat vulnerable individuals, including the elderly, leading to significant financial loss.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Belagavi man loses ₹21.9L in online investment scam",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/hubballi/belagavi-man-loses-21-9l-in-online-investment-scam/articleshow/134839823.cms",
+      "publishedAt": "2026-10-09 17:21:38",
+      "take": "People can be deceived by online ads that misuse official names and promise high returns, leading them to transfer money through messaging apps and lose their savings.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Retired air force employee reports Rs 11.5 lakh bank fraud in Mumbai",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/mumbai/retired-air-force-employee-reports-rs-11-5-lakh-bank-fraud-in-mumbai/articleshow/134839272.cms",
+      "publishedAt": "2026-10-09 17:05:38",
+      "take": "A senior citizen lost over a lakh rupees after an unknown person added a fake payee to her net‑banking account and made unauthorized transfers, showing how easily bank accounts can be compromised through impersonation and phishing. The incident highlights the need for vigilance and stronger safeguards when using digital banking services.",
+      "guide": {
+        "path": "/awareness/safe-digital-banking",
+        "title": "Digital Banking — Safe Banking, Secure India",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Cyberabad Police Launch ‘Coffee With A Cop’",
+      "source": "Deccan Chronicle",
+      "url": "https://www.deccanchronicle.com/southern-states/telangana/cyberabad-police-launch-coffee-with-a-cop-1994507",
+      "publishedAt": "2026-10-09 17:04:24",
+      "take": "The police’s new “Coffee with a Cop” sessions give young people a direct channel to learn about online threats such as digital‑arrest scams and malicious links, helping them avoid fraud and stay safer on digital platforms.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Bank manager’s alert saves Hyderabad retiree from losing another Rs 2 lakh in nude video call scam",
+      "source": "Telangana Today",
+      "url": "https://telanganatoday.com/bank-managers-alert-saves-hyderabad-retiree-from-losing-another-rs-2-lakh-in-nude-video-call-scam",
+      "publishedAt": "2026-10-09 15:48:28",
+      "take": "The incident shows that bank staff questioning unusual transfer requests can stop extortion scams that exploit fear of personal video leaks, protecting victims’ savings.",
+      "guide": {
+        "path": "/awareness/safe-digital-banking",
+        "title": "Digital Banking — Safe Banking, Secure India",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Guwahati senior citizen duped of Rs 2.13 crore in digital arrest scam",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/city/guwahati/guwahati-senior-citizen-duped-of-rs-2-13-crore-in-digital-arrest-scam/articleshow/134796971.cms",
+      "publishedAt": "2026-10-08T17:28:52Z",
+      "take": "Fraudsters impersonating crime‑branch and CBI officials used WhatsApp video calls and a fake digital arrest warrant to coerce a senior citizen into transferring millions, showing how such scams can lead to huge financial loss and intimidation.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "PM Modi calls for creating global framework to prevent fraud, scams",
+      "source": "Business Standard",
+      "url": "https://www.business-standard.com/technology/tech-news/pm-modi-calls-for-creating-global-framework-to-prevent-fraud-scams-126100801499_1.html",
+      "publishedAt": "2026-10-08T15:42:29Z"
+    },
+    {
+      "headline": "IMC 2026: 'AI for security, security for AI' becomes new cyber battleground",
+      "source": "Business Standard",
+      "url": "https://www.business-standard.com/technology/tech-news/imc-2026-ai-for-security-security-for-ai-becomes-new-cyber-battleground-126100800968_1.html",
+      "publishedAt": "2026-10-08T11:33:29Z"
+    }
+  ]
+}
