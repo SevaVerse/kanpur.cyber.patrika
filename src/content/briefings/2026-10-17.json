@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-17",
+  "title": "Cyber security briefing — 17 October 2026",
+  "summary": "This week: large cyber‑fraud recoveries by police, rising impersonation‑scam tactics, and a major data breach in Japan highlighting cyber‑insurance.",
+  "published": true,
+  "generated": "ai-assisted",
+  "stories": [
+    {
+      "headline": "Sambalpur Police Recover Rs 35.50 Lakh in Cyber Fraud Cases, Return 100 Mobile Phones",
+      "source": "Kalinga Tv",
+      "url": "https://kalingatv.com/odisha/sambalpur-police-recover-rs-35-50-lakh-in-cyber-fraud-cases-return-100-mobile-phones/",
+      "publishedAt": "2026-10-16 17:22:56",
+      "take": "The police’s recovery of a large sum of money and many stolen phones shows that victims of cyber fraud can sometimes get their losses back and that law enforcement is actively pursuing such cases.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Rs 86 lakh duped: Police invoke MCOCA against BHMS, CA aspirants, techie with Cambodia links",
+      "source": "The Indian Express",
+      "url": "https://indianexpress.com/article/cities/pune/pimpri-chinchwad-cyber-fraud-mcoca-rs-86-lakh-scam-10925094/",
+      "publishedAt": "2026-10-16 16:48:35"
+    },
+    {
+      "headline": "Accused In USD 7.21 Million US Cyber Fraud Gets Bail",
+      "source": "Rediff",
+      "url": "https://www.rediff.com/news/report/cbi-court-grants-bail-to-cyber-fraud-accused-targeting-us-residents/20261016.htm",
+      "publishedAt": "2026-10-16 16:35:38",
+      "take": "The bail of a suspect in a large fraud that used fake law‑enforcement calls to extort money from overseas victims highlights how Indian fraud networks can impersonate authorities to deceive people, underscoring the need for vigilance against such scams.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Gujarat: CBI court grants bail to cyber fraud accused who targeted US residents",
+      "source": "Ptinews",
+      "url": "https://www.ptinews.com/story/national/gujarat-cbi-court-grants-bail-to-cyber-fraud-accused-who-targeted-us-residents/4173346",
+      "publishedAt": "2026-10-16 16:34:01"
+    },
+    {
+      "headline": "How A Bank Manager's Refusal Led To Unearthing A Multi-Crore Cyber Fraud",
+      "source": "Rediff",
+      "url": "https://www.rediff.com/news/report/kanpur-police-uncover-rs-266-crore-cyber-fraud-two-arrested/20261016.htm",
+      "publishedAt": "2026-10-16 16:21:35",
+      "take": "The case shows how fake investment apps can siphon large sums through numerous bank accounts, exposing ordinary users to sophisticated cyber fraud, and underscores the need to verify financial schemes before transferring money.",
+      "guide": {
+        "path": "/awareness/safe-digital-banking",
+        "title": "Digital Banking — Safe Banking, Secure India",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Fake complaints against bank manager lead to Rs 2.66-crore cyber fraud probe; 2 held",
+      "source": "Ptinews",
+      "url": "https://www.ptinews.com/story/national/fake-complaints-against-bank-manager-lead-to-rs-2-66-crore-cyber-fraud-probe-2-held/4173297",
+      "publishedAt": "2026-10-16 16:19:01"
+    },
+    {
+      "headline": "Sambalpur Cyber Police Recovers ₹35.5 Lakh & 100 Stolen Mobile Phones",
+      "source": "Pragativadi",
+      "url": "https://pragativadi.com/sambalpur-cyber-police-recovers-%E2%82%B935-5-lakh-100-stolen-mobile-phones/",
+      "publishedAt": "2026-10-16 15:29:51",
+      "take": "The recovery of a large sum of stolen money and hundreds of phones demonstrates that cyber police can trace digital fraud and retrieve assets, offering reassurance that victims of financial scams may get their losses back.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "ED files charge sheet in Rs 2.95-crore 'digital arrest' fraud, traces money in 50 mule accounts",
+      "source": "The Hans India",
+      "url": "https://www.thehansindia.com/news/national/ed-files-charge-sheet-in-rs-295-crore-digital-arrest-fraud-traces-money-in-50-mule-accounts-1133029",
+      "publishedAt": "2026-10-16 15:15:28",
+      "take": "The case shows how scammers impersonating law‑enforcement can threaten false arrest to extort money, using numerous mule accounts to hide the proceeds. Such tactics highlight the need for vigilance against impersonation scams that can target ordinary citizens.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "WhatsApp 'No' fraud alert: 5 ways to protect your money from scammers",
+      "source": "Business Standard",
+      "url": "https://www.business-standard.com/finance/personal-finance/whatsapp-no-fraud-alert-5-ways-to-protect-your-money-from-scammers-126101600347_1.html",
+      "publishedAt": "2026-10-16T05:48:30Z"
+    },
+    {
+      "headline": "Millions hit by data breach in Japan: How cyber insurance can protect you against such risks — check costs, coverage",
+      "source": "Livemint",
+      "url": "https://www.livemint.com/money/millions-hit-by-data-breach-in-japan-how-cyber-insurance-can-protect-you-against-such-risks-check-costs-coverage-11792083873978.html",
+      "publishedAt": "2026-10-15T18:37:56Z",
+      "take": "Data breaches can expose personal information, leading to identity theft and financial loss, and personal cyber insurance can help cover such losses. As cyber fraud cases rise, having a policy can provide a safety net for individuals facing phishing or unauthorized transactions."
+    }
+  ]
+}
