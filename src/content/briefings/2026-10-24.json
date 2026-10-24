@@ -1,0 +1,123 @@
+{
+  "date": "2026-10-24",
+  "title": "Cyber security briefing — 24 October 2026",
+  "summary": "This week: major arrests of cyber fraud gangs, a surge in phishing and impersonation scams, and new RBI rules shifting fraud liability to banks.",
+  "published": true,
+  "generated": "ai-assisted",
+  "stories": [
+    {
+      "headline": "International cyber fraud gang arrested in Delhi; Two Kerala banks involved, probe ongoing",
+      "source": "Kerala Kaumudi Online",
+      "url": "https://keralakaumudi.com/en/news/india/general/kerala-banks-invovled-in-cyber-fraud-six-arrested-in-delhi-1818225",
+      "publishedAt": "2026-10-23 17:55:22"
+    },
+    {
+      "headline": "Mumbai Cyber Police Arrest Father-Son Duo in Rs 26 Lakh Scam Case",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/mumbai/mumbai-cyber-police-arrest-father-son-duo-in-rs-26-lakh-scam-case/articleshow/135152379.cms",
+      "publishedAt": "2026-10-23 17:41:12",
+      "take": "The case shows how fraudsters impersonate officials and use threats to extract money, highlighting the risk of phone scams that can lead to significant financial loss.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "What is EU investigating Booking.com for? Fake hotel listings, phishing scams and more | Explained",
+      "source": "Mint",
+      "url": "https://www.livemint.com/companies/what-is-eu-investigating-booking-com-for-fake-hotel-listings-phishing-scams-and-more-explained-11792771189836.html",
+      "publishedAt": "2026-10-23 16:11:58",
+      "take": "The EU probe highlights that online travel platforms can host fake hotel listings and phishing scams, meaning Indian users should verify accommodation details and be wary of unsolicited payment requests when booking online.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Nagaland cyber tour reaches 6,500 across all districts",
+      "source": "Morungexpress",
+      "url": "https://morungexpress.com/nagaland-cyber-tour-reaches-6500-across-all-districts",
+      "publishedAt": "2026-10-23 15:51:07",
+      "take": "The campaign taught thousands of students and community members how to spot phishing, financial fraud and digital‑arrest scams, helping them protect personal information and avoid online fraud.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Three Alive Chhattisgarh Men Found Listed As Dead In Major PMJJBY Fraud In Madhya Pradesh",
+      "source": "Etv Bharat",
+      "url": "https://www.etvbharat.com/en/state/three-alive-chhattisgarh-men-found-listed-as-dead-in-major-pmjjby-fraud-in-madhya-pradesh-enn26102306971",
+      "publishedAt": "2026-10-23 15:40:33",
+      "take": "The case shows that personal details such as Aadhaar and ration cards can be forged to file false insurance claims, exposing ordinary citizens to identity theft and financial fraud.",
+      "guide": {
+        "path": "/awareness/mole-account",
+        "title": "Mole Account — A Hidden Threat",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Man loses Rs53.7 lakh in online investment fraud",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/trichy/man-loses-rs53-7-lakh-in-online-investment-fraud/articleshow/135149475.cms",
+      "publishedAt": "2026-10-23 15:12:36",
+      "take": "A person lost a large sum after being lured by a fake online trading portal promoted on a messaging app, showing how easily fraudulent investment schemes can appear legitimate. The incident highlights the risk of sharing personal and banking details with unverified services and the importance of verifying platforms before transferring money.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Retired colonel loses ₹61.8 lakh in digital arrest scam",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/city/hyderabad/retired-colonel-loses-61-8-lakh-in-digital-arrest-scam/articleshow/135126019.cms",
+      "publishedAt": "2026-10-22T18:37:18Z",
+      "take": "Fraudsters impersonating law‑enforcement agencies can trick even retired officials into sending large sums, showing that anyone can be targeted by digital arrest scams and should verify any such calls independently.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Sim boxes linked to online frauds seized from two Whitefield apartments",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/city/bengaluru/sim-boxes-linked-to-online-frauds-seized-from-two-whitefield-apartments/articleshow/135124878.cms",
+      "publishedAt": "2026-10-22T17:54:08Z",
+      "take": "Illegal telecom hubs using sim boxes can facilitate large-scale scams such as digital arrest fraud and sextortion, putting ordinary users at risk of financial loss and privacy breaches.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Online frauds: You were alert but lost money due to bank's error? Key RBI rules on bank liability, customer compensation",
+      "source": "Livemint",
+      "url": "https://www.livemint.com/money/personal-finance/online-frauds-you-were-alert-but-lost-money-due-to-banks-error-key-rbi-rules-on-bank-liability-customer-compensation-11792657831269.html",
+      "publishedAt": "2026-10-22T09:25:54Z",
+      "take": "The RBI’s new rules mean banks must refund customers when fraud occurs even if the victim did not share an OTP, shifting proof of negligence to the bank and tightening resolution timelines.",
+      "guide": {
+        "path": "/awareness/safe-digital-banking",
+        "title": "Digital Banking — Safe Banking, Secure India",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Man held for Rs 1.2cr online fraud",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/city/bhubaneswar/man-held-for-rs-1-2cr-online-fraud/articleshow/135094648.cms",
+      "publishedAt": "2026-10-21T14:31:47Z",
+      "take": "People using online matrimonial sites can be targeted with elaborate scams that lead to large financial losses, as victims may be persuaded to hand over bank access or transfer money. Such fraud highlights the need for caution and verification before sharing personal or financial details online.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    }
+  ]
+}
