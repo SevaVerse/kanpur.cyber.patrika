@@ -1,0 +1,123 @@
+{
+  "date": "2026-10-31",
+  "title": "Cyber security briefing — 31 October 2026",
+  "summary": "This week: a surge in digital‑arrest impersonation scams and a Supreme Court push to make banks compensate cyber‑fraud victims.",
+  "published": true,
+  "generated": "ai-assisted",
+  "stories": [
+    {
+      "headline": "Trader loses ₹11.25 lakh in piped gas billing fraud",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/pune/trader-loses-11-25-lakh-in-piped-gas-billing-fraud/articleshow/135375433.cms",
+      "publishedAt": "2026-10-30 18:51:25",
+      "take": "Fraudsters posing as utility employees can trick people into installing malicious apps and revealing banking credentials, leading to large unauthorized transfers. The incident shows how phone scams that request OTPs and bank details can quickly drain personal savings.",
+      "guide": {
+        "path": "/awareness/safe-digital-banking",
+        "title": "Digital Banking — Safe Banking, Secure India",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Four arrested in Ahmedabad for allegedly supplying bank accounts to Dubai-based operators in Rs 50-crore cyber fraud trail",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/ahmedabad/four-arrested-in-ahmedabad-for-allegedly-supplying-bank-accounts-to-dubai-based-operators-in-rs-50-crore-cyber-fraud-trail/articleshow/135375360.cms",
+      "publishedAt": "2026-10-30 18:49:15",
+      "take": "The arrests show how fraudsters use fake investment apps and supplied bank accounts to move large sums of money, exposing investors to significant financial loss and highlighting the need to verify digital platforms before sharing banking details.",
+      "guide": {
+        "path": "/awareness/safe-digital-banking",
+        "title": "Digital Banking — Safe Banking, Secure India",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Ex-professor among 3 held in ₹1.5cr cyberfraud case",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/surat/ex-professor-among-3-held-in-1-5cr-cyberfraud-case/articleshow/135375125.cms",
+      "publishedAt": "2026-10-30 18:43:10",
+      "take": "The case shows how fraudsters can impersonate insurance officials and use fake SIM cards and bank accounts to trick victims into transferring large sums, underscoring the need to verify any such requests before sending money.",
+      "guide": {
+        "path": "/awareness/safe-digital-banking",
+        "title": "Digital Banking — Safe Banking, Secure India",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "As SC hears digital arrest case, elderly Hyd couple loses Rs 1.5 crore",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/hyderabad/as-sc-hears-digital-arrest-case-elderly-hyd-couple-loses-rs-1-5-crore/articleshow/135374884.cms",
+      "publishedAt": "2026-10-30 18:34:56",
+      "take": "The incident shows how fraudsters can impersonate officials and threaten arrest to trick seniors into handing over their life savings, highlighting the real danger of digital arrest scams.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Pune man held in Rs 76 lakh ‘digital arrest’ fraud targeting Jaipur doctor couple",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/jaipur/pune-man-held-in-rs-76-lakh-digital-arrest-fraud-targeting-jaipur-doctor-couple/articleshow/135374472.cms",
+      "publishedAt": "2026-10-30 18:19:47",
+      "take": "Scammers posing as police and NIA officers can trick victims into transferring large sums of money, as seen in the ₹76 lakh loss suffered by a doctor couple, showing the real danger of digital arrest impersonation scams.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Online impersonator tricks employee into ₹50L transfer",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/hyderabad/online-impersonator-tricks-employee-into-50l-transfer/articleshow/135373750.cms",
+      "publishedAt": "2026-10-30 18:01:09",
+      "take": "Employees can be deceived by messages that appear to come from senior officials, leading to unauthorized large fund transfers and potential loss for companies.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Rs 3.5cr drone grant to Hamirpur student fake, online fraud suspected",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/chandigarh/rs-3-5cr-drone-grant-to-hamirpur-student-fake-online-fraud-suspected/articleshow/135372763.cms",
+      "publishedAt": "2026-10-30 17:40:49",
+      "take": "The incident shows how scammers can use fake government grant offers to trick students into sharing personal information or money, exposing them to financial loss and identity theft.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "SC cracks down on banks, seeks mandatory payouts to cyber fraud victims",
+      "source": "The Times of India",
+      "url": "https://economictimes.indiatimes.com/industry/banking/finance/banking/sc-cracks-down-on-banks-seeks-mandatory-payouts-to-cyber-fraud-victims/articleshow/135338935.cms",
+      "publishedAt": "2026-10-30T02:16:15Z",
+      "take": "The Supreme Court’s directive means banks could be held financially responsible if they fail to stop fraudulent digital transactions, giving victims a clearer path to recover losses and pushing banks to strengthen fraud detection.",
+      "guide": {
+        "path": "/awareness/safe-digital-banking",
+        "title": "Digital Banking — Safe Banking, Secure India",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Mandate damages for savings lost in 'digital arrest': SC to RBI",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/india/mandate-damages-for-savings-lost-in-digital-arrest-sc-to-rbi/articleshow/135331961.cms",
+      "publishedAt": "2026-10-29T20:52:48Z",
+      "take": "The Supreme Court’s direction for banks to compensate victims and promptly alert them about high‑value transactions aims to reduce losses from digital‑arrest scams and curb possible bank‑staff involvement.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "SC asks RBI to make banks compensate victims of digital arrest, cyber fraud",
+      "source": "Business Standard",
+      "url": "https://www.business-standard.com/india-news/sc-asks-rbi-to-make-banks-compensate-victims-of-digital-arrest-cyber-fraud-126102901741_1.html",
+      "publishedAt": "2026-10-29T15:39:41Z"
+    }
+  ]
+}
