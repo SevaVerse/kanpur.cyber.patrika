@@ -198,10 +198,26 @@ scripts/
 
 ## Deployment
 
-`.github/workflows/deploy.yml` runs on push to `main`: `npm ci`, lint, build, then publishes `out/` to
-`gh-pages`. Set `NEXT_PUBLIC_SITE_URL=https://cybervani.com` so canonical URLs and assets resolve from the
-domain root; `next.config.ts` otherwise derives a `basePath` from `GITHUB_REPOSITORY` for project-site
-deployments.
+`.github/workflows/deploy.yml` runs on push to `main` in two jobs:
+
+1. **build** — `npm ci`, lint, `npm test`, build. It has a read-only token and no persisted git credentials,
+   because `npm ci` runs every dependency's install scripts.
+2. **deploy** — downloads the built `out/` artifact and publishes it to `gh-pages`. It holds the write token
+   but never runs npm.
+
+Set `NEXT_PUBLIC_SITE_URL=https://cybervani.com` so canonical URLs and assets resolve from the domain root;
+`next.config.ts` otherwise derives a `basePath` from `GITHUB_REPOSITORY` for project-site deployments.
+
+Other workflows:
+
+- `ci.yml` — lint, test and build on every pull request.
+- `links.yml` — weekly report-only link check of the built site (publisher URLs rot).
+- `dependabot.yml` — weekly npm and GitHub Actions updates. Actions are pinned to commit SHAs.
+
+The Node version lives in `.nvmrc` and is shared by every workflow.
+
+`npm test` covers the take validators, story intake, and the integrity of the content itself
+(`scripts/lib/content.test.mjs`): related links, hreflang pairs, artwork files and briefing guide links.
 
 ## Custom domain checklist
 
