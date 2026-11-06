@@ -3,33 +3,16 @@ import Link from "next/link";
 
 import { LibraryGrid } from "@/components/library-grid";
 import { getInfographics, toLibraryCard } from "@/lib/library";
-
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const logoPath = `${basePath}/Site_logo.jpeg`;
+import { pageMetadata } from "@/lib/site-metadata";
 
 const description =
   "Free cyber security infographics in Hindi and English — e-challan fraud, OTP scams, WhatsApp hacking, digital arrest, safe banking and more. Every poster has a full text guide.";
 
-export const metadata: Metadata = {
-  title: "Infographics Gallery",
+export const metadata: Metadata = pageMetadata({
+  title: "Cyber Fraud Awareness Posters in Hindi & English",
   description,
-  alternates: { canonical: "gallery/" },
-  openGraph: {
-    title: "Infographics Gallery | Cyber Vani",
-    description,
-    siteName: "Cyber Vani",
-    locale: "en_IN",
-    type: "website",
-    url: "gallery/",
-    images: [{ url: logoPath, alt: "Cyber Vani logo" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Infographics Gallery | Cyber Vani",
-    description,
-    images: [logoPath],
-  },
-};
+  path: "/gallery",
+});
 
 export default function GalleryPage() {
   const cards = getInfographics().map(toLibraryCard);

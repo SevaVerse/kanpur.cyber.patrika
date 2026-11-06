@@ -4,7 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { LanguageToggle } from "@/components/language-toggle";
+import { LanguageToggle, TRANSLATE_MOUNT_ID } from "@/components/language-toggle";
+import { type Lang, ui } from "@/lib/i18n";
 import type { SearchEntry } from "@/lib/search";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -14,20 +15,25 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
  * Sponsors and Contact live in the footer, which already lists both, and
  * Home lives on the logo where readers expect it.
  */
-const primaryLinks = [
-  { href: "/briefing", label: "Briefings" },
-  { href: "/gallery", label: "Infographics" },
-  { href: "/comics", label: "Comics" },
-  { href: "/about", label: "About" },
-];
+function navLinks(lang: Lang) {
+  const t = ui[lang].nav;
+  const primary = [
+    { href: "/briefing", label: t.briefings },
+    { href: "/gallery", label: t.infographics },
+    { href: "/comics", label: t.comics },
+    { href: "/about", label: t.about },
+  ];
 
-/** The mobile drawer keeps everything reachable. */
-const mobileLinks = [
-  { href: "/", label: "Home" },
-  ...primaryLinks,
-  { href: "/sponsors", label: "Sponsors" },
-  { href: "/contact", label: "Contact" },
-];
+  /** The mobile drawer keeps everything reachable. */
+  const mobile = [
+    { href: "/", label: t.home },
+    ...primary,
+    { href: "/sponsors", label: t.sponsors },
+    { href: "/contact", label: t.contact },
+  ];
+
+  return { primary, mobile };
+}
 
 /**
  * Drawn rather than typed. The previous affordance was U+2315, a technical
@@ -53,9 +59,14 @@ function SearchIcon() {
 
 type NavbarProps = {
   entries: SearchEntry[];
+  lang: Lang;
+  /** Path -> hand-written translation, for the language toggle. */
+  alternates: Record<string, string>;
 };
 
-export function Navbar({ entries }: NavbarProps) {
+export function Navbar({ entries, lang, alternates }: NavbarProps) {
+  const t = ui[lang];
+  const { primary: primaryLinks, mobile: mobileLinks } = navLinks(lang);
   const [open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -93,6 +104,8 @@ export function Navbar({ entries }: NavbarProps) {
 
   return (
     <header className="relative z-40 border-b border-border/80 bg-surface/95 backdrop-blur-sm">
+      {/* Single hidden mount for Google Translate, used only on request. */}
+      <div id={TRANSLATE_MOUNT_ID} className="hidden" aria-hidden="true" />
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3" onClick={closeMenus}>
@@ -111,7 +124,7 @@ export function Navbar({ entries }: NavbarProps) {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-7 text-sm font-semibold text-muted md:flex">
+        <nav aria-label={t.nav.primary} className="hidden items-center gap-7 text-sm font-semibold text-muted md:flex">
           {primaryLinks.map((link) => (
             <Link
               key={link.href}
@@ -125,12 +138,12 @@ export function Navbar({ entries }: NavbarProps) {
             <button
               type="button"
               onClick={() => setSearchOpen(true)}
-              aria-label="Search"
+              aria-label={t.search.open}
               className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface-strong text-base text-hero transition hover:border-accent hover:text-accent"
             >
               <SearchIcon />
             </button>
-            <LanguageToggle />
+            <LanguageToggle lang={lang} alternates={alternates} />
           </div>
         </nav>
 
@@ -139,15 +152,15 @@ export function Navbar({ entries }: NavbarProps) {
           <button
             type="button"
             onClick={() => setSearchOpen(true)}
-            aria-label="Open search"
+            aria-label={t.search.open}
             className="flex h-11 w-11 items-center justify-center rounded-control border border-border bg-surface-strong text-base font-bold text-hero transition hover:border-accent hover:text-accent"
           >
             <SearchIcon />
           </button>
-          <LanguageToggle />
+          <LanguageToggle lang={lang} alternates={alternates} />
           <button
             onClick={() => setOpen((v) => !v)}
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
             aria-expanded={open}
             className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-control border border-border bg-surface-strong transition hover:border-accent"
           >
@@ -186,16 +199,16 @@ export function Navbar({ entries }: NavbarProps) {
             onClick={(event) => event.stopPropagation()}
             role="dialog"
             aria-modal="true"
-            aria-label="Search articles"
+            aria-label={t.search.label}
           >
             <div className="border-b border-border px-5 py-4 sm:px-6">
               <div className="flex items-center gap-3">
-                <span className="text-sm font-bold uppercase tracking-kicker text-accent">Search</span>
+                <span className="text-sm font-bold uppercase tracking-kicker text-accent">{t.search.title}</span>
                 <input
                   type="search"
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
-                  placeholder="Search headlines, topics, sources..."
+                  placeholder={t.search.placeholder}
                   autoFocus
                   className="w-full rounded-card border border-border bg-white px-4 py-3 text-sm font-normal text-hero outline-none transition focus:border-accent"
                 />
@@ -204,15 +217,15 @@ export function Navbar({ entries }: NavbarProps) {
                   onClick={() => setSearchOpen(false)}
                   className="rounded-control border border-border px-3 py-2 text-xs font-bold uppercase tracking-label text-muted transition hover:border-accent hover:text-accent"
                 >
-                  Close
+                  {t.search.close}
                 </button>
               </div>
             </div>
 
             <div className="max-h-[70vh] overflow-y-auto p-4 sm:p-5">
               <div className="mb-3 flex items-center justify-between gap-3 px-1 text-xs font-semibold uppercase tracking-label text-muted">
-                <span>{normalizedQuery ? `Results for "${query}"` : "Suggested articles"}</span>
-                <span>{searchResults.length} shown</span>
+                <span>{normalizedQuery ? t.search.resultsFor(query) : t.search.suggested}</span>
+                <span>{t.search.shown(searchResults.length)}</span>
               </div>
 
               <div className="space-y-3">
@@ -235,10 +248,8 @@ export function Navbar({ entries }: NavbarProps) {
                   ))
                 ) : (
                   <div className="rounded-card border border-dashed border-border bg-surface-strong px-5 py-10 text-center">
-                    <p className="text-base font-bold text-hero">No articles matched that search.</p>
-                    <p className="mt-2 text-sm leading-6 text-slate-700">
-                      Try terms like ransomware, breach, malware, policy, or India.
-                    </p>
+                    <p className="text-base font-bold text-hero">{t.search.emptyTitle}</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-700">{t.search.emptyHint}</p>
                   </div>
                 )}
               </div>

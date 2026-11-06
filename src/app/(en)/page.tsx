@@ -5,10 +5,14 @@ import { LibraryGrid } from "@/components/library-grid";
 import { briefingPath, getAllBriefings, getLatestBriefing, sourceHost } from "@/lib/briefings";
 import { formatLongDate } from "@/lib/format";
 import { getLibraryItems, toLibraryCard } from "@/lib/library";
+import { pageMetadata, siteDescription, siteTitle } from "@/lib/site-metadata";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/" },
-};
+export const metadata: Metadata = pageMetadata({
+  title: siteTitle.en,
+  absoluteTitle: true,
+  description: siteDescription.en,
+  path: "/",
+});
 
 export default function HomePage() {
   const latest = getLatestBriefing();

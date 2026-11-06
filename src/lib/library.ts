@@ -15,7 +15,7 @@ import { englishItems } from "@/lib/library-en";
 import { hindiItems } from "@/lib/library-hi";
 import type { LibraryItem } from "@/lib/library-types";
 
-export type { LibraryAsset, LibraryBlock, LibraryItem, LibraryStep } from "@/lib/library-types";
+export type { LibraryAsset, LibraryBlock, LibraryItem, LibraryPerson, LibraryStep } from "@/lib/library-types";
 export { CYBERCRIME_PORTAL, HELPLINE_NUMBER } from "@/lib/library-types";
 
 /**
@@ -78,6 +78,27 @@ export function getAlternateLanguageItem(item: LibraryItem) {
   }
 
   return getLibraryItem(item.altLangSlug, item.lang === "en" ? "hi" : "en");
+}
+
+/**
+ * Path -> path of the same topic in the other language, for every hreflang
+ * pair. Small and serialisable: the language toggle uses it to send a reader
+ * to the hand-written translation instead of machine-translating the page.
+ */
+export function getLanguageAlternates() {
+  const map: Record<string, string> = {};
+
+  for (const item of libraryItems) {
+    const alternate = getAlternateLanguageItem(item);
+    if (alternate) map[libraryPath(item)] = libraryPath(alternate);
+  }
+
+  return map;
+}
+
+/** Last substantive change, falling back to the publication date. */
+export function libraryModifiedAt(item: LibraryItem) {
+  return item.updatedAt ?? item.publishedAt;
 }
 
 /** Plain-text rendering of an item's blocks, for search and feed summaries. */

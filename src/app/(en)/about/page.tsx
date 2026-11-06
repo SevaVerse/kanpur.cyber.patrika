@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
+
+import { pageMetadata } from "@/lib/site-metadata";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const logoPath = `${basePath}/Site_logo.jpeg`;
 
 const founderMember = {
   name: "Nitin Srivastava",
@@ -29,29 +31,12 @@ const associateMembers = [
   },
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "About Us",
   description:
-    "Learn about Cyber Vani, its editorial mission, the cyber helpline, and the founding team behind the publication.",
-  alternates: { canonical: "about/" },
-  openGraph: {
-    title: "About Us | Cyber Vani",
-    description:
-      "Learn about Cyber Vani, its editorial mission, the cyber helpline, and the founding team behind the publication.",
-    siteName: "Cyber Vani",
-    locale: "en_US",
-    type: "website",
-    url: "about/",
-    images: [{ url: logoPath, alt: "Cyber Vani logo" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "About Us | Cyber Vani",
-    description:
-      "Learn about Cyber Vani, its editorial mission, the cyber helpline, and the founding team behind the publication.",
-    images: [logoPath],
-  },
-};
+    "Who runs Cyber Vani, how the weekly briefing is made, and the cyber helplines for readers in Uttar Pradesh and across India.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (
@@ -59,10 +44,11 @@ export default function AboutPage() {
       <section className="overflow-hidden rounded-panel border border-border bg-hero px-6 py-8 text-white shadow-panel sm:px-10 sm:py-12">
         <p className="text-xs font-bold uppercase tracking-hero text-hero-accent">About The Publication</p>
         <h1 className="mt-4 max-w-4xl text-4xl font-bold leading-tight sm:text-5xl">
-          Cyber Vani publishes clear, honest reporting on cyber threats, breaches, and digital policy.
+          Cyber Vani helps ordinary people recognise cyber fraud before it reaches them.
         </h1>
         <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300 sm:text-base">
-          We believe everyone deserves reliable, easy-to-understand cyber security news. Our editorial team curates the stories that matter most and publishes them every week, consistently and on time.
+          Free awareness guides in Hindi and English, and a weekly briefing of the cyber fraud stories that matter —
+          written for readers across Uttar Pradesh and India, not for security professionals.
         </p>
       </section>
 
@@ -72,10 +58,19 @@ export default function AboutPage() {
           <h2 className="mt-3 text-3xl font-bold text-hero">Why this newsroom exists</h2>
           <div className="mt-5 space-y-4 text-sm leading-7 text-slate-700 sm:text-base">
             <p>
-              Cyber Vani focuses on the stories security teams, founders, students, and public-interest readers need to track: active threat campaigns, data exposure incidents, policy shifts, and operational security lessons.
+              Cyber fraud in India works by surprise: a call from &ldquo;the police&rdquo;, a fake e-challan, a request
+              for an OTP. People who have seen the script before recognise it in time. Our awareness library explains
+              each scam in plain Hindi and English, as posters and comics that are easy to share with family.
             </p>
             <p>
-              We are committed to publishing consistently, week after week, so readers always have a trusted place to turn when a new cyber incident or threat emerges.
+              Every Saturday, our weekly briefing collects the week&apos;s cyber fraud stories from Indian news
+              outlets and links each one to the guide that explains how to avoid it. The short &ldquo;why it
+              matters&rdquo; notes are AI-assisted and automatically checked against the original reporting before
+              publication.{" "}
+              <Link href="/editorial-policy" className="font-semibold text-accent hover:underline">
+                Read our editorial policy
+              </Link>
+              .
             </p>
           </div>
         </article>

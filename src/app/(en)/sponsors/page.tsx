@@ -1,32 +1,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
+
+import { pageMetadata } from "@/lib/site-metadata";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const logoPath = `${basePath}/Site_logo.jpeg`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Sponsors",
   description:
     "Meet the sponsors and partners supporting Cyber Vani's mission to deliver reliable cyber security awareness to Uttar Pradesh and beyond.",
-  alternates: { canonical: "sponsors/" },
-  openGraph: {
-    title: "Sponsors | Cyber Vani",
-    description:
-      "Meet the sponsors and partners supporting Cyber Vani's mission to deliver reliable cyber security awareness to Uttar Pradesh and beyond.",
-    siteName: "Cyber Vani",
-    locale: "en_US",
-    type: "website",
-    url: "sponsors/",
-    images: [{ url: logoPath, alt: "Cyber Vani logo" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Sponsors | Cyber Vani",
-    description:
-      "Meet the sponsors and partners supporting Cyber Vani's mission to deliver reliable cyber security awareness to Uttar Pradesh and beyond.",
-    images: [logoPath],
-  },
-};
+  path: "/sponsors",
+});
 
 type Sponsor = {
   id: string;
@@ -179,12 +164,12 @@ export default function SponsorsPage() {
           audience of cyber-aware readers across Uttar Pradesh and India. Reach out via the Contact page to discuss
           available tiers.
         </p>
-        <a
+        <Link
           href="/contact"
           className="mt-6 inline-block rounded-card bg-hero px-6 py-3 text-sm font-bold uppercase tracking-widest text-white shadow transition hover:opacity-90"
         >
           Get In Touch
-        </a>
+        </Link>
       </section>
     </div>
   );

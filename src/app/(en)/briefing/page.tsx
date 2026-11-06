@@ -3,28 +3,16 @@ import Link from "next/link";
 
 import { briefingPath, getAllBriefings } from "@/lib/briefings";
 import { formatLongDate } from "@/lib/format";
-
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const logoPath = `${basePath}/Site_logo.jpeg`;
+import { pageMetadata } from "@/lib/site-metadata";
 
 const description =
   "Every Cyber Vani weekly briefing, newest first. Curated cyber security stories with our own take on why each one matters — links always go to the original publisher.";
 
-export const metadata: Metadata = {
-  title: "Weekly Briefings",
+export const metadata: Metadata = pageMetadata({
+  title: "Weekly Cyber Fraud Briefings",
   description,
-  alternates: { canonical: "briefing/" },
-  openGraph: {
-    title: "Weekly Briefings | Cyber Vani",
-    description,
-    siteName: "Cyber Vani",
-    locale: "en_IN",
-    type: "website",
-    url: "briefing/",
-    images: [{ url: logoPath, alt: "Cyber Vani logo" }],
-  },
-  twitter: { card: "summary_large_image", title: "Weekly Briefings | Cyber Vani", description },
-};
+  path: "/briefing",
+});
 
 export default function BriefingIndexPage() {
   const briefings = getAllBriefings();

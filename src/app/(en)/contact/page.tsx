@@ -1,30 +1,14 @@
 import type { Metadata } from "next";
 
 import { ContactForm } from "@/components/contact-form";
+import { pageMetadata } from "@/lib/site-metadata";
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const logoPath = `${basePath}/Site_logo.jpeg`;
-
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Contact Us",
-  description: "Contact the Cyber Vani editorial desk using a static Formspree-compatible form.",
-  alternates: { canonical: "contact/" },
-  openGraph: {
-    title: "Contact Us | Cyber Vani",
-    description: "Contact the Cyber Vani editorial desk using a static Formspree-compatible form.",
-    siteName: "Cyber Vani",
-    locale: "en_US",
-    type: "website",
-    url: "contact/",
-    images: [{ url: logoPath, alt: "Cyber Vani logo" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contact Us | Cyber Vani",
-    description: "Contact the Cyber Vani editorial desk using a static Formspree-compatible form.",
-    images: [logoPath],
-  },
-};
+  description:
+    "Send Cyber Vani a story tip, a correction or a sponsorship enquiry. Reporting a live fraud? Call 1930 or file at cybercrime.gov.in.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
