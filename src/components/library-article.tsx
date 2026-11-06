@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { Picture } from "@/components/picture";
 import { formatDate } from "@/lib/format";
-import { getImageDimensions } from "@/lib/image-manifest";
 import {
   CYBERCRIME_PORTAL,
   HELPLINE_NUMBER,
@@ -12,8 +12,6 @@ import {
   getRelatedItems,
   libraryPath,
 } from "@/lib/library";
-
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const strings = {
   en: {
@@ -162,28 +160,23 @@ export function LibraryArticle({ item }: { item: LibraryItem }) {
           ) : null}
         </header>
 
-        {item.assets.map((asset, index) => {
-          const size = getImageDimensions(asset.src);
-
-          return (
-            <figure key={asset.src} className="mt-8">
-              {/* Plain <img>: static export disables Next image optimisation, and
-                  poster aspect ratios vary too much for a fixed container. */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={`${basePath}${asset.src}`}
-                alt={asset.alt}
-                width={size?.width}
-                height={size?.height}
-                loading={index === 0 ? "eager" : "lazy"}
-                className="h-auto w-full rounded-card border border-border bg-surface-strong"
-              />
-              {asset.caption ? (
-                <figcaption className="mt-3 text-sm leading-6 text-muted">{asset.caption}</figcaption>
-              ) : null}
-            </figure>
-          );
-        })}
+        {item.assets.map((asset, index) => (
+          <figure key={asset.src} className="mt-8">
+            {/* Responsive variants from the build-time image pipeline; the
+                container is fluid because poster aspect ratios vary. */}
+            <Picture
+              src={asset.src}
+              alt={asset.alt}
+              sizes="(min-width: 896px) 832px, 92vw"
+              loading={index === 0 ? "eager" : "lazy"}
+              fetchPriority={index === 0 ? "high" : undefined}
+              className="h-auto w-full rounded-card border border-border bg-surface-strong"
+            />
+            {asset.caption ? (
+              <figcaption className="mt-3 text-sm leading-6 text-muted">{asset.caption}</figcaption>
+            ) : null}
+          </figure>
+        ))}
 
         <div className="mt-8">
           <Blocks blocks={item.blocks} />

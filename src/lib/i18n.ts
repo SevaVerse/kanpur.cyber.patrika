@@ -33,6 +33,7 @@ export const ui = {
       shown: (count: number) => `${count} shown`,
       emptyTitle: "No articles matched that search.",
       emptyHint: "Try terms like digital arrest, OTP, UPI, e-challan or WhatsApp.",
+      loading: "Loading…",
     },
     language: {
       group: "Language",
@@ -84,6 +85,7 @@ export const ui = {
       shown: (count: number) => `${count} परिणाम`,
       emptyTitle: "इस खोज से कोई लेख नहीं मिला।",
       emptyHint: "डिजिटल अरेस्ट, OTP, UPI, ई-चालान या WhatsApp जैसे शब्द आज़माएँ।",
+      loading: "लोड हो रहा है…",
     },
     language: {
       group: "भाषा",

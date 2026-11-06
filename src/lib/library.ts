@@ -10,7 +10,7 @@
  * topic pages, the sitemap, the RSS feed and navbar search.
  */
 
-import { getImageDimensions } from "@/lib/image-manifest";
+import { getImageEntry } from "@/lib/image-manifest";
 import { englishItems } from "@/lib/library-en";
 import { hindiItems } from "@/lib/library-hi";
 import type { LibraryItem } from "@/lib/library-types";
@@ -122,7 +122,6 @@ export function libraryItemText(item: LibraryItem) {
 /** Projects an item down to the lean shape the client-side grid needs. */
 export function toLibraryCard(item: LibraryItem) {
   const asset = item.assets[0];
-  const size = asset ? getImageDimensions(asset.src) : null;
 
   return {
     slug: item.slug,
@@ -135,8 +134,8 @@ export function toLibraryCard(item: LibraryItem) {
     tags: item.tags,
     imageSrc: asset?.src ?? "",
     imageAlt: asset?.alt ?? item.title,
-    imageWidth: size?.width,
-    imageHeight: size?.height,
+    // Passed down so the client grid never imports the whole manifest.
+    image: asset ? getImageEntry(asset.src) : null,
   };
 }
 
