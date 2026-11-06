@@ -24,6 +24,8 @@ export type LibraryAsset = {
 
 export type LibraryStep = { title: string; text: string };
 
+export type LibraryPerson = { name: string; role?: string; url?: string };
+
 export type LibraryItem = {
   slug: string;
   lang: "en" | "hi";
@@ -36,6 +38,15 @@ export type LibraryItem = {
   category: string;
   tags: string[];
   publishedAt: string;
+  /** Set when the guide text is materially revised. Drives dateModified. */
+  updatedAt?: string;
+  /** Named author, shown as a byline and emitted as a schema.org Person. */
+  author?: LibraryPerson;
+  /**
+   * Subject-matter reviewer, e.g. an advocate checking a legal-process guide.
+   * Only set this when the review actually happened.
+   */
+  reviewedBy?: LibraryPerson;
   assets: LibraryAsset[];
   /** Set when the artwork is not Cyber Vani's own, so attribution is explicit. */
   credit?: string;

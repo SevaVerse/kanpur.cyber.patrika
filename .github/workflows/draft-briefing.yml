@@ -33,16 +33,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          # No token in .git/config while npm ci runs dependency scripts.
+          # The push step below supplies it for that one command only.
+          persist-credentials: false
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
-          node-version: 22
+          node-version-file: .nvmrc
           cache: npm
 
       - name: Install dependencies
         run: npm ci
+
+      # The validators are what keep invented figures and contact details out
+      # of the takes. Never publish with them broken.
+      - name: Test
+        run: npm test
 
       - name: Generate briefing
         env:
@@ -50,7 +59,15 @@ jobs:
           NEWSAPI_ORG_KEY: ${{ secrets.NEWSAPI_ORG_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GROQ_MODEL: ${{ vars.GROQ_MODEL }}
-        run: node scripts/draft-briefing.mjs ${{ inputs.date && format('--date {0}', inputs.date) || '' }} --force
+          # Passed through the environment, never interpolated into the
+          # script, so the input cannot inject shell.
+          BRIEFING_DATE: ${{ inputs.date }}
+        run: |
+          if [ -n "$BRIEFING_DATE" ]; then
+            node scripts/draft-briefing.mjs --date "$BRIEFING_DATE" --force
+          else
+            node scripts/draft-briefing.mjs --force
+          fi
 
       - name: Verify the site still builds with the new briefing
         env:
@@ -59,6 +76,8 @@ jobs:
 
       - name: Commit and push
         id: commit
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ -z "$(git status --porcelain src/content/briefings)" ]; then
             echo "No briefing changes to commit."
@@ -69,7 +88,7 @@ jobs:
           git config user.email "noreply@cybervani.com"
           git add src/content/briefings
           git commit -m "content: weekly briefing $(date -u +%Y-%m-%d)"
-          git push
+          git push "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
           echo "pushed=true" >> "$GITHUB_OUTPUT"
 
       - name: Deploy the new briefing

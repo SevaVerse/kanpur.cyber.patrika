@@ -10,12 +10,13 @@
  * topic pages, the sitemap, the RSS feed and navbar search.
  */
 
-import { getImageDimensions } from "@/lib/image-manifest";
+import { getImageEntry } from "@/lib/image-manifest";
 import { englishItems } from "@/lib/library-en";
 import { hindiItems } from "@/lib/library-hi";
 import type { LibraryItem } from "@/lib/library-types";
+import { canonicalUrl } from "@/lib/site-metadata";
 
-export type { LibraryAsset, LibraryBlock, LibraryItem, LibraryStep } from "@/lib/library-types";
+export type { LibraryAsset, LibraryBlock, LibraryItem, LibraryPerson, LibraryStep } from "@/lib/library-types";
 export { CYBERCRIME_PORTAL, HELPLINE_NUMBER } from "@/lib/library-types";
 
 /**
@@ -80,6 +81,27 @@ export function getAlternateLanguageItem(item: LibraryItem) {
   return getLibraryItem(item.altLangSlug, item.lang === "en" ? "hi" : "en");
 }
 
+/**
+ * Path -> path of the same topic in the other language, for every hreflang
+ * pair. Small and serialisable: the language toggle uses it to send a reader
+ * to the hand-written translation instead of machine-translating the page.
+ */
+export function getLanguageAlternates() {
+  const map: Record<string, string> = {};
+
+  for (const item of libraryItems) {
+    const alternate = getAlternateLanguageItem(item);
+    if (alternate) map[libraryPath(item)] = libraryPath(alternate);
+  }
+
+  return map;
+}
+
+/** Last substantive change, falling back to the publication date. */
+export function libraryModifiedAt(item: LibraryItem) {
+  return item.updatedAt ?? item.publishedAt;
+}
+
 /** Plain-text rendering of an item's blocks, for search and feed summaries. */
 export function libraryItemText(item: LibraryItem) {
   const fromBlocks = item.blocks.flatMap((block) => {
@@ -101,12 +123,12 @@ export function libraryItemText(item: LibraryItem) {
 /** Projects an item down to the lean shape the client-side grid needs. */
 export function toLibraryCard(item: LibraryItem) {
   const asset = item.assets[0];
-  const size = asset ? getImageDimensions(asset.src) : null;
 
   return {
     slug: item.slug,
     lang: item.lang,
     href: libraryPath(item),
+    shareUrl: canonicalUrl(libraryPath(item)),
     title: item.title,
     description: item.description,
     category: item.category,
@@ -114,8 +136,8 @@ export function toLibraryCard(item: LibraryItem) {
     tags: item.tags,
     imageSrc: asset?.src ?? "",
     imageAlt: asset?.alt ?? item.title,
-    imageWidth: size?.width,
-    imageHeight: size?.height,
+    // Passed down so the client grid never imports the whole manifest.
+    image: asset ? getImageEntry(asset.src) : null,
   };
 }
 

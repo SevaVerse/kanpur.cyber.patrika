@@ -44,7 +44,7 @@ Copy `.env.example` to `.env.local`. Every variable is optional for local work.
 | `GROQ_MODEL` | `scripts/draft-briefing.mjs` | Optional override of the default (`openai/gpt-oss-120b`). On a retired model id the drafter lists what your key can actually use. |
 | `NEXT_PUBLIC_FORMSPREE_ENDPOINT` | `/contact` | Without it, submissions go nowhere. |
 | `NEXT_PUBLIC_EDITOR_EMAIL` | `/contact` | Shows a direct "email us" block. Omitted entirely when unset. |
-| `NEXT_PUBLIC_GA_ID` | all pages | GA4 measurement ID. No analytics is loaded when unset. |
+| `NEXT_PUBLIC_GA_ID` | all pages | GA4 measurement ID. When set, readers are asked first; nothing loads without consent. |
 | `NEXT_PUBLIC_SITE_URL` | build | Canonical origin. Defaults to `https://cybervani.com`. |
 
 ## The weekly pipeline
@@ -161,31 +161,44 @@ The render path no longer calls a news API at all. `scripts/draft-briefing.mjs` 
 Everything else follows automatically: the topic page, `/gallery` or `/comics`, the sitemap, the RSS feed and
 site search all read from `src/lib/library.ts`.
 
-Image dimensions are generated into `src/lib/image-manifest.ts` by `npm run prebuild`, so new artwork gets
-correct `width`/`height` without manual work.
+`npm run prebuild` (run automatically before every build) writes AVIF and WebP copies of each poster, portrait
+and the logo at several widths into `public/_img/` (gitignored), and records them with each image's dimensions
+in `src/lib/image-manifest.ts`. Pages render them through `<Picture>` with a `srcset`, so new artwork is
+responsive and reserves its space with no manual work.
 
 ## Project structure
 
 ```text
 src/
 ├── app/
-│   ├── awareness/[slug]/       English guides
-│   ├── awareness/hi/[slug]/    Hindi guides
-│   ├── briefing/               Archive index + /briefing/[date]
-│   ├── feed.xml/               RSS
-│   ├── gallery/  comics/       Library browse pages
-│   ├── about/  contact/  sponsors/
-│   ├── layout.tsx  page.tsx  not-found.tsx  sitemap.ts  robots.ts
+│   ├── (en)/                   English root layout (<html lang="en">)
+│   │   ├── awareness/[slug]/   English guides
+│   │   ├── briefing/           Archive index + /briefing/[date]
+│   │   ├── gallery/  comics/   Library browse pages
+│   │   ├── about/  contact/  sponsors/  editorial-policy/  privacy/
+│   │   └── page.tsx  layout.tsx  not-found.tsx
+│   ├── (hi)/                   Hindi root layout (<html lang="hi">)
+│   │   └── awareness/hi/[slug]/  Hindi guides
+│   ├── og/[name]/              Share cards rendered at build time
+│   ├── feed.xml/  hi/feed.xml/ RSS, one per language
+│   ├── global-not-found.tsx    404 for unmatched URLs (two root layouts)
+│   ├── sitemap.ts  robots.ts  manifest.ts  icon.svg  apple-icon.png
 ├── components/
 │   ├── library-article.tsx     Renders one guide
 │   ├── library-grid.tsx        Card grid + lightbox
-│   ├── navbar.tsx  footer.tsx  analytics.tsx  contact-form.tsx
+│   ├── site-shell.tsx          <html>/<body> frame shared by both layouts
+│   ├── navbar.tsx  footer.tsx  language-toggle.tsx  breadcrumbs.tsx
+│   ├── analytics.tsx           GA4, loaded only after opt-in consent
+│   ├── contact-form.tsx
 ├── content/briefings/          Committed weekly briefings
 └── lib/
     ├── library.ts              Library entry point + helpers
     ├── library-en.ts  library-hi.ts  library-types.ts
     ├── library-seo.tsx         Metadata + JSON-LD
-    ├── briefings.ts  search.ts  format.ts  site.ts
+    ├── site-metadata.ts        pageMetadata() helper + Organization schema
+    ├── i18n.ts                 Interface strings (English / Hindi)
+    ├── json-ld.tsx             Safe structured-data rendering
+    ├── briefings.ts  search.ts  feed.ts  format.ts  site.ts
 scripts/
 ├── draft-briefing.mjs      Weekly pipeline entry point
 ├── generate-image-manifest.mjs
@@ -198,10 +211,26 @@ scripts/
 
 ## Deployment
 
-`.github/workflows/deploy.yml` runs on push to `main`: `npm ci`, lint, build, then publishes `out/` to
-`gh-pages`. Set `NEXT_PUBLIC_SITE_URL=https://cybervani.com` so canonical URLs and assets resolve from the
-domain root; `next.config.ts` otherwise derives a `basePath` from `GITHUB_REPOSITORY` for project-site
-deployments.
+`.github/workflows/deploy.yml` runs on push to `main` in two jobs:
+
+1. **build** — `npm ci`, lint, `npm test`, build. It has a read-only token and no persisted git credentials,
+   because `npm ci` runs every dependency's install scripts.
+2. **deploy** — downloads the built `out/` artifact and publishes it to `gh-pages`. It holds the write token
+   but never runs npm.
+
+Set `NEXT_PUBLIC_SITE_URL=https://cybervani.com` so canonical URLs and assets resolve from the domain root;
+`next.config.ts` otherwise derives a `basePath` from `GITHUB_REPOSITORY` for project-site deployments.
+
+Other workflows:
+
+- `ci.yml` — lint, test and build on every pull request.
+- `links.yml` — weekly report-only link check of the built site (publisher URLs rot).
+- `dependabot.yml` — weekly npm and GitHub Actions updates. Actions are pinned to commit SHAs.
+
+The Node version lives in `.nvmrc` and is shared by every workflow.
+
+`npm test` covers the take validators, story intake, and the integrity of the content itself
+(`scripts/lib/content.test.mjs`): related links, hreflang pairs, artwork files and briefing guide links.
 
 ## Custom domain checklist
 

@@ -1,23 +1,28 @@
 import type { Metadata } from "next";
 
 import { getImageDimensions } from "@/lib/image-manifest";
-import { type LibraryItem, getAlternateLanguageItem, libraryItemText, libraryPath } from "@/lib/library";
+import {
+  type LibraryItem,
+  type LibraryPerson,
+  getAlternateLanguageItem,
+  libraryItemText,
+  libraryModifiedAt,
+  libraryPath,
+} from "@/lib/library";
 import { getSiteUrl } from "@/lib/site";
+import { SITE_NAME, absoluteUrl, canonicalUrl, pageMetadata } from "@/lib/site-metadata";
 
-const SITE_NAME = "Cyber Vani";
-
-function absolute(pathname: string) {
-  return new URL(pathname.replace(/^\//, ""), getSiteUrl()).toString();
-}
+const absolute = absoluteUrl;
 
 function canonicalFor(item: LibraryItem) {
-  return absolute(`${libraryPath(item)}/`.replace(/\/+$/, "/"));
+  return canonicalUrl(libraryPath(item));
 }
 
 export function buildLibraryMetadata(item: LibraryItem): Metadata {
   const canonical = canonicalFor(item);
   const alternate = getAlternateLanguageItem(item);
-  const image = absolute(item.assets[0]?.src ?? "/Site_logo.jpeg");
+  const poster = item.assets[0];
+  const size = poster ? getImageDimensions(poster.src) : null;
 
   const languages = alternate
     ? {
@@ -27,27 +32,28 @@ export function buildLibraryMetadata(item: LibraryItem): Metadata {
       }
     : undefined;
 
-  return {
+  return pageMetadata({
     title: item.title,
     description: item.description,
-    keywords: item.tags,
-    alternates: { canonical, languages },
-    openGraph: {
-      type: "article",
-      title: item.title,
-      description: item.description,
-      url: canonical,
-      siteName: SITE_NAME,
-      locale: item.lang === "hi" ? "hi_IN" : "en_IN",
-      publishedTime: item.publishedAt,
-      images: [{ url: image, alt: item.assets[0]?.alt ?? item.title }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: item.title,
-      description: item.description,
-      images: [image],
-    },
+    path: libraryPath(item),
+    lang: item.lang,
+    type: "article",
+    publishedTime: item.publishedAt,
+    modifiedTime: item.updatedAt,
+    languages,
+    // The poster is the most shareable thing on the page, so it is the card.
+    image: poster
+      ? { url: poster.src, alt: poster.alt, ...(size ?? {}) }
+      : undefined,
+  });
+}
+
+function person(entry: LibraryPerson) {
+  return {
+    "@type": "Person",
+    name: entry.name,
+    ...(entry.role ? { jobTitle: entry.role } : {}),
+    ...(entry.url ? { url: entry.url } : {}),
   };
 }
 
@@ -72,29 +78,36 @@ export function buildLibrarySchemas(item: LibraryItem) {
       description: item.description,
       inLanguage: item.lang === "hi" ? "hi-IN" : "en-IN",
       datePublished: item.publishedAt,
-      dateModified: item.publishedAt,
+      dateModified: libraryModifiedAt(item),
       wordCount,
       keywords: item.tags.join(", "),
       articleSection: item.category,
       mainEntityOfPage: canonical,
       url: canonical,
-      author: { "@type": "Organization", name: SITE_NAME, url: siteUrl.toString() },
-      publisher: {
-        "@type": "Organization",
-        name: SITE_NAME,
-        logo: { "@type": "ImageObject", url: absolute("/Site_logo.jpeg") },
-      },
+      author: item.author
+        ? person(item.author)
+        : { "@type": "Organization", name: SITE_NAME, url: siteUrl.toString() },
+      ...(item.reviewedBy ? { reviewedBy: person(item.reviewedBy) } : {}),
+      publisher: { "@id": `${siteUrl.toString()}#organization` },
+      isAccessibleForFree: true,
       image: item.assets.map((asset) => absolute(asset.src)),
     },
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl.toString() },
+        { "@type": "ListItem", position: 1, name: item.lang === "hi" ? "होम" : "Home", item: siteUrl.toString() },
         {
           "@type": "ListItem",
           position: 2,
-          name: item.kind === "comic" ? "Comics Kona" : "Infographics",
+          name:
+            item.kind === "comic"
+              ? item.lang === "hi"
+                ? "कॉमिक्स कोना"
+                : "Comics Kona"
+              : item.lang === "hi"
+                ? "इन्फोग्राफिक्स"
+                : "Infographics",
           item: absolute(item.kind === "comic" ? "/comics/" : "/gallery/"),
         },
         { "@type": "ListItem", position: 3, name: item.title, item: canonical },
