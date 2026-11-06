@@ -5,9 +5,8 @@
    * The site commits to a light, warm-paper identity.
    *
    * Declaring color-scheme is not cosmetic: without it Chrome on Android
-   * applies Auto Dark Theme and recolours the page algorithmically, which is
-   * what made the 1930 helpline button invisible until hovered (the white
-   * background was darkened while the navy number stayed dark).
+   * applies Auto Dark Theme and recolours the page algorithmically. A real
+   * dark theme (redefining these tokens) is the proper long-term answer.
    */
   color-scheme: light;
 
@@ -25,14 +24,70 @@
   /* Amber is for DARK surfaces only: 8.31:1 on --hero, but 2.15:1 on white,
      which fails even for large text. Never use it as a foreground on paper. */
   --hero-accent: #f59e0b;
+
+  /*
+   * Semantic colours, so a scam category, a warning and a protective step
+   * look the same everywhere instead of each component picking a hex.
+   * Foregrounds are >= 4.5:1 on --surface-strong.
+   */
+  --danger: #b42318;
+  --danger-soft: rgba(180, 35, 24, 0.08);
+  --warn: #b45309;
+  --warn-soft: rgba(180, 83, 9, 0.09);
+  --safe: #15803d;
+  --safe-soft: rgba(21, 128, 61, 0.08);
+  --info: #1e40af;
+  --info-soft: rgba(30, 64, 175, 0.08);
+  --social: #6d28d9;
+  --social-soft: rgba(109, 40, 217, 0.08);
 }
 
-* {
-  box-sizing: border-box;
-}
+/*
+ * Element defaults live in the base layer. They used to be unlayered, and in
+ * Tailwind v4 unlayered CSS beats every utility class: `a { color: inherit }`
+ * overrode `text-hero` on links, which is what made the white 1930 helpline
+ * button render white-on-white until hovered, and `img { height: auto }`
+ * overrode `h-72`/`h-full` on images.
+ */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
 
-html {
-  scroll-behavior: smooth;
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at top left, rgba(245, 158, 11, 0.18), transparent 26%),
+      radial-gradient(circle at 85% 10%, rgba(180, 35, 24, 0.12), transparent 24%),
+      linear-gradient(180deg, #fcf8f2 0%, var(--background) 100%);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /*
+   * One visible focus indicator for every interactive element. The white
+   * halo keeps the red ring visible on the navy hero and footer too.
+   */
+  :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px #fff;
+  }
 }
 
 /* ── Google Translate Widget overrides ──────────────────────────── */
@@ -42,26 +97,6 @@ html {
 body                   { top: 0 !important; }
 .goog-te-gadget        { font-size: 0 !important; }
 .goog-te-gadget a      { display: none !important; }
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at top left, rgba(245, 158, 11, 0.18), transparent 26%),
-    radial-gradient(circle at 85% 10%, rgba(180, 35, 24, 0.12), transparent 24%),
-    linear-gradient(180deg, #fcf8f2 0%, var(--background) 100%);
-  color: var(--foreground);
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
 
 @theme inline {
   --color-background: var(--background);
@@ -74,6 +109,16 @@ img {
   --color-muted: var(--muted);
   --color-hero: var(--hero);
   --color-hero-accent: var(--hero-accent);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-safe: var(--safe);
+  --color-safe-soft: var(--safe-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-social: var(--social);
+  --color-social-soft: var(--social-soft);
 
   /*
    * One typeface for both scripts. Hind covers Latin and Devanagari, so an
@@ -96,14 +141,44 @@ img {
   --shadow-panel: 0 24px 70px -48px rgba(15, 23, 42, 0.5);
   --shadow-lift: 0 26px 80px -40px rgba(15, 23, 42, 0.45);
 
-  /* Three letter-spacings. Replaces twelve values between 0.16em and 0.45em. */
-  --tracking-label: 0.14em;
-  --tracking-kicker: 0.28em;
-  --tracking-hero: 0.38em;
+  /*
+   * Three letter-spacings, deliberately tight. Kickers spaced at 0.28-0.38em
+   * competed with the headlines they introduce and read as dated.
+   */
+  --tracking-label: 0.06em;
+  --tracking-kicker: 0.12em;
+  --tracking-hero: 0.16em;
 }
 
-body {
-  font-family: var(--font-sans);
+/*
+ * Devanagari must never be letter-spaced: spacing pulls matras and conjuncts
+ * apart. Uppercase is meaningless for it too. Unlayered on purpose, so it
+ * wins over any tracking-* or uppercase utility inside Hindi content.
+ */
+:lang(hi) {
+  letter-spacing: normal !important;
+}
+
+:lang(hi) p,
+:lang(hi) li {
+  /* Devanagari needs more vertical room for matras above and below. */
+  line-height: 1.9;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  border-radius: 999px;
+  background: var(--hero);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  top: 1rem;
 }
 
 /*

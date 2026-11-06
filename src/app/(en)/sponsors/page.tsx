@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { Picture } from "@/components/picture";
 import { pageMetadata } from "@/lib/site-metadata";
+import { PageHeader } from "@/components/page-header";
 
 export const metadata: Metadata = pageMetadata({
   title: "Sponsors",
@@ -46,17 +47,10 @@ const supportSponsors = sponsors.filter((s) => !s.imageSrc);
 export default function SponsorsPage() {
   return (
     <div className="mx-auto max-w-6xl space-y-10 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-      {/* Hero */}
-      <section className="overflow-hidden rounded-panel border border-border bg-hero px-6 py-8 text-white shadow-panel sm:px-10 sm:py-12">
-        <p className="text-xs font-bold uppercase tracking-hero text-hero-accent">Our Supporters</p>
-        <h1 className="mt-4 max-w-4xl text-4xl font-bold leading-tight sm:text-5xl">
-          Sponsors &amp; Partners backing cyber awareness in Uttar Pradesh.
-        </h1>
-        <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300 sm:text-base">
-          Cyber Vani is an editorially independent publication. These organisations share our commitment to
-          making cyber security knowledge accessible to every reader.
-        </p>
-      </section>
+      <PageHeader kicker="Our supporters" title="Sponsors and partners backing cyber awareness in Uttar Pradesh">
+        Cyber Vani is an editorially independent publication. These supporters share our commitment to making cyber
+        safety knowledge accessible to every reader.
+      </PageHeader>
 
       {/* Featured sponsors — portrait image + bio layout */}
       {featuredSponsors.length > 0 && (
@@ -65,8 +59,8 @@ export default function SponsorsPage() {
           {featuredSponsors.map((sponsor) => (
             <div key={sponsor.id} className="grid gap-6 md:grid-cols-[260px_1fr]">
               {/* Portrait image */}
-              <div className="mx-auto w-full max-w-65 overflow-hidden rounded-card border border-border bg-surface-strong shadow-card md:mx-0">
-                <div className="relative h-81.25 w-full">
+              <div className="mx-auto w-full max-w-[260px] overflow-hidden rounded-card border border-border bg-surface-strong shadow-card md:mx-0">
+                <div className="relative h-80 w-full">
                   <Picture
                     src={sponsor.imageSrc!}
                     alt={sponsor.name}

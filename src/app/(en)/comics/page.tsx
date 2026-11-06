@@ -4,6 +4,7 @@ import Link from "next/link";
 import { LibraryGrid } from "@/components/library-grid";
 import { getComics, toLibraryCard } from "@/lib/library";
 import { pageMetadata } from "@/lib/site-metadata";
+import { PageHeader } from "@/components/page-header";
 
 const description =
   "साइबर जागरूकता कॉमिक्स — डिजिटल अरेस्ट, ठगी के तरीके और बचाव के उपाय आसान हिंदी में, चित्रों के साथ। हर कॉमिक के साथ पूरी लिखित जानकारी भी।";
@@ -20,16 +21,12 @@ export default function ComicsPage() {
 
   return (
     <div className="mx-auto max-w-7xl space-y-10 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-      <section className="overflow-hidden rounded-panel border border-border bg-hero px-6 py-8 text-white shadow-panel sm:px-10 sm:py-12">
-        <p className="text-xs font-bold uppercase tracking-hero text-hero-accent">Visual Storytelling</p>
-        <h1 className="mt-4 max-w-4xl text-4xl font-bold leading-tight sm:text-5xl">Comics Kona</h1>
-        <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300 sm:text-base" lang="hi">
-          साइबर ठगी कैसे होती है और बचाव कैसे करें — आसान हिंदी कॉमिक्स में समझें। हर कॉमिक के साथ पूरी लिखित
-          जानकारी भी उपलब्ध है।
-        </p>
-      </section>
+      <PageHeader kicker="Comics Kona" title="साइबर ठगी की कहानियाँ, कॉमिक्स में" lang="hi">
+        साइबर ठगी कैसे होती है और बचाव कैसे करें — आसान हिंदी कॉमिक्स में समझें। हर कॉमिक के साथ पूरी लिखित जानकारी
+        भी उपलब्ध है।
+      </PageHeader>
 
-      <LibraryGrid items={cards} />
+      <LibraryGrid items={cards} variant="masonry" filterable />
 
       <section className="rounded-panel border border-accent/20 bg-[linear-gradient(135deg,rgba(180,35,24,0.06),rgba(245,158,11,0.08))] p-8 sm:p-10">
         <p className="text-xs font-bold uppercase tracking-hero text-accent">Explore More</p>

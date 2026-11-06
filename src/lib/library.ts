@@ -14,6 +14,7 @@ import { getImageEntry } from "@/lib/image-manifest";
 import { englishItems } from "@/lib/library-en";
 import { hindiItems } from "@/lib/library-hi";
 import type { LibraryItem } from "@/lib/library-types";
+import { canonicalUrl } from "@/lib/site-metadata";
 
 export type { LibraryAsset, LibraryBlock, LibraryItem, LibraryPerson, LibraryStep } from "@/lib/library-types";
 export { CYBERCRIME_PORTAL, HELPLINE_NUMBER } from "@/lib/library-types";
@@ -127,6 +128,7 @@ export function toLibraryCard(item: LibraryItem) {
     slug: item.slug,
     lang: item.lang,
     href: libraryPath(item),
+    shareUrl: canonicalUrl(libraryPath(item)),
     title: item.title,
     description: item.description,
     category: item.category,
