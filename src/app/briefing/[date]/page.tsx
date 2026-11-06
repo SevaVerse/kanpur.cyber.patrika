@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 
 import { formatLongDate } from "@/lib/format";
 import { getAllBriefings, getBriefingByDate, sourceHost } from "@/lib/briefings";
-import { JsonLd } from "@/lib/library-seo";
+import { JsonLd } from "@/lib/json-ld";
 import { getSiteUrl } from "@/lib/site";
 
 type BriefingPageProps = {

@@ -82,24 +82,90 @@ export async function fetchArticleText(url, { retries = 1 } = {}) {
   return null;
 }
 
-async function attemptFetch(url) {
+const MAX_REDIRECTS = 5;
+
+/**
+ * Hosts we never fetch: loopback, link-local (cloud metadata), private ranges.
+ * Only literal hostnames are checked — the drafter runs on an ephemeral CI
+ * runner, so this is defence in depth rather than a full SSRF boundary.
+ */
+const BLOCKED_HOST =
+  /^(localhost|.*\.local|.*\.internal|0\.0\.0\.0|127\.\d+\.\d+\.\d+|10\.\d+\.\d+\.\d+|192\.168\.\d+\.\d+|172\.(1[6-9]|2\d|3[01])\.\d+\.\d+|169\.254\.\d+\.\d+|\[?::1\]?|\[?f[cd][0-9a-f:]*\]?|\[?fe80:[0-9a-f:]*\]?)$/i;
+
+export function isFetchableUrl(value) {
+  let url;
+  try {
+    url = new URL(value);
+  } catch {
+    return false;
+  }
+
+  if (url.protocol !== "https:" && url.protocol !== "http:") return false;
+  if (url.username || url.password) return false;
+
+  return !BLOCKED_HOST.test(url.hostname);
+}
+
+/** Reads at most `limit` bytes, aborting the download past it. */
+async function readCapped(response, limit) {
+  const declared = Number.parseInt(response.headers.get("content-length") ?? "", 10);
+  if (Number.isFinite(declared) && declared > limit) return null;
+
+  if (!response.body) return null;
+
+  const reader = response.body.getReader();
+  const chunks = [];
+  let total = 0;
+
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    total += value.byteLength;
+    if (total > limit) {
+      await reader.cancel();
+      return null;
+    }
+
+    chunks.push(value);
+  }
+
+  return Buffer.concat(chunks);
+}
+
+async function attemptFetch(startUrl) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
 
   try {
-    const response = await fetch(url, {
-      signal: controller.signal,
-      redirect: "follow",
-      headers: {
-        // Identifies the bot honestly. Some publishers block non-browser
-        // agents; that is their call, and we take the refusal rather than
-        // spoofing a browser to get around it. The story simply ships
-        // without a take.
-        "User-Agent": USER_AGENT,
-        Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-IN,en;q=0.9,hi;q=0.8",
-      },
-    });
+    let url = startUrl;
+    let response;
+
+    // Redirects are followed by hand so every hop is re-checked: a public
+    // article URL must not be able to bounce the fetch to an internal host.
+    for (let hop = 0; ; hop += 1) {
+      if (!isFetchableUrl(url)) return null;
+
+      response = await fetch(url, {
+        signal: controller.signal,
+        redirect: "manual",
+        headers: {
+          // Identifies the bot honestly. Some publishers block non-browser
+          // agents; that is their call, and we take the refusal rather than
+          // spoofing a browser to get around it. The story simply ships
+          // without a take.
+          "User-Agent": USER_AGENT,
+          Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+          "Accept-Language": "en-IN,en;q=0.9,hi;q=0.8",
+        },
+      });
+
+      const location = response.headers.get("location");
+      if (response.status < 300 || response.status >= 400 || !location) break;
+      if (hop >= MAX_REDIRECTS) return null;
+
+      url = new URL(location, url).toString();
+    }
 
     if (!response.ok) {
       return null;
@@ -110,8 +176,8 @@ async function attemptFetch(url) {
       return null;
     }
 
-    const buffer = await response.arrayBuffer();
-    if (buffer.byteLength > MAX_BYTES) {
+    const buffer = await readCapped(response, MAX_BYTES);
+    if (!buffer) {
       return null;
     }
 
