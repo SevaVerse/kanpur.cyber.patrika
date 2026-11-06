@@ -60,6 +60,10 @@ export const ui = {
       upCell: "UP Police Cyber Cell",
     },
     breadcrumbHome: "Home",
+    a11y: {
+      skip: "Skip to content",
+      newTab: "(opens in a new tab)",
+    },
   },
   hi: {
     nav: {
@@ -112,6 +116,10 @@ export const ui = {
       upCell: "यूपी पुलिस साइबर सेल",
     },
     breadcrumbHome: "होम",
+    a11y: {
+      skip: "मुख्य सामग्री पर जाएँ",
+      newTab: "(नए टैब में खुलता है)",
+    },
   },
 } as const;
 

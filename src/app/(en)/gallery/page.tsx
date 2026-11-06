@@ -4,6 +4,7 @@ import Link from "next/link";
 import { LibraryGrid } from "@/components/library-grid";
 import { getInfographics, toLibraryCard } from "@/lib/library";
 import { pageMetadata } from "@/lib/site-metadata";
+import { PageHeader } from "@/components/page-header";
 
 const description =
   "Free cyber security infographics in Hindi and English — e-challan fraud, OTP scams, WhatsApp hacking, digital arrest, safe banking and more. Every poster has a full text guide.";
@@ -19,24 +20,23 @@ export default function GalleryPage() {
 
   return (
     <div className="mx-auto max-w-7xl space-y-10 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-      <section className="overflow-hidden rounded-panel border border-border bg-hero px-6 py-8 text-white shadow-panel sm:px-10 sm:py-12">
-        <p className="text-xs font-bold uppercase tracking-hero text-hero-accent">Visual Resources</p>
-        <h1 className="mt-4 max-w-4xl text-4xl font-bold leading-tight sm:text-5xl">
-          Infographics Gallery — cyber security made visual.
-        </h1>
-        <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300 sm:text-base">
-          Download and share these free infographics to spread cyber awareness in your organisation, school, or
-          community. Every poster also has a full written guide you can read, search and share.
-        </p>
-        <Link
-          href="/comics"
-          className="mt-6 inline-block rounded-card border border-white/20 bg-white/10 px-6 py-3 text-sm font-bold uppercase tracking-widest text-white transition hover:bg-white/20"
-        >
-          Visit Comics Kona
-        </Link>
-      </section>
+      <PageHeader
+        kicker="Infographics"
+        title="Cyber fraud awareness posters, in Hindi and English"
+        actions={
+          <Link
+            href="/comics"
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-strong px-5 py-2.5 text-sm font-bold text-hero transition hover:border-accent hover:text-accent"
+          >
+            Visit Comics Kona
+          </Link>
+        }
+      >
+        Free to download and share with your family, school or community. Every poster also has a full written
+        guide you can read, search and forward.
+      </PageHeader>
 
-      <LibraryGrid items={cards} />
+      <LibraryGrid items={cards} variant="masonry" filterable />
 
       <section className="rounded-panel border border-accent/20 bg-[linear-gradient(135deg,rgba(180,35,24,0.06),rgba(245,158,11,0.08))] p-8 sm:p-10">
         <p className="text-xs font-bold uppercase tracking-hero text-accent">Contribute</p>

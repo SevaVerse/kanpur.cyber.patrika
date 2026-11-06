@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { Picture } from "@/components/picture";
 import { pageMetadata } from "@/lib/site-metadata";
+import { PageHeader } from "@/components/page-header";
 
 const founderMember = {
   name: "Nitin Srivastava",
@@ -39,16 +40,10 @@ export const metadata: Metadata = pageMetadata({
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-6xl space-y-8 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-      <section className="overflow-hidden rounded-panel border border-border bg-hero px-6 py-8 text-white shadow-panel sm:px-10 sm:py-12">
-        <p className="text-xs font-bold uppercase tracking-hero text-hero-accent">About The Publication</p>
-        <h1 className="mt-4 max-w-4xl text-4xl font-bold leading-tight sm:text-5xl">
-          Cyber Vani helps ordinary people recognise cyber fraud before it reaches them.
-        </h1>
-        <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300 sm:text-base">
-          Free awareness guides in Hindi and English, and a weekly briefing of the cyber fraud stories that matter —
-          written for readers across Uttar Pradesh and India, not for security professionals.
-        </p>
-      </section>
+      <PageHeader kicker="About us" title="Cyber Vani helps ordinary people recognise cyber fraud before it reaches them.">
+        Free awareness guides in Hindi and English, and a weekly briefing of the cyber fraud stories that matter —
+        written for readers across Uttar Pradesh and India, not for security professionals.
+      </PageHeader>
 
       <section className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         <article className="rounded-panel border border-border bg-surface-strong p-8 shadow-card">
@@ -111,8 +106,8 @@ export default function AboutPage() {
 
         {/* Founder — full-width row */}
         <div className="mt-8 grid gap-6 md:grid-cols-[260px_1fr]">
-          <div className="mx-auto w-full max-w-65 overflow-hidden rounded-card border border-border bg-surface-strong shadow-card md:mx-0">
-            <div className="relative h-81.25 w-full">
+          <div className="mx-auto w-full max-w-[260px] overflow-hidden rounded-card border border-border bg-surface-strong shadow-card md:mx-0">
+            <div className="relative h-80 w-full">
               <Picture
                 src={founderMember.imageSrc}
                 alt={founderMember.name}

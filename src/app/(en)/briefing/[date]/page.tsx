@@ -3,9 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { ArrowLeftIcon, ArrowRightIcon, ExternalIcon, ShieldIcon, SrOnly, WhatsAppIcon } from "@/components/icons";
 import { formatLongDate } from "@/lib/format";
-import { getAllBriefings, getBriefingByDate, sourceHost } from "@/lib/briefings";
+import { briefingPath, getAllBriefings, getBriefingByDate, sourceHost } from "@/lib/briefings";
 import { JsonLd } from "@/lib/json-ld";
+import { whatsappShareUrl } from "@/lib/share";
 import { getSiteUrl } from "@/lib/site";
 import { OG_IMAGE_SIZE, pageMetadata } from "@/lib/site-metadata";
 
@@ -54,6 +56,12 @@ export default async function BriefingPage({ params }: BriefingPageProps) {
   const siteUrl = getSiteUrl();
   const canonical = new URL(`briefing/${briefing.date}/`, siteUrl).toString();
 
+  // Briefings are sorted newest first.
+  const all = getAllBriefings();
+  const position = all.findIndex((entry) => entry.date === briefing.date);
+  const newer = position > 0 ? all[position - 1] : null;
+  const older = position >= 0 && position < all.length - 1 ? all[position + 1] : null;
+
   /**
    * ItemList, not NewsArticle. We are curating and commenting on other
    * newsrooms' reporting, and the schema should say exactly that.
@@ -101,78 +109,84 @@ export default async function BriefingPage({ params }: BriefingPageProps) {
       />
 
       <header className="space-y-4 border-b border-border pb-8">
-        <p className="text-xs font-bold uppercase tracking-hero text-accent">Weekly Briefing</p>
-        <h1 className="text-3xl font-bold leading-tight text-hero sm:text-4xl lg:text-5xl">
+        <p className="flex items-center gap-2 text-sm font-semibold text-accent">
+          <span aria-hidden="true" className="h-2 w-2 rounded-full bg-accent" />
+          Weekly briefing
+        </p>
+        <h1 className="text-3xl font-bold leading-tight text-hero text-balance sm:text-4xl lg:text-5xl">
           {briefing.title}
         </h1>
-        <p className="text-sm font-semibold uppercase tracking-label text-muted">
+        <p className="text-sm font-semibold text-muted">
           <time dateTime={briefing.date}>{formatLongDate(briefing.date)}</time>
           {" · "}
           {briefing.stories.length} stories
         </p>
-        {briefing.summary ? (
-          <p className="text-lg leading-8 text-slate-700">{briefing.summary}</p>
-        ) : null}
+        {briefing.summary ? <p className="text-lg leading-8 text-slate-700">{briefing.summary}</p> : null}
+        <a
+          href={whatsappShareUrl(briefing.title, canonical)}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex min-h-11 items-center gap-2 rounded-full bg-safe px-5 text-sm font-bold text-white transition hover:opacity-90"
+        >
+          <WhatsAppIcon className="h-4 w-4" />
+          Share this edition
+          <SrOnly>on WhatsApp (opens in a new tab)</SrOnly>
+        </a>
       </header>
 
-      <ol className="mt-10 space-y-8">
+      <ol className="mt-10 space-y-6">
         {briefing.stories.map((story, index) => (
-          <li key={story.url} className="border-b border-border pb-8 last:border-0">
-            <div className="flex gap-5">
-              <span className="text-2xl font-bold text-accent/70">
+          <li key={story.url} className="rounded-panel border border-border bg-surface-strong p-5 shadow-card sm:p-7">
+            <div className="flex gap-4 sm:gap-5">
+              <span aria-hidden="true" className="w-8 shrink-0 text-2xl font-bold text-accent/60">
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <div className="min-w-0">
-                <h2 className="text-xl font-bold leading-snug text-hero sm:text-2xl">
+              <div className="min-w-0 flex-1">
+                <h2 className="text-xl font-bold leading-snug text-hero text-balance sm:text-2xl">
+                  <a href={story.url} target="_blank" rel="noreferrer" className="transition hover:text-accent">
+                    {story.headline}
+                    <SrOnly> (opens in a new tab)</SrOnly>
+                  </a>
+                </h2>
+                <p className="mt-2 text-sm font-semibold text-muted">
+                  {story.source}
+                  {sourceHost(story.url) && sourceHost(story.url) !== story.source.toLowerCase()
+                    ? ` · ${sourceHost(story.url)}`
+                    : ""}
+                </p>
+                {story.take ? (
+                  <div className="mt-4 border-l-4 border-accent/40 pl-4">
+                    <p className="text-xs font-bold text-accent">Why it matters</p>
+                    <p className="mt-1 text-base leading-8 text-slate-700">{story.take}</p>
+                  </div>
+                ) : null}
+
+                <div className="mt-5 flex flex-wrap items-center gap-3">
+                  {/* Route the reader into our own guide on this threat. */}
+                  {story.guide ? (
+                    <Link
+                      href={story.guide.path}
+                      lang={story.guide.lang}
+                      className="inline-flex min-h-11 items-center gap-2 rounded-full bg-safe-soft px-4 text-sm font-bold text-safe transition hover:bg-safe hover:text-white sm:min-h-9"
+                    >
+                      <ShieldIcon className="h-4 w-4" />
+                      <span>
+                        {story.guide.lang === "hi" ? "बचाव कैसे करें" : "How to protect yourself"}:{" "}
+                        <span className="font-semibold">{story.guide.title}</span>
+                      </span>
+                    </Link>
+                  ) : null}
                   <a
                     href={story.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="transition hover:text-accent"
+                    className="inline-flex items-center gap-1.5 text-sm font-bold text-accent transition hover:text-accent-dark"
                   >
-                    {story.headline}
+                    Read at {story.source}
+                    <ExternalIcon className="h-3.5 w-3.5" />
+                    <SrOnly>(opens in a new tab)</SrOnly>
                   </a>
-                </h2>
-                <p className="mt-2 text-xs font-bold uppercase tracking-label text-muted">
-                  {story.source}
-                  {sourceHost(story.url) ? ` · ${sourceHost(story.url)}` : ""}
-                </p>
-                {story.take ? (
-                  <div className="mt-4 rounded-card border-l-4 border-accent/40 bg-surface px-5 py-4">
-                    <p className="text-[0.68rem] font-bold uppercase tracking-label text-accent">
-                      Why it matters
-                    </p>
-                    <p className="mt-2 text-base leading-8 text-slate-700">{story.take}</p>
-                  </div>
-                ) : null}
-
-                {/* Route the reader into our own guide on this threat. */}
-                {story.guide ? (
-                  <Link
-                    href={story.guide.path}
-                    lang={story.guide.lang}
-                    className="mt-4 flex items-center gap-3 rounded-card border border-accent/25 bg-[rgba(180,35,24,0.05)] px-5 py-4 transition hover:border-accent hover:bg-[rgba(180,35,24,0.09)]"
-                  >
-                    <span aria-hidden="true" className="text-xl">
-                      🛡
-                    </span>
-                    <span>
-                      <span className="block text-[0.68rem] font-bold uppercase tracking-label text-accent">
-                        {story.guide.lang === "hi" ? "बचाव कैसे करें" : "How to protect yourself"}
-                      </span>
-                      <span className="mt-1 block text-sm font-bold text-hero">{story.guide.title}</span>
-                    </span>
-                  </Link>
-                ) : null}
-
-                <a
-                  href={story.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-4 inline-block text-xs font-bold uppercase tracking-label text-accent transition hover:text-accent-dark"
-                >
-                  Read at {story.source} ↗
-                </a>
+                </div>
               </div>
             </div>
           </li>
@@ -201,11 +215,41 @@ export default async function BriefingPage({ params }: BriefingPageProps) {
         ) : null}
       </div>
 
+      <nav aria-label="More editions" className="mt-10 grid gap-3 sm:grid-cols-2">
+        {newer ? (
+          <Link
+            href={briefingPath(newer)}
+            className="group rounded-card border border-border bg-surface-strong p-5 transition hover:border-accent"
+          >
+            <span className="flex items-center gap-1.5 text-xs font-semibold text-muted">
+              <ArrowLeftIcon className="h-3.5 w-3.5" />
+              Newer edition
+            </span>
+            <span className="mt-1 block font-bold text-hero group-hover:text-accent">{formatLongDate(newer.date)}</span>
+          </Link>
+        ) : (
+          <span className="hidden sm:block" />
+        )}
+        {older ? (
+          <Link
+            href={briefingPath(older)}
+            className="group rounded-card border border-border bg-surface-strong p-5 text-right transition hover:border-accent"
+          >
+            <span className="flex items-center justify-end gap-1.5 text-xs font-semibold text-muted">
+              Older edition
+              <ArrowRightIcon className="h-3.5 w-3.5" />
+            </span>
+            <span className="mt-1 block font-bold text-hero group-hover:text-accent">{formatLongDate(older.date)}</span>
+          </Link>
+        ) : null}
+      </nav>
+
       <Link
         href="/briefing"
-        className="mt-10 inline-block text-sm font-bold uppercase tracking-label text-muted transition hover:text-accent"
+        className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-muted transition hover:text-accent"
       >
-        ← All briefings
+        <ArrowLeftIcon className="h-4 w-4" />
+        All briefings
       </Link>
     </div>
   );

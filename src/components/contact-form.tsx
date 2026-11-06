@@ -38,7 +38,7 @@ export function ContactForm() {
               type="text"
               name="name"
               required
-              className="w-full rounded-card border border-border bg-white px-4 py-3 text-base font-normal outline-none transition focus:border-accent"
+              className="w-full rounded-card border border-border bg-white px-4 py-3 text-base font-normal transition focus:border-accent"
               placeholder="Your name"
             />
           </label>
@@ -48,7 +48,7 @@ export function ContactForm() {
               type="email"
               name="email"
               required
-              className="w-full rounded-card border border-border bg-white px-4 py-3 text-base font-normal outline-none transition focus:border-accent"
+              className="w-full rounded-card border border-border bg-white px-4 py-3 text-base font-normal transition focus:border-accent"
               placeholder="name@company.com"
             />
           </label>
@@ -59,7 +59,7 @@ export function ContactForm() {
           <input
             type="text"
             name="topic"
-            className="w-full rounded-card border border-border bg-white px-4 py-3 text-base font-normal outline-none transition focus:border-accent"
+            className="w-full rounded-card border border-border bg-white px-4 py-3 text-base font-normal transition focus:border-accent"
             placeholder="Story tip, correction, sponsorship"
           />
         </label>
@@ -70,7 +70,7 @@ export function ContactForm() {
             name="message"
             required
             rows={6}
-            className="w-full rounded-card border border-border bg-white px-4 py-3 text-base font-normal outline-none transition focus:border-accent"
+            className="w-full rounded-card border border-border bg-white px-4 py-3 text-base font-normal transition focus:border-accent"
             placeholder="Share the details you want the editorial desk to review."
           />
         </label>
