@@ -44,7 +44,7 @@ Copy `.env.example` to `.env.local`. Every variable is optional for local work.
 | `GROQ_MODEL` | `scripts/draft-briefing.mjs` | Optional override of the default (`openai/gpt-oss-120b`). On a retired model id the drafter lists what your key can actually use. |
 | `NEXT_PUBLIC_FORMSPREE_ENDPOINT` | `/contact` | Without it, submissions go nowhere. |
 | `NEXT_PUBLIC_EDITOR_EMAIL` | `/contact` | Shows a direct "email us" block. Omitted entirely when unset. |
-| `NEXT_PUBLIC_GA_ID` | all pages | GA4 measurement ID. No analytics is loaded when unset. |
+| `NEXT_PUBLIC_GA_ID` | all pages | GA4 measurement ID. When set, readers are asked first; nothing loads without consent. |
 | `NEXT_PUBLIC_SITE_URL` | build | Canonical origin. Defaults to `https://cybervani.com`. |
 
 ## The weekly pipeline
@@ -169,23 +169,34 @@ correct `width`/`height` without manual work.
 ```text
 src/
 ├── app/
-│   ├── awareness/[slug]/       English guides
-│   ├── awareness/hi/[slug]/    Hindi guides
-│   ├── briefing/               Archive index + /briefing/[date]
-│   ├── feed.xml/               RSS
-│   ├── gallery/  comics/       Library browse pages
-│   ├── about/  contact/  sponsors/
-│   ├── layout.tsx  page.tsx  not-found.tsx  sitemap.ts  robots.ts
+│   ├── (en)/                   English root layout (<html lang="en">)
+│   │   ├── awareness/[slug]/   English guides
+│   │   ├── briefing/           Archive index + /briefing/[date]
+│   │   ├── gallery/  comics/   Library browse pages
+│   │   ├── about/  contact/  sponsors/  editorial-policy/  privacy/
+│   │   └── page.tsx  layout.tsx  not-found.tsx
+│   ├── (hi)/                   Hindi root layout (<html lang="hi">)
+│   │   └── awareness/hi/[slug]/  Hindi guides
+│   ├── og/[name]/              Share cards rendered at build time
+│   ├── feed.xml/  hi/feed.xml/ RSS, one per language
+│   ├── global-not-found.tsx    404 for unmatched URLs (two root layouts)
+│   ├── sitemap.ts  robots.ts  manifest.ts  icon.svg  apple-icon.png
 ├── components/
 │   ├── library-article.tsx     Renders one guide
 │   ├── library-grid.tsx        Card grid + lightbox
-│   ├── navbar.tsx  footer.tsx  analytics.tsx  contact-form.tsx
+│   ├── site-shell.tsx          <html>/<body> frame shared by both layouts
+│   ├── navbar.tsx  footer.tsx  language-toggle.tsx  breadcrumbs.tsx
+│   ├── analytics.tsx           GA4, loaded only after opt-in consent
+│   ├── contact-form.tsx
 ├── content/briefings/          Committed weekly briefings
 └── lib/
     ├── library.ts              Library entry point + helpers
     ├── library-en.ts  library-hi.ts  library-types.ts
     ├── library-seo.tsx         Metadata + JSON-LD
-    ├── briefings.ts  search.ts  format.ts  site.ts
+    ├── site-metadata.ts        pageMetadata() helper + Organization schema
+    ├── i18n.ts                 Interface strings (English / Hindi)
+    ├── json-ld.tsx             Safe structured-data rendering
+    ├── briefings.ts  search.ts  feed.ts  format.ts  site.ts
 scripts/
 ├── draft-briefing.mjs      Weekly pipeline entry point
 ├── generate-image-manifest.mjs

@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { formatDate } from "@/lib/format";
 import { getImageDimensions } from "@/lib/image-manifest";
 import {
@@ -25,6 +26,13 @@ const strings = {
     readIn: "पढ़ें हिंदी में",
     backToGallery: "All infographics",
     backToComics: "All comics",
+    home: "Home",
+    gallery: "Infographics",
+    comics: "Comics Kona",
+    breadcrumb: "Breadcrumb",
+    by: "By",
+    reviewedBy: "Reviewed by",
+    updated: "Updated",
   },
   hi: {
     steps: "क्या करें — कदम दर कदम",
@@ -37,6 +45,13 @@ const strings = {
     readIn: "Read in English",
     backToGallery: "सभी इन्फोग्राफिक्स",
     backToComics: "सभी कॉमिक्स",
+    home: "होम",
+    gallery: "इन्फोग्राफिक्स",
+    comics: "कॉमिक्स कोना",
+    breadcrumb: "ब्रेडक्रम्ब",
+    by: "लेखक",
+    reviewedBy: "समीक्षा",
+    updated: "अपडेट",
   },
 } as const;
 
@@ -101,6 +116,14 @@ export function LibraryArticle({ item }: { item: LibraryItem }) {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+      <Breadcrumbs
+        label={t.breadcrumb}
+        items={[
+          { name: t.home, href: "/" },
+          { name: item.kind === "comic" ? t.comics : t.gallery, href: backHref },
+          { name: item.title },
+        ]}
+      />
       <article lang={item.lang}>
         <header className="space-y-4 border-b border-border pb-8">
           <div className="flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-label text-muted">
@@ -116,6 +139,27 @@ export function LibraryArticle({ item }: { item: LibraryItem }) {
             {item.headline}
           </h1>
           <p className="text-lg leading-8 text-slate-700">{item.description}</p>
+          {item.author || item.reviewedBy || item.updatedAt ? (
+            <p className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted">
+              {item.author ? (
+                <span>
+                  {t.by} <span className="font-semibold text-hero">{item.author.name}</span>
+                  {item.author.role ? `, ${item.author.role}` : ""}
+                </span>
+              ) : null}
+              {item.reviewedBy ? (
+                <span>
+                  {t.reviewedBy} <span className="font-semibold text-hero">{item.reviewedBy.name}</span>
+                  {item.reviewedBy.role ? `, ${item.reviewedBy.role}` : ""}
+                </span>
+              ) : null}
+              {item.updatedAt ? (
+                <span>
+                  {t.updated} <time dateTime={item.updatedAt}>{formatDate(item.updatedAt)}</time>
+                </span>
+              ) : null}
+            </p>
+          ) : null}
         </header>
 
         {item.assets.map((asset, index) => {

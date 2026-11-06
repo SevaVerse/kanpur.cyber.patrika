@@ -11,6 +11,11 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
+  experimental: {
+    // Two root layouts (English and Hindi, for a correct <html lang>) leave no
+    // single layout to build the 404 from; app/global-not-found.tsx is it.
+    globalNotFound: true,
+  },
   basePath,
   assetPrefix: basePath || undefined,
   env: {

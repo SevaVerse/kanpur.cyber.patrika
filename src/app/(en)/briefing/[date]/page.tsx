@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { formatLongDate } from "@/lib/format";
 import { getAllBriefings, getBriefingByDate, sourceHost } from "@/lib/briefings";
 import { JsonLd } from "@/lib/json-ld";
 import { getSiteUrl } from "@/lib/site";
+import { OG_IMAGE_SIZE, pageMetadata } from "@/lib/site-metadata";
 
 type BriefingPageProps = {
   params: Promise<{ date: string }>;
@@ -23,26 +25,22 @@ export async function generateMetadata({ params }: BriefingPageProps): Promise<M
     return { title: "Briefing not found" };
   }
 
-  const canonical = new URL(`briefing/${briefing.date}/`, getSiteUrl()).toString();
   const description =
     briefing.summary ||
-    `Cyber Vani's weekly cyber security briefing for ${briefing.date}, covering ${briefing.stories.length} stories.`;
+    `Cyber Vani's weekly cyber fraud briefing for ${formatLongDate(briefing.date)}, covering ${briefing.stories.length} stories.`;
 
-  return {
+  return pageMetadata({
     title: briefing.title,
     description,
-    alternates: { canonical },
-    openGraph: {
-      type: "article",
-      title: briefing.title,
-      description,
-      url: canonical,
-      siteName: "Cyber Vani",
-      locale: "en_IN",
-      publishedTime: briefing.date,
+    path: `/briefing/${briefing.date}`,
+    type: "article",
+    publishedTime: briefing.date,
+    image: {
+      url: `/og/briefing-${briefing.date}.png`,
+      alt: `${briefing.title} — ${briefing.stories.length} stories`,
+      ...OG_IMAGE_SIZE,
     },
-    twitter: { card: "summary_large_image", title: briefing.title, description },
-  };
+  });
 }
 
 export default async function BriefingPage({ params }: BriefingPageProps) {
@@ -94,6 +92,13 @@ export default async function BriefingPage({ params }: BriefingPageProps) {
   return (
     <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
       <JsonLd schemas={schemas} />
+      <Breadcrumbs
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Weekly Briefings", href: "/briefing" },
+          { name: briefing.title },
+        ]}
+      />
 
       <header className="space-y-4 border-b border-border pb-8">
         <p className="text-xs font-bold uppercase tracking-hero text-accent">Weekly Briefing</p>
@@ -182,8 +187,12 @@ export default async function BriefingPage({ params }: BriefingPageProps) {
         {briefing.generated === "ai-assisted" ? (
           <p>
             The &ldquo;why it matters&rdquo; notes in this edition are AI-assisted, written from the linked
-            reporting and checked against it before publication. Where a story could not be verified, we
-            publish the link without a note rather than guess. Corrections are welcome via{" "}
+            reporting and automatically checked against it before publication. Where a story could not be
+            verified, we publish the link without a note rather than guess. See our{" "}
+            <Link href="/editorial-policy" className="font-semibold text-accent hover:underline">
+              editorial policy
+            </Link>
+            ; corrections are welcome via{" "}
             <Link href="/contact" className="font-semibold text-accent hover:underline">
               our contact page
             </Link>

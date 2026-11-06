@@ -3,33 +3,17 @@ import Link from "next/link";
 
 import { LibraryGrid } from "@/components/library-grid";
 import { getComics, toLibraryCard } from "@/lib/library";
-
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const logoPath = `${basePath}/Site_logo.jpeg`;
+import { pageMetadata } from "@/lib/site-metadata";
 
 const description =
   "साइबर जागरूकता कॉमिक्स — डिजिटल अरेस्ट, ठगी के तरीके और बचाव के उपाय आसान हिंदी में, चित्रों के साथ। हर कॉमिक के साथ पूरी लिखित जानकारी भी।";
 
-export const metadata: Metadata = {
-  title: "Comics Kona",
+export const metadata: Metadata = pageMetadata({
+  title: "Comics Kona — साइबर ठगी पर हिंदी कॉमिक्स",
   description,
-  alternates: { canonical: "comics/" },
-  openGraph: {
-    title: "Comics Kona | Cyber Vani",
-    description,
-    siteName: "Cyber Vani",
-    locale: "hi_IN",
-    type: "website",
-    url: "comics/",
-    images: [{ url: logoPath, alt: "Cyber Vani logo" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Comics Kona | Cyber Vani",
-    description,
-    images: [logoPath],
-  },
-};
+  path: "/comics",
+  lang: "hi",
+});
 
 export default function ComicsPage() {
   const cards = getComics().map(toLibraryCard);
