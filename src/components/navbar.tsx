@@ -1,10 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { LanguageToggle, TRANSLATE_MOUNT_ID } from "@/components/language-toggle";
+import { PictureView } from "@/components/picture-view";
+import type { ImageEntry } from "@/lib/image-manifest";
 import { type Lang, ui } from "@/lib/i18n";
 import type { SearchEntry } from "@/lib/search";
 
@@ -57,19 +58,51 @@ function SearchIcon() {
   );
 }
 
+/**
+ * Fetches /search-index.json once per page load, the first time search is
+ * opened, and shares the result between both search triggers.
+ */
+let searchIndexPromise: Promise<SearchEntry[]> | null = null;
+
+function loadSearchIndex() {
+  searchIndexPromise ??= fetch(`${basePath}/search-index.json`)
+    .then((response) => (response.ok ? (response.json() as Promise<SearchEntry[]>) : []))
+    .catch(() => {
+      searchIndexPromise = null; // allow a retry on the next open
+      return [];
+    });
+
+  return searchIndexPromise;
+}
+
 type NavbarProps = {
-  entries: SearchEntry[];
   lang: Lang;
   /** Path -> hand-written translation, for the language toggle. */
   alternates: Record<string, string>;
+  /** Responsive variants of the logo (96/192px instead of the 1254px original). */
+  logo: ImageEntry | null;
 };
 
-export function Navbar({ entries, lang, alternates }: NavbarProps) {
+export function Navbar({ lang, alternates, logo }: NavbarProps) {
   const t = ui[lang];
   const { primary: primaryLinks, mobile: mobileLinks } = navLinks(lang);
   const [open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [entries, setEntries] = useState<SearchEntry[] | null>(null);
+
+  useEffect(() => {
+    if (!searchOpen || entries) return;
+
+    let cancelled = false;
+    loadSearchIndex().then((loaded) => {
+      if (!cancelled) setEntries(loaded);
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [searchOpen, entries]);
 
   useEffect(() => {
     if (!searchOpen) {
@@ -92,9 +125,11 @@ export function Navbar({ entries, lang, alternates }: NavbarProps) {
   }, [searchOpen]);
 
   const normalizedQuery = query.trim().toLowerCase();
+  const loadingIndex = entries === null;
+  const index = entries ?? [];
   const searchResults = normalizedQuery
-    ? entries.filter((entry) => entry.haystack.includes(normalizedQuery)).slice(0, 6)
-    : entries.slice(0, 6);
+    ? index.filter((entry) => entry.haystack.includes(normalizedQuery)).slice(0, 6)
+    : index.slice(0, 6);
 
   function closeMenus() {
     setOpen(false);
@@ -110,14 +145,13 @@ export function Navbar({ entries, lang, alternates }: NavbarProps) {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3" onClick={closeMenus}>
           <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-card border border-border bg-white shadow-sm">
-            <Image
-              src={`${basePath}/Site_logo.jpeg`}
+            <PictureView
+              src="/Site_logo.jpeg"
+              entry={logo}
               alt="Cyber Vani logo"
-              fill
               sizes="44px"
-              className="object-cover"
-              priority
-              unoptimized
+              loading="eager"
+              className="absolute inset-0 h-full w-full object-cover"
             />
           </div>
           <span className="truncate text-xl font-bold text-hero sm:text-2xl">Cyber Vani</span>
@@ -229,7 +263,11 @@ export function Navbar({ entries, lang, alternates }: NavbarProps) {
               </div>
 
               <div className="space-y-3">
-                {searchResults.length > 0 ? (
+                {loadingIndex ? (
+                  <p className="px-1 py-6 text-center text-sm text-muted" role="status">
+                    {t.search.loading}
+                  </p>
+                ) : searchResults.length > 0 ? (
                   searchResults.map((entry) => (
                     <Link
                       key={entry.id}

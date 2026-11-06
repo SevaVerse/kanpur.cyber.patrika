@@ -161,8 +161,10 @@ The render path no longer calls a news API at all. `scripts/draft-briefing.mjs` 
 Everything else follows automatically: the topic page, `/gallery` or `/comics`, the sitemap, the RSS feed and
 site search all read from `src/lib/library.ts`.
 
-Image dimensions are generated into `src/lib/image-manifest.ts` by `npm run prebuild`, so new artwork gets
-correct `width`/`height` without manual work.
+`npm run prebuild` (run automatically before every build) writes AVIF and WebP copies of each poster, portrait
+and the logo at several widths into `public/_img/` (gitignored), and records them with each image's dimensions
+in `src/lib/image-manifest.ts`. Pages render them through `<Picture>` with a `srcset`, so new artwork is
+responsive and reserves its space with no manual work.
 
 ## Project structure
 

@@ -106,14 +106,17 @@ body {
   font-family: var(--font-sans);
 }
 
+/*
+ * Transform only. Starting from opacity 0 hid the hero headline — the
+ * page's LCP element — for the length of the animation, and browsers do not
+ * count an invisible element as painted.
+ */
 @keyframes rise-in {
   from {
-    opacity: 0;
     transform: translateY(14px);
   }
 
   to {
-    opacity: 1;
     transform: translateY(0);
   }
 }

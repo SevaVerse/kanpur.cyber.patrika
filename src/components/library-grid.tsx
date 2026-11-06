@@ -3,9 +3,14 @@
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
+import { PictureView } from "@/components/picture-view";
 import { formatDate } from "@/lib/format";
+import type { ImageEntry } from "@/lib/image-manifest";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+/** Rendered card width: three columns at lg, two at sm, full width below. */
+const CARD_SIZES = "(min-width: 1280px) 400px, (min-width: 1024px) 31vw, (min-width: 640px) 46vw, 92vw";
 
 /** Lean card shape, so the full library never reaches the client bundle. */
 export type LibraryCard = {
@@ -19,8 +24,7 @@ export type LibraryCard = {
   tags: string[];
   imageSrc: string;
   imageAlt: string;
-  imageWidth?: number;
-  imageHeight?: number;
+  image: ImageEntry | null;
 };
 
 const categoryStyles: Record<string, { bg: string; text: string }> = {
@@ -98,13 +102,11 @@ export function LibraryGrid({ items }: { items: LibraryCard[] }) {
               className="group flex flex-col overflow-hidden rounded-panel border border-border bg-surface shadow-card transition hover:shadow-lift"
             >
               <Link href={item.href} className="block overflow-hidden border-b border-border">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={`${basePath}${item.imageSrc}`}
+                <PictureView
+                  src={item.imageSrc}
+                  entry={item.image}
                   alt={item.imageAlt}
-                  width={item.imageWidth}
-                  height={item.imageHeight}
-                  loading="lazy"
+                  sizes={CARD_SIZES}
                   className="h-72 w-full object-cover object-top transition duration-300 group-hover:scale-[1.03]"
                 />
               </Link>
@@ -171,11 +173,13 @@ export function LibraryGrid({ items }: { items: LibraryCard[] }) {
           >
             Close
           </button>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={`${basePath}${lightbox.imageSrc}`}
+          <PictureView
+            src={lightbox.imageSrc}
+            entry={lightbox.image}
             alt={lightbox.imageAlt}
-            className="max-h-full max-w-full rounded-card object-contain"
+            sizes="100vw"
+            loading="eager"
+            className="max-h-[90vh] w-auto max-w-full rounded-card object-contain"
             onClick={(event) => event.stopPropagation()}
           />
         </div>

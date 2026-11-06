@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 
+import { Picture } from "@/components/picture";
 import { pageMetadata } from "@/lib/site-metadata";
-
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export const metadata: Metadata = pageMetadata({
   title: "Sponsors",
@@ -36,7 +34,7 @@ const sponsors: Sponsor[] = [
     category: "Gold Sponsor",
     tagline: "Director, Katyayani Telecom Services Pvt. Ltd. — connecting communities through technology, spirituality, and creative enterprise.",
     bio: "Starting his entrepreneurial journey at just 20, Mr. Ved Ashish — Director of Katyayani Telecom Services Pvt. Ltd. — has built a globally recognised presence spanning Spirituality, Social Work, and Hindi Film Entertainment production. His diverse ventures reflect a rare blend of technological acumen and cultural commitment, driven by a belief that meaningful enterprise must serve both commerce and community. Mr. Ved Ashish is proud to support Cyber Vani's mission of making cyber safety knowledge accessible to every citizen across India.",
-    imageSrc: `${basePath}/Sponser-1.jpeg`,
+    imageSrc: "/Sponser-1.jpeg",
     initials: "KT",
     avatarBg: "bg-[#b45309]",
   },
@@ -69,12 +67,11 @@ export default function SponsorsPage() {
               {/* Portrait image */}
               <div className="mx-auto w-full max-w-65 overflow-hidden rounded-card border border-border bg-surface-strong shadow-card md:mx-0">
                 <div className="relative h-81.25 w-full">
-                  <Image
+                  <Picture
                     src={sponsor.imageSrc!}
                     alt={sponsor.name}
-                    fill
-                    className="object-cover object-top"
                     sizes="(max-width: 768px) 100vw, 260px"
+                    className="absolute inset-0 h-full w-full object-cover object-top"
                   />
                 </div>
               </div>

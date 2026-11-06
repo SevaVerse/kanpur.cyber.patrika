@@ -1,17 +1,15 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 
+import { Picture } from "@/components/picture";
 import { pageMetadata } from "@/lib/site-metadata";
-
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const founderMember = {
   name: "Nitin Srivastava",
   role: "Founder",
   bio:
     "Leads Cyber Vani with a focus on cyber awareness, practical reporting, and making security news accessible to everyday readers across India. He holds a PGDM (IT) from Symbiosis Pune and a software quality assurance certification from Pune.",
-  imageSrc: `${basePath}/founder-pic.jpeg`,
+  imageSrc: "/founder-pic.jpeg",
 };
 
 const associateMembers = [
@@ -20,14 +18,14 @@ const associateMembers = [
     role: "Co-founder",
     bio:
       "Advocate Vishal Srivastava has been practicing and handling cases independently with a result-oriented approach, both professionally and ethically, and has acquired many years of professional experience in providing legal consultancy and advisory services. He is a member of the Lucknow Bar Association and the Central Bar Association.",
-    imageSrc: `${basePath}/Team_mate_1.jpeg`,
+    imageSrc: "/Team_mate_1.jpeg",
   },
   {
     name: "Rajesh Choudhary",
     role: "Associate",
     bio:
       "With over 15 years of distinguished practice at the Kanpur Bar Association, Advocate Rajesh Choudhary brings deep expertise in civil, criminal, and cyber law matters. A committed and respected member of the Kanpur Bar Association, he is known for his methodical legal approach, thorough command of the Indian Penal Code and IT Act, and unwavering professional integrity. His extensive courtroom experience and nuanced understanding of the evolving legal landscape surrounding digital crimes make him an invaluable resource for Cyber Vani's readers — whether navigating online fraud redressal, understanding their digital rights, or seeking guidance on cyber-related legal proceedings. Advocate Choudhary actively works to bridge the gap between legal literacy and digital safety across Uttar Pradesh.",
-    imageSrc: `${basePath}/Team_mate_2.jpeg`,
+    imageSrc: "/Team_mate_2.jpeg",
   },
 ];
 
@@ -115,12 +113,11 @@ export default function AboutPage() {
         <div className="mt-8 grid gap-6 md:grid-cols-[260px_1fr]">
           <div className="mx-auto w-full max-w-65 overflow-hidden rounded-card border border-border bg-surface-strong shadow-card md:mx-0">
             <div className="relative h-81.25 w-full">
-              <Image
+              <Picture
                 src={founderMember.imageSrc}
                 alt={founderMember.name}
-                fill
-                className="object-cover"
                 sizes="(max-width: 768px) 100vw, 260px"
+                className="absolute inset-0 h-full w-full object-cover"
               />
             </div>
           </div>
@@ -139,12 +136,11 @@ export default function AboutPage() {
               className="overflow-hidden rounded-panel border border-border bg-surface-strong shadow-card"
             >
               <div className="relative h-80 w-full">
-                <Image
+                <Picture
                   src={member.imageSrc}
                   alt={member.name}
-                  fill
-                  className="object-cover object-top"
                   sizes="(max-width: 640px) 100vw, 50vw"
+                  className="absolute inset-0 h-full w-full object-cover object-top"
                 />
               </div>
               <div className="p-6">
