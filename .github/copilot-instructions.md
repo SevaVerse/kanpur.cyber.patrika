@@ -1,28 +1,25 @@
-- [x] Verify that the copilot-instructions.md file in the .github directory is created.
+# Contributor notes for AI coding assistants
 
-- [x] Clarify Project Requirements
-Project type, language, framework, deployment target, automation, and required features are specified by the user.
+Cyber Vani is a static Next.js (App Router, `output: "export"`) site deployed to GitHub Pages.
+Read `README.md` first — it explains the weekly briefing pipeline and why it is built the way it is.
 
-- [x] Scaffold the Project
-Created a Next.js 16 App Router TypeScript project manually in the current directory with Tailwind-ready styling and static export configuration.
+## Ground rules
 
-- [x] Customize the Project
-Implemented the cyber security news homepage, article routes, contact page, normalized news data layer, SEO metadata, and static fallback content.
+- **Static export only.** No API routes, server actions, middleware or runtime data fetching. Every
+  page must be reproducible from the repository at build time.
+- **Briefings are committed content** in `src/content/briefings/`. The render path never calls a news API;
+  `scripts/draft-briefing.mjs` is the only code that does.
+- **Third-party text is untrusted.** Headlines, URLs and article excerpts come from external APIs. Render them
+  through React (never `dangerouslySetInnerHTML`), and emit structured data only via `JsonLd` in
+  `src/lib/json-ld.tsx`, which escapes `<`.
+- **AI takes must stay grounded.** Any change to `scripts/lib/enrich.mjs` needs tests in
+  `scripts/lib/enrich.test.mjs`. A take must never introduce a number absent from the source, or any phone
+  number, URL, email or UPI handle.
+- **The awareness library** (`src/lib/library-en.ts`, `library-hi.ts`) is the single source of truth for
+  guide pages, galleries, sitemap, RSS and search. `scripts/lib/content.test.mjs` checks its integrity.
 
-- [x] Install Required Extensions
-No additional extensions were required by project setup guidance.
+## Before you finish
 
-- [x] Compile the Project
-Installed dependencies and verified both `npm run build` and `npm run lint` complete successfully.
-
-- [x] Create and Run Task
-Created and executed a VS Code build task for `npm run build`.
-
-- [x] Launch the Project
-Skipped launching a debug session because the user did not request it.
-
-- [x] Ensure Documentation is Complete
-Updated README.md with stack, structure, environment variables, static generation, and deployment workflow details.
-- Work through each checklist item systematically.
-- Keep communication concise and focused.
-- Follow development best practices.
+```bash
+npm run lint && npm test && npm run build
+```

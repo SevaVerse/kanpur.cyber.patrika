@@ -3,6 +3,11 @@ name: Deploy Static Site
 # Deploys on push. The site no longer fetches news at build time, so there is
 # nothing for a scheduled rebuild to pick up — briefings are committed content.
 # The weekly draft is prepared by draft-briefing.yml instead.
+#
+# Two jobs, on purpose. `build` runs `npm ci`, which executes every
+# dependency's install scripts, so it gets a read-only token and no persisted
+# git credentials. `deploy` holds the write token but never runs npm: it only
+# publishes the artifact `build` produced.
 on:
   push:
     branches:
@@ -10,19 +15,29 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+
+# A push and a dispatched deploy can otherwise race, and both force-push
+# gh-pages. Queue them instead; the newest one wins.
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
-          node-version: 20
+          node-version-file: .nvmrc
           cache: npm
 
       - name: Install dependencies
@@ -30,6 +45,9 @@ jobs:
 
       - name: Lint
         run: npm run lint
+
+      - name: Test
+        run: npm test
 
       - name: Build static site
         env:
@@ -42,8 +60,29 @@ jobs:
       - name: Add .nojekyll to prevent GitHub Pages Jekyll processing
         run: touch ./out/.nojekyll
 
+      - name: Upload site artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: site
+          path: out
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 3
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download site artifact
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: site
+          path: out
+
       - name: Deploy out directory to gh-pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
