@@ -22,6 +22,7 @@ import { join } from "node:path";
 import { fetchArticleText } from "./lib/article-text.mjs";
 import { enrichStories, summariseBriefing } from "./lib/enrich.mjs";
 import { loadGuides } from "./lib/guides.mjs";
+import { sanitiseStory } from "./lib/story.mjs";
 
 const OUTPUT_DIR = join("src", "content", "briefings");
 const MAX_STORIES = 10;
@@ -222,8 +223,9 @@ const collected = settled.flatMap((result) => (result.status === "fulfilled" ? r
 const seen = new Set();
 const stories = [];
 
-for (const story of collected) {
-  if (!story.headline || !story.url) continue;
+for (const raw of collected) {
+  const story = sanitiseStory(raw);
+  if (!story) continue;
 
   const key = dedupeKey(story.headline);
   if (seen.has(key)) continue;

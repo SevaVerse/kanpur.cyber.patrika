@@ -61,6 +61,22 @@ function isBriefing(value: unknown): value is Briefing {
   );
 }
 
+/**
+ * Story URLs come from third-party news APIs. Only http(s) links are ever
+ * rendered — a `javascript:` or `data:` URL in an href is an XSS vector, and
+ * the drafter should have rejected it already. This is the second fence.
+ */
+function isWebUrl(value: unknown): value is string {
+  if (typeof value !== "string") return false;
+
+  try {
+    const { protocol } = new URL(value);
+    return protocol === "https:" || protocol === "http:";
+  } catch {
+    return false;
+  }
+}
+
 function loadBriefings(): Briefing[] {
   if (!existsSync(CONTENT_DIR)) {
     return [];
@@ -83,7 +99,7 @@ function loadBriefings(): Briefing[] {
 
     briefings.push({
       ...raw,
-      stories: raw.stories.filter((story) => story.headline && story.url),
+      stories: raw.stories.filter((story) => story.headline && isWebUrl(story.url)),
     });
   }
 

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Hind } from "next/font/google";
 
+import { JsonLd } from "@/lib/json-ld";
 import { getSearchEntries } from "@/lib/search";
 import { getSiteUrl } from "@/lib/site";
 import { Analytics } from "@/components/analytics";
@@ -99,18 +100,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           title="Cyber Vani"
           href={`${basePath}/feed.xml`}
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(webSiteSchema),
-          }}
-        />
+        <JsonLd schemas={[organizationSchema, webSiteSchema]} />
         <div className="relative flex min-h-screen flex-col">
           <Navbar entries={searchEntries} />
           <main className="flex-1">{children}</main>

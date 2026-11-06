@@ -10,6 +10,7 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
 import {
+  containsContactDetails,
   numbersAreGrounded,
   numericTokens,
   parseJsonLoosely,
@@ -111,6 +112,46 @@ describe("validateTake", () => {
     const result = validateTake(hallucinated, SOURCE);
     assert.equal(result.ok, false);
     assert.match(result.why, /number absent from the source/);
+  });
+});
+
+describe("containsContactDetails", () => {
+  const HOSTILE_SOURCE =
+    "Victims were told to call the refund desk on 98765 43210 or visit refund-help.in, " +
+    "and to pay the fee to helpdesk@okaxis. Police arrested 4 people.";
+
+  it("rejects a phone number even when it is grounded in the source", () => {
+    const take =
+      "The arrests matter because victims were told to call 98765 43210 for a refund, a pattern " +
+      "seen in many recovery scams aimed at people who have already lost money.";
+    assert.equal(numbersAreGrounded(take, HOSTILE_SOURCE), true, "precondition: number is grounded");
+    const result = validateTake(take, HOSTILE_SOURCE);
+    assert.equal(result.ok, false);
+    assert.match(result.why, /contact details/);
+  });
+
+  it("detects phone numbers in common Indian formats", () => {
+    for (const phone of ["9876543210", "+91 98765 43210", "0512-2345678", "1800-123-4567"]) {
+      assert.equal(containsContactDetails(`Call ${phone} now.`), true, phone);
+    }
+  });
+
+  it("detects URLs, bare domains, emails and UPI handles", () => {
+    assert.equal(containsContactDetails("See https://example.org for details."), true);
+    assert.equal(containsContactDetails("Visit www.refund-help.com today."), true);
+    assert.equal(containsContactDetails("Victims were sent to refund-help.in."), true);
+    assert.equal(containsContactDetails("Write to desk@example.com."), true);
+    assert.equal(containsContactDetails("Pay helpdesk@okaxis to proceed."), true);
+  });
+
+  it("allows the official reporting portal and the 1930 helpline", () => {
+    assert.equal(containsContactDetails("Report at cybercrime.gov.in or call 1930."), false);
+  });
+
+  it("does not mistake amounts, counts or years for phone numbers", () => {
+    assert.equal(containsContactDetails("Losses of Rs 50,00,000 across 12 districts since 2024."), false);
+    assert.equal(containsContactDetails("Between 2024 and 2025 cases rose to 1.5 lakh."), false);
+    assert.equal(containsContactDetails(VALID_TAKE), false);
   });
 });
 
