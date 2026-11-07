@@ -1,0 +1,117 @@
+{
+  "date": "2026-11-07",
+  "title": "Cyber security briefing — 7 November 2026",
+  "summary": "This week: massive impersonation and digital‑arrest scams draining crores, and a warning of AI‑driven attacks on financial and crypto firms.",
+  "published": true,
+  "generated": "ai-assisted",
+  "stories": [
+    {
+      "headline": "Cybercons pose as credit card agents, ask Greater Noida man to share phone screen, cheat him of Rs 6 lakh",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/noida/cybercons-pose-as-credit-card-agents-ask-greater-noida-man-to-share-phone-screen-cheat-him-of-rs-6-lakh/articleshow/135619163.cms",
+      "publishedAt": "2026-11-06 19:16:08",
+      "take": "Sharing your phone screen with unknown callers can let fraudsters access banking apps and steal money, as shown by a Greater Noida resident losing over six lakh.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Telangana man held in Rs 95L cyber fraud case",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/goa/telangana-man-held-in-rs-95l-cyber-fraud-case/articleshow/135618960.cms",
+      "publishedAt": "2026-11-06 19:05:47",
+      "take": "A man was arrested for an online investment scam that duped a victim of a large sum, showing how fraudulent ads and unsolicited calls can lead to significant financial loss. The police restored part of the money and warned people to verify investment platforms and follow RBI advice before transferring funds. Reporting suspected cyber financial fraud promptly can help prevent further losses.",
+      "guide": {
+        "path": "/awareness/safe-digital-banking",
+        "title": "Digital Banking — Safe Banking, Secure India",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Kozhikode Blood Donation Scams: Digital Fraud Hits Healthcare",
+      "source": "Growmudra",
+      "url": "https://growmudra.com/news/details/11b631b33a9e4b22174517856d57e2b1/kozhikode-blood-donation-scams:-digital-fraud-hits-healthcare",
+      "publishedAt": "2026-11-06 19:05:30"
+    },
+    {
+      "headline": "Pensioners lose ₹8 crore in ‘digital arrest’ scams",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/chandigarh/pensioners-lose-8-crore-in-digital-arrest-scams/articleshow/135618497.cms",
+      "publishedAt": "2026-11-06 18:41:38",
+      "take": "Elderly residents are being tricked into paying large sums through intimidation‑based “digital arrest” scams, resulting in losses of millions of rupees, highlighting the need for vigilance against such extortion schemes.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Cyber-fraud surge: UT residents lose ₹49 crore in 2026, only 25% recovered",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/chandigarh/cyber-fraud-surge-ut-residents-lose-49-crore-in-2026-only-25-recovered/articleshow/135618443.cms",
+      "publishedAt": "2026-11-06 18:40:05",
+      "take": "A large amount of money was siphoned from local residents through scams that impersonated police and government officials, and only a quarter of the loss was recovered, highlighting the financial risk of digital arrest fraud.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Bizman duped of Rs 19 lakh in fake share trading scam",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/kanpur/bizman-duped-of-rs-19-lakh-in-fake-share-trading-scam/articleshow/135618298.cms",
+      "publishedAt": "2026-11-06 18:32:07",
+      "take": "People are being lured into fake investment groups on messaging apps and losing large sums, showing the risk of trusting unverified online traders.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Ahmedabad: Tax advocate duped into installing APK file, loses Rs 5.7 lakh",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/ahmedabad/ahmedabad-tax-advocate-duped-into-installing-apk-file-loses-rs-5-7-lakh/articleshow/135618198.cms",
+      "publishedAt": "2026-11-06 18:28:52",
+      "take": "Installing apps received through messaging without verification can let fraudsters access linked bank accounts and steal money, as shown by the loss of a tax advocate’s funds.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Delhi College Accountant Duped Of Rs 80 Lakh In 'Boss Fraud'",
+      "source": "Ndtv",
+      "url": "https://www.ndtv.com/india-news/delhi-college-accountant-duped-of-rs-80-lakh-in-boss-fraud-12294729",
+      "publishedAt": "2026-11-06 18:27:22"
+    },
+    {
+      "headline": "India Warns of New AI-Driven Cyber-Attacks Targeting Financial and Crypto Businesses",
+      "source": "Infosecurity Magazine",
+      "url": "https://www.infosecurity-magazine.com/news/india-warns-ai-cyberattacks/",
+      "publishedAt": "2026-11-05T14:25:00Z",
+      "take": "Financial and crypto service providers in India are facing AI‑powered attacks that exploit API weaknesses, potentially leading to unauthorized money transfers if remediation is incomplete, raising risk for customers using these platforms.",
+      "guide": {
+        "path": "/awareness/safe-digital-banking",
+        "title": "Digital Banking — Safe Banking, Secure India",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Jamtara police arrest three for cyber fraud, seize Rs 8.13 lakh",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/city/ranchi/jamtara-police-arrest-three-for-cyber-fraud-seize-rs-8-13-lakh/articleshow/135576032.cms",
+      "publishedAt": "2026-11-05T13:43:56Z",
+      "take": "The arrests reveal that fraudsters are posing as helpers for credit‑card issues and distributing fake apps that can steal personal data and money, highlighting the risk of installing unsolicited software.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    }
+  ]
+}
