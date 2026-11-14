@@ -1,0 +1,10 @@
+:HL["/_next/static/chunks/2m3i4-7l931k3.css","style"]
+:HL["/_next/static/media/362eac98f87e6b21-s.p.3hfkl415jjze8.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/62b611f6badff332-s.p.14m725e1f886h.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/b581f10fb93518c8-s.p.083560ve--_qs.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+5:[["children",{"s":"__PAGE__","h":160}]]
+4:[["children",{"s":{"n":"slug","t":"d","k":"digitalization-cyber-khatra","s":[]},"h":96,"c":"$Q5"}]]
+3:[["children",{"s":"hi","h":96,"c":"$Q4"}]]
+2:[["children",{"s":"awareness","h":64,"c":"$Q3"}]]
+1:[["children",{"s":"(hi)","h":48,"c":"$Q2"}]]
+0:{"b":"7ENVtfIlzE8gm3-O_WXVw","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
