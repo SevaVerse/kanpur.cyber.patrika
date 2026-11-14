@@ -1,0 +1,98 @@
+{
+  "date": "2026-11-14",
+  "title": "Cyber security briefing — 14 November 2026",
+  "summary": "This week: fake e‑challan and digital‑arrest scams targeting seniors, and a nationwide cyber‑fraud crackdown with arrests and SIM blocks.",
+  "published": true,
+  "generated": "ai-assisted",
+  "stories": [
+    {
+      "headline": "E-challan fraud: Mumbai banker arrested for duping Rourkela resident of Rs 6L",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/bhubaneswar/e-challan-fraud-mumbai-banker-arrested-for-duping-rourkela-resident-of-rs-6l/articleshow/135815136.cms",
+      "publishedAt": "2026-11-13 19:06:45",
+      "take": "A fake traffic e‑challan sent through a messaging app can trick users into sending money, as shown by the recent arrest of a banker who duped a resident of several lakh rupees. This underscores the need to verify any payment request that appears to come from official sources before acting.",
+      "guide": {
+        "path": "/awareness/hi/fake-e-challan-scam",
+        "title": "फर्जी E-चालान — साइबर अपराध है",
+        "lang": "hi"
+      }
+    },
+    {
+      "headline": "Goa police arrest 24 in cyber fraud crackdown across 16 states",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/goa/goa-police-arrest-24-in-cyber-fraud-crackdown-across-16-states/articleshow/135814842.cms",
+      "publishedAt": "2026-11-13 18:51:44",
+      "take": "The arrests and blocking of hundreds of SIM cards, social media accounts and fake websites show that law enforcement is actively pursuing cyber‑fraud networks that operate across state lines, which can help reduce the chances of ordinary people falling victim to such scams.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Yes Bank denies $3.4 million cyber fraud loss, calls report factually incorrect",
+      "source": "Moneycontrol",
+      "url": "https://www.moneycontrol.com/news/business/companies/yes-bank-denies-3-4-million-cyber-fraud-loss-calls-report-factually-incorrect-14079859.html",
+      "publishedAt": "2026-11-13 18:33:09"
+    },
+    {
+      "headline": "Bizman loses Rs 12 cr in stocks fraud",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/hyderabad/bizman-loses-rs-12-cr-in-stocks-fraud/articleshow/135814142.cms",
+      "publishedAt": "2026-11-13 18:28:06",
+      "take": "A fraudster posing as a stock market expert used Facebook Marketplace to convince a businessman to transfer millions, resulting in a loss of over Rs 12 crore. The case highlights the risk of investment scams conducted online and the importance of verifying identities before sending money.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Retired defence PSU official loses ₹72 lakh to digital arrest",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/hyderabad/retired-defence-psu-official-loses-72-lakh-to-digital-arrest/articleshow/135812238.cms",
+      "publishedAt": "2026-11-13 17:36:36",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Mumbai Cyber Police register fraud case after senior citizen loses Rs 15 lakh in digital arrest",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/city/mumbai/mumbai-cyber-police-register-fraud-case-after-senior-citizen-loses-rs-15-lakh-in-digital-arrest/articleshow/135747062.cms",
+      "publishedAt": "2026-11-11T18:29:24Z",
+      "take": "Scammers impersonating officials can falsely claim a 'digital arrest' and coerce victims, especially seniors, into transferring large sums of money, leading to significant financial loss.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Man loses Rs 2.5 lakh in cyber fraud after receiving transaction alert",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/city/mangaluru/man-loses-rs-2-5-lakh-in-cyber-fraud-after-receiving-transaction-alert/articleshow/135735894.cms",
+      "publishedAt": "2026-11-11T11:37:07Z",
+      "take": "A fake transaction alert can trick a linked bank account into authorising unauthorised transfers, leading to large financial loss. Users need to verify any such alerts before acting to protect their funds.",
+      "guide": {
+        "path": "/awareness/safe-digital-banking",
+        "title": "Digital Banking — Safe Banking, Secure India",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "SC asks WhatsApp, others to list measures to prevent digital arrest, related cyber crimes",
+      "source": "BusinessLine",
+      "url": "https://www.thehindubusinessline.com/info-tech/sc-asks-whatsapp-others-to-list-measures-to-prevent-digital-arrest-related-cyber-crimes/article71685754.ece",
+      "publishedAt": "2026-11-10T14:51:25Z",
+      "take": "The Supreme Court’s request could push messaging platforms to add stronger checks that stop fake arrest notices and related fraud, reducing the risk of users being tricked into sending money or personal data.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    }
+  ]
+}
