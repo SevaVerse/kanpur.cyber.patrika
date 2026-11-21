@@ -1,0 +1,117 @@
+{
+  "date": "2026-11-21",
+  "title": "Cyber security briefing — 21 November 2026",
+  "summary": "This week: investment fraud schemes using fake KYC, digital arrest scams targeting victims, and AI‑generated deepfake ads and cloned voices used in scams.",
+  "published": true,
+  "generated": "ai-assisted",
+  "stories": [
+    {
+      "headline": "Delhi Police arrests 7 across 5 states in Rs 67.78 lakh investment fraud case",
+      "source": "Newseisamay",
+      "url": "https://newseisamay.com/india/india-crime/delhi-cyber-fraud-seven-arrested-rs-67",
+      "publishedAt": "2026-11-20 19:31:38",
+      "take": "The arrests reveal how fraudsters use fake bank accounts and forged KYC documents to siphon money from bogus investment schemes, showing that ordinary investors can be duped through social media promises of high returns.",
+      "guide": {
+        "path": "/awareness/mole-account",
+        "title": "Mole Account — A Hidden Threat",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Supreme Court Puts Big Tech on Notice Over Digital Arrest Scams",
+      "source": "Growmudra",
+      "url": "https://growmudra.com/news/details/5fce283940707ef04a5994b82d076bbb/supreme-court-puts-big-tech-on-notice-over-digital-arrest-scams",
+      "publishedAt": "2026-11-20 19:19:33"
+    },
+    {
+      "headline": "Man loses ₹1.52L in cyberfraud despite not sharing OTP",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/vadodara/man-loses-1-52l-in-cyberfraud-despite-not-sharing-otp/articleshow/136038124.cms",
+      "publishedAt": "2026-11-20 18:54:58",
+      "take": "The incident shows that fraudsters can steal money through UPI transfers even when the victim does not share OTP or banking details, indicating that unauthorized access to a phone can bypass traditional security checks. It highlights the need for stronger phone security and vigilance over app permissions to protect digital wallets.",
+      "guide": {
+        "path": "/awareness/safe-digital-banking",
+        "title": "Digital Banking — Safe Banking, Secure India",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Haryana Police register 1,533 e-Zero FIRs in cyber fraud cases in 5 months",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/chandigarh/haryana-police-register-1533-e-zero-firs-in-cyber-fraud-cases-in-5-months/articleshow/136037513.cms",
+      "publishedAt": "2026-11-20 18:36:00",
+      "take": "The e‑Zero FIR system lets victims of cyber financial fraud lodge complaints online and triggers faster police action to freeze suspect accounts, improving the chance of recovering lost money.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "NIA posts 93% conviction rate in 2026, rolls out 'Pushti' portal to curb digital arrest scams",
+      "source": "Newkerala.com",
+      "url": "https://www.newkerala.com/news/a/nia-posts-93-conviction-rate-2026-rolls-out-381.htm",
+      "publishedAt": "2026-11-20 18:24:06"
+    },
+    {
+      "headline": "Fake advertisement, cloned voice: Cyber crooks dupe 2 citizens of Rs 18.5 lakh in two cases",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/kolkata/fake-advertisement-cloned-voice-cyber-crooks-dupe-2-citizens-of-rs-18-5-lakh-in-two-cases/articleshow/136037387.cms",
+      "publishedAt": "2026-11-20 18:23:54",
+      "take": "AI‑generated fake ads and cloned voices are being used to lure people into investment scams, showing that deepfake technology can be weaponised to steal money from ordinary citizens.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "India Launches First Public Interest Microdrama Against Cyber Scams",
+      "source": "Asianetnews.com",
+      "url": "https://newsable.asianetnews.com/entertainment/india-launches-first-public-interest-microdrama-against-cyber-scams-articleshow-40w83g1",
+      "publishedAt": "2026-11-19T21:31:05Z",
+      "take": "The new microdrama series will teach people how to spot common online scams such as fake job offers, investment fraud and digital arrest scams, and reminds them to report incidents to the national cybercrime helpline 1930.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Gurgaon court rejects ‘settlement’ between accused & victim in cyberfraud case, denies bail",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/city/gurgaon/gurgaon-court-rejects-settlement-between-accused-victim-in-cyberfraud-case-denies-bail/articleshow/136003757.cms",
+      "publishedAt": "2026-11-19T19:31:21Z",
+      "take": "The court’s refusal to grant bail highlights that facilitating cyber‑fraud is treated as a serious offence, reinforcing legal deterrence and signalling that victims can expect stricter enforcement against such scams.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "‘Intelligent caller’ to team leader: How this call centre ran Apple gift card scam",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/city/gurgaon/intelligent-caller-to-team-leader-how-this-call-centre-ran-apple-gift-card-scam/articleshow/136003610.cms",
+      "publishedAt": "2026-11-19T19:19:49Z",
+      "take": "A call centre in Gurgaon used fake Apple support calls to convince iPhone users abroad to pay large sums, showing how impersonation scams can lead victims to transfer money to fraudsters.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "73-year-old woman placed under ‘digital arrest’, cheated of ₹14.50L",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/city/surat/73-year-old-woman-placed-under-digital-arrest-cheated-of-14-50l/articleshow/136003341.cms",
+      "publishedAt": "2026-11-19T18:59:20Z",
+      "take": "Elderly individuals can be duped by fraudsters posing as police on messaging apps, leading to large financial losses and prolonged intimidation.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    }
+  ]
+}
