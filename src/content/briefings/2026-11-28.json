@@ -1,0 +1,129 @@
+{
+  "date": "2026-11-28",
+  "title": "Cyber security briefing — 28 November 2026",
+  "summary": "This week: impersonation scams draining businesses and individuals, the use of domestic bank accounts as mule networks, and the rescue of foreign workers from forced cyber‑crime.",
+  "published": true,
+  "generated": "ai-assisted",
+  "stories": [
+    {
+      "headline": "Beauty parlour owner duped of ₹8 lakh in 13-day ‘digital arrest’",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/lucknow/beauty-parlour-owner-duped-of-8-lakh-in-13-day-digital-arrest/articleshow/136232912.cms",
+      "publishedAt": "2026-11-27 20:14:17",
+      "take": "Victims can be coerced into sending money after fraudsters pose as officials and threaten arrest, showing how online impersonation can lead to large financial losses.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Haryana Panchayats Dept loses Rs 100 cr in cyber fraud",
+      "source": "The Tribune India",
+      "url": "https://www.tribuneindia.com/news/haryana/haryana-panchayats-dept-loses-rs-100-cr-in-cyber-fraud",
+      "publishedAt": "2026-11-27 19:56:39",
+      "take": "The fraud shows that digital payment systems used for government schemes can be exploited, leading to massive loss of public money and undermining trust in such services.",
+      "guide": {
+        "path": "/awareness/safe-digital-banking",
+        "title": "Digital Banking — Safe Banking, Secure India",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Cold coffee, cigarettes, food orders: ‘Cyber trap’ at Noida corporate tower didn’t look like one",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/noida/cold-coffee-cigarettes-food-orders-cyber-trap-at-noida-corporate-tower-didnt-look-like-one/articleshow/136232571.cms",
+      "publishedAt": "2026-11-27 19:26:49",
+      "take": "Cyber fraud operations can be run from ordinary office buildings, making them hard to spot and allowing large numbers of foreign workers to be exploited without obvious signs.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Retd bank officer loses ₹22 lakh to life certificate scam",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/pune/retd-bank-officer-loses-22-lakh-to-life-certificate-scam/articleshow/136231265.cms",
+      "publishedAt": "2026-11-27 18:11:54",
+      "take": "Retired bank staff were duped by fraudsters pretending to be bank officials on a government life‑certificate app, resulting in a loss of ₹22 lakh, showing that personal data shared on such platforms can be exploited for financial scams.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Logistics company falls for ‘boss scam’, duped of ₹30 lakh",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/pune/logistics-company-falls-for-boss-scam-duped-of-30-lakh/articleshow/136231262.cms",
+      "publishedAt": "2026-11-27 18:11:48",
+      "take": "A fraudster pretending to be a company owner convinced an accounts officer to transfer a large sum, showing how impersonation scams can cause significant financial loss for businesses.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Delhi Police busts mule account network linked to Cambodia cybercrime syndicate",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/delhi/delhi-police-busts-mule-account-network-linked-to-cambodia-cybercrime-syndicate/articleshow/136230934.cms",
+      "publishedAt": "2026-11-27 18:00:25",
+      "take": "The bust reveals how domestic bank accounts are being used by criminal networks to move fraud proceeds, highlighting the risk of unsuspecting individuals being recruited as mule accounts and the importance of law enforcement intervention to stop such financial scams.",
+      "guide": {
+        "path": "/awareness/mole-account",
+        "title": "Mole Account — A Hidden Threat",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Cybercrime police refund Rs 1 Lakh to UPI fraud victim",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/allahabad/cybercrime-police-refund-rs-1-lakh-to-upi-fraud-victim/articleshow/136230863.cms",
+      "publishedAt": "2026-11-27 17:58:28",
+      "take": "Promptly reporting UPI fraud to cyber police can increase the chances of recovering lost money, as shown by a victim getting most of his loss back within a day.",
+      "guide": {
+        "path": "/awareness/safe-digital-banking",
+        "title": "Digital Banking — Safe Banking, Secure India",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Oil trader loses ₹70,000 in free movie app fraud",
+      "source": "The Times Of India",
+      "url": "https://timesofindia.indiatimes.com/city/surat/oil-trader-loses-70000-in-free-movie-app-fraud/articleshow/136230806.cms",
+      "publishedAt": "2026-11-27 17:56:45",
+      "take": "Downloading unauthorised free‑movie apps can give fraudsters control of a phone and allow them to make unauthorized bank and credit‑card transactions, resulting in direct financial loss.",
+      "guide": {
+        "path": "/awareness/safe-digital-banking",
+        "title": "Digital Banking — Safe Banking, Secure India",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Lured by jobs, forced into cybercrime: Inside Delhi's human trafficking racket that held 164 foreigners",
+      "source": "BusinessLine",
+      "url": "https://www.thehindubusinessline.com/news/lured-by-jobs-forced-into-cybercrime-inside-delhis-human-trafficking-racket-that-held-164-foreigners/article71749211.ece",
+      "publishedAt": "2026-11-27T04:23:38Z",
+      "take": "The story shows how trafficking groups can lure job seekers into forced participation in online fraud, exposing a link between human trafficking and cybercrime that can affect vulnerable migrants and the wider community.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    },
+    {
+      "headline": "Police rescue 164 foreigners from cyber slavery",
+      "source": "The Times of India",
+      "url": "https://timesofindia.indiatimes.com/city/delhi/police-rescue-164-foreigners-from-cyber-slavery/articleshow/136199794.cms",
+      "publishedAt": "2026-11-26T17:28:09Z",
+      "take": "The rescue shows that organised cyber‑fraud networks can operate in India by exploiting vulnerable foreign workers, indicating a broader threat of such schemes targeting victims online.",
+      "guide": {
+        "path": "/awareness/digital-arrest",
+        "title": "Digital Arrest — Prevention Is Protection",
+        "lang": "en"
+      }
+    }
+  ]
+}
